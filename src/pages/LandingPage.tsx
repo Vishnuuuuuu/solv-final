@@ -1,8 +1,7 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Scale, Building, Shield, Users, Award, ChevronRight, Star, Quote, RefreshCw } from 'lucide-react';
+import { ArrowRight, Award, Building, ChevronRight, Quote, Scale, Shield, Star, Users } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { legalQuotes } from '../data/quotes';
 
 export const LandingPage: React.FC = () => {
@@ -162,9 +161,8 @@ export const LandingPage: React.FC = () => {
             
             <motion.div
               key={currentQuote}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
@@ -183,31 +181,6 @@ export const LandingPage: React.FC = () => {
                 </div>
               </div>
             </motion.div>
-            
-            <div className="flex justify-center items-center mt-12 space-x-4">
-              <button
-                onClick={() => {
-                  const randomIndex = Math.floor(Math.random() * legalQuotes.length);
-                  setCurrentQuote(randomIndex);
-                }}
-                className="flex items-center space-x-2 text-slate-400 hover:text-white transition-colors duration-200 text-sm"
-              >
-                <RefreshCw className="h-4 w-4" />
-                <span>New Quote</span>
-              </button>
-              
-              <div className="flex space-x-2">
-                {legalQuotes.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentQuote(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                      index === currentQuote ? 'bg-white' : 'bg-slate-600 hover:bg-slate-400'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -225,7 +198,7 @@ export const LandingPage: React.FC = () => {
               Client Testimonials
             </h2>
             <p className="text-lg text-slate-600">
-              What our clients say about working with SOLV
+              What our clients say about working with SOLV<span className="text-2xl">.</span>
             </p>
           </motion.div>
 

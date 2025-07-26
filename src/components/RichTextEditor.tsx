@@ -1,33 +1,41 @@
-'use client'
-
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import Image from '@tiptap/extension-image'
-import Link from '@tiptap/extension-link'
-import TextAlign from '@tiptap/extension-text-align'
-import Underline from '@tiptap/extension-underline'
-import { TextStyle } from '@tiptap/extension-text-style'
+import Blockquote from '@tiptap/extension-blockquote'
+import TipTapBold from '@tiptap/extension-bold'
+import BulletList from '@tiptap/extension-bullet-list'
+import TipTapCode from '@tiptap/extension-code'
 import Color from '@tiptap/extension-color'
+import Document from '@tiptap/extension-document'
+import Heading from '@tiptap/extension-heading'
 import Highlight from '@tiptap/extension-highlight'
-import { Button } from './ui/Button'
-import { 
-  Bold, 
-  Italic, 
-  Underline as UnderlineIcon, 
-  Strikethrough, 
-  Code, 
-  // List, 
-  // ListOrdered,
-  // Quote,
-  Undo,
-  Redo,
-  AlignLeft,
+import TipTapItalic from '@tiptap/extension-italic'
+import Link from '@tiptap/extension-link'
+import ListItem from '@tiptap/extension-list-item'
+import OrderedList from '@tiptap/extension-ordered-list'
+import Paragraph from '@tiptap/extension-paragraph'
+import Strike from '@tiptap/extension-strike'
+import Text from '@tiptap/extension-text'
+import TextAlign from '@tiptap/extension-text-align'
+import { TextStyle } from '@tiptap/extension-text-style'
+import Underline from '@tiptap/extension-underline'
+import { EditorContent, useEditor } from '@tiptap/react'
+import {
   AlignCenter,
+  AlignLeft,
   AlignRight,
-  Image as ImageIcon,
-  Link as LinkIcon
+  Bold,
+  Code,
+  Heading1,
+  Heading2,
+  Heading3,
+  Italic,
+  Link as LinkIcon,
+  List,
+  ListOrdered,
+  Quote,
+  Strikethrough,
+  Underline as UnderlineIcon
 } from 'lucide-react'
 import { useCallback, useState } from 'react'
+import { Button } from './ui/Button'
 
 interface RichTextEditorProps {
   content: string
@@ -37,30 +45,51 @@ interface RichTextEditorProps {
 
 export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   content,
-  onChange,
-  placeholder = 'Start writing your article...'
+  onChange
 }) => {
   const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
   const [linkUrl, setLinkUrl] = useState('')
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
-      Image.configure({
+      Document,
+      Paragraph,
+      Text,
+      Heading.configure({
+        levels: [1, 2, 3],
+      }),
+      TipTapBold,
+      TipTapItalic,
+      Strike,
+      TipTapCode,
+      Underline,
+      BulletList.configure({
         HTMLAttributes: {
-          class: 'max-w-full h-auto rounded-lg',
+          class: 'prose-bullet-list',
+        },
+      }),
+      OrderedList.configure({
+        HTMLAttributes: {
+          class: 'prose-ordered-list',
+        },
+      }),
+      ListItem,
+      Blockquote.configure({
+        HTMLAttributes: {
+          class: 'prose-blockquote',
         },
       }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-blue-600 underline',
+          class: 'text-blue-600 underline cursor-pointer',
+          target: '_blank',
+          rel: 'noopener noreferrer',
         },
       }),
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
-      Underline,
       TextStyle,
       Color,
       Highlight.configure({
@@ -73,17 +102,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-slate max-w-none focus:outline-none min-h-[300px] p-4',
+        class: 'prose prose-slate max-w-none focus:outline-none min-h-[300px] p-4 prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:my-2 prose-ul:list-disc prose-ol:list-decimal prose-li:my-1 prose-blockquote:border-l-4 prose-blockquote:border-slate-300 prose-blockquote:pl-4 prose-blockquote:italic',
       },
     },
   })
-
-  const addImage = useCallback(() => {
-    const url = window.prompt('Enter image URL:')
-    if (url && editor) {
-      editor.chain().focus().setImage({ src: url }).run()
-    }
-  }, [editor])
 
   const addLink = useCallback(() => {
     if (editor) {
@@ -98,7 +120,21 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       if (linkUrl === '') {
         editor.chain().focus().extendMarkRange('link').unsetLink().run()
       } else {
-        editor.chain().focus().extendMarkRange('link').setLink({ href: linkUrl }).run()
+        // Ensure the URL has a protocol
+        const url = linkUrl.startsWith('http://') || linkUrl.startsWith('https://') 
+          ? linkUrl 
+          : `https://${linkUrl}`
+        
+        // If there's selected text, apply link to selection
+        // If no selection, insert the URL as both text and link
+        const { from, to } = editor.state.selection
+        if (from === to) {
+          // No selection, insert URL as text and link
+          editor.chain().focus().insertContent(`<a href="${url}">${url}</a>`).run()
+        } else {
+          // There's a selection, apply link to it
+          editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+        }
       }
       setIsLinkModalOpen(false)
       setLinkUrl('')
@@ -136,6 +172,34 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
     <div className="border border-slate-300 rounded-lg overflow-hidden">
       {/* Toolbar */}
       <div className="border-b border-slate-300 p-2 flex flex-wrap gap-1 bg-slate-50">
+        {/* Headings */}
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          isActive={editor.isActive('heading', { level: 1 })}
+          title="Heading 1"
+        >
+          <Heading1 className="w-4 h-4" />
+        </ToolbarButton>
+        
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          isActive={editor.isActive('heading', { level: 2 })}
+          title="Heading 2"
+        >
+          <Heading2 className="w-4 h-4" />
+        </ToolbarButton>
+        
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          isActive={editor.isActive('heading', { level: 3 })}
+          title="Heading 3"
+        >
+          <Heading3 className="w-4 h-4" />
+        </ToolbarButton>
+
+        <div className="w-px h-6 bg-slate-300 mx-1" />
+        
+        {/* Text Formatting */}
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive('bold')}
@@ -178,8 +242,8 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
 
         <div className="w-px h-6 bg-slate-300 mx-1" />
         
-        {/* Commented out as requested */}
-        {/* <ToolbarButton
+        {/* Lists and Quote */}
+        <ToolbarButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           isActive={editor.isActive('bulletList')}
           title="Bullet List"
@@ -203,8 +267,9 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
           <Quote className="w-4 h-4" />
         </ToolbarButton>
 
-        <div className="w-px h-6 bg-slate-300 mx-1" /> */}
+        <div className="w-px h-6 bg-slate-300 mx-1" />
         
+        {/* Text Alignment */}
         <ToolbarButton
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           isActive={editor.isActive({ textAlign: 'left' })}
@@ -231,35 +296,13 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
 
         <div className="w-px h-6 bg-slate-300 mx-1" />
         
-        <ToolbarButton
-          onClick={addImage}
-          title="Add Image"
-        >
-          <ImageIcon className="w-4 h-4" />
-        </ToolbarButton>
-        
+        {/* Link */}
         <ToolbarButton
           onClick={addLink}
           isActive={editor.isActive('link')}
           title="Add Link"
         >
           <LinkIcon className="w-4 h-4" />
-        </ToolbarButton>
-
-        <div className="w-px h-6 bg-slate-300 mx-1" />
-        
-        <ToolbarButton
-          onClick={() => editor.chain().focus().undo().run()}
-          title="Undo"
-        >
-          <Undo className="w-4 h-4" />
-        </ToolbarButton>
-        
-        <ToolbarButton
-          onClick={() => editor.chain().focus().redo().run()}
-          title="Redo"
-        >
-          <Redo className="w-4 h-4" />
         </ToolbarButton>
       </div>
 
@@ -274,14 +317,31 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
             <h3 className="text-lg font-semibold mb-4">Add Link</h3>
-            <input
-              type="url"
-              value={linkUrl}
-              onChange={(e) => setLinkUrl(e.target.value)}
-              placeholder="Enter URL"
-              className="w-full px-3 py-2 border border-slate-300 rounded-md mb-4"
-              autoFocus
-            />
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                URL
+              </label>
+              <input
+                type="url"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                placeholder="https://example.com"
+                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                autoFocus
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    setLink()
+                  } else if (e.key === 'Escape') {
+                    setIsLinkModalOpen(false)
+                    setLinkUrl('')
+                  }
+                }}
+              />
+              <p className="text-xs text-slate-500 mt-1">
+                Press Enter to add link, Escape to cancel
+              </p>
+            </div>
             <div className="flex justify-end space-x-2">
               <Button
                 variant="secondary"
@@ -292,8 +352,11 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
               >
                 Cancel
               </Button>
-              <Button onClick={setLink}>
-                Add Link
+              <Button 
+                onClick={setLink}
+                disabled={!linkUrl.trim()}
+              >
+                {linkUrl && editor?.getAttributes('link').href ? 'Update Link' : 'Add Link'}
               </Button>
             </div>
           </div>

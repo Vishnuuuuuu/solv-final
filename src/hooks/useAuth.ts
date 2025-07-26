@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
 import { User } from '@supabase/supabase-js'
+import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
-import toast from 'react-hot-toast'
 
 interface AdminUser {
   id: string
@@ -11,105 +10,171 @@ interface AdminUser {
   auth_user_id: string
 }
 
-// Cache for admin data to avoid repeated API calls
-let adminUserCache: AdminUser | null = null
-let cacheTimestamp: number = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+// localStorage keys
+const ADMIN_SESSION_KEY = 'solv_admin_session'
+const SESSION_DURATION = 24 * 60 * 60 * 1000 // 24 hours
+
+// Helper functions for localStorage
+const saveAdminSession = (user: User, adminUser: AdminUser) => {
+  try {
+    const sessionData = {
+      user: {
+        id: user.id,
+        email: user.email,
+        created_at: user.created_at,
+        updated_at: user.updated_at
+      },
+      adminUser,
+      timestamp: Date.now()
+    }
+    localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(sessionData))
+  } catch (error) {
+    console.error('Error saving admin session:', error)
+  }
+}
+
+const getAdminSession = () => {
+  try {
+    const sessionData = localStorage.getItem(ADMIN_SESSION_KEY)
+    if (sessionData) {
+      const parsed = JSON.parse(sessionData)
+      // Check if session is not older than 24 hours
+      if (Date.now() - parsed.timestamp < SESSION_DURATION) {
+        return parsed
+      } else {
+        // Clear expired session
+        clearAdminSession()
+      }
+    }
+  } catch (error) {
+    console.error('Error getting admin session:', error)
+    clearAdminSession()
+  }
+  return null
+}
+
+const clearAdminSession = () => {
+  try {
+    localStorage.removeItem(ADMIN_SESSION_KEY)
+  } catch (error) {
+    console.error('Error clearing admin session:', error)
+  }
+}
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null)
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [initialized, setInitialized] = useState(false)
 
   useEffect(() => {
     let mounted = true
-    let timeoutId: NodeJS.Timeout
+    let authTimeout: NodeJS.Timeout
 
     const initializeAuth = async () => {
       try {
-        setError(null)
+        if (!mounted) return
         
-        // Set a timeout for the auth check
-        timeoutId = setTimeout(() => {
+        setError(null)
+        setLoading(true)
+        
+        // Set a timeout for the entire auth initialization
+        authTimeout = setTimeout(() => {
           if (mounted) {
+            console.error('Auth initialization timeout')
             setError('Authentication timeout. Please refresh the page.')
             setLoading(false)
           }
-        }, 10000) // 10 second timeout
+        }, 15000) // 15 second timeout
         
-        // Get initial session
-        const { data: { session } } = await supabase.auth.getSession()
+        // First check localStorage for existing session
+        const savedSession = getAdminSession()
+        if (savedSession?.user && savedSession?.adminUser) {
+          // console.log('Found valid session in localStorage') // Commented out to reduce console noise
+          setUser(savedSession.user)
+          setAdminUser(savedSession.adminUser)
+          setInitialized(true)
+          if (mounted) {
+            clearTimeout(authTimeout)
+            setLoading(false)
+          }
+          return
+        }
+        
+        // Get current session from Supabase
+        // console.log('Checking Supabase session...') // Commented out to reduce console noise
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+        
+        if (sessionError) {
+          console.error('Session error:', sessionError)
+          throw sessionError
+        }
         
         if (!mounted) return
         
-        clearTimeout(timeoutId)
-        
-        setUser(session?.user ?? null)
-        
         if (session?.user) {
-          await fetchAdminUser(session.user.id)
+          // console.log('Found Supabase session, fetching admin user...') // Commented out to reduce console noise
+          setUser(session.user)
+          await fetchAdminUser(session.user.id, session.user)
         } else {
-          // Clear cache when user logs out
-          adminUserCache = null
-          cacheTimestamp = 0
+          console.log('No active session found')
+          clearAdminSession()
+          setUser(null)
           setAdminUser(null)
+        }
+        
+        setInitialized(true)
+        if (mounted) {
+          clearTimeout(authTimeout)
           setLoading(false)
         }
       } catch (error) {
         console.error('Error initializing auth:', error)
         if (mounted) {
-          setError('Failed to initialize authentication')
+          clearTimeout(authTimeout)
+          setError(`Authentication failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
           setLoading(false)
+          setInitialized(true)
         }
       }
     }
 
+    // Initialize auth
     initializeAuth()
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (!mounted) return
-        
-        setUser(session?.user ?? null)
-        
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (!mounted || !initialized) return
+      
+      console.log('Auth state changed:', event, session?.user?.id)
+      
+      try {
         if (session?.user) {
-          await fetchAdminUser(session.user.id)
+          setUser(session.user)
+          await fetchAdminUser(session.user.id, session.user)
         } else {
-          // Clear cache when user logs out
-          adminUserCache = null
-          cacheTimestamp = 0
+          console.log('User logged out, clearing session')
+          clearAdminSession()
+          setUser(null)
           setAdminUser(null)
-          setLoading(false)
         }
+      } catch (error) {
+        console.error('Error in auth state change:', error)
+        setError(`Authentication error: ${error instanceof Error ? error.message : 'Unknown error'}`)
       }
-    )
+    })
 
     return () => {
       mounted = false
-      if (timeoutId) clearTimeout(timeoutId)
+      if (authTimeout) clearTimeout(authTimeout)
       subscription.unsubscribe()
     }
   }, [])
 
-  const fetchAdminUser = async (authUserId: string) => {
-    // Check if we have valid cached data
-    const now = Date.now()
-    if (adminUserCache && cacheTimestamp && (now - cacheTimestamp) < CACHE_DURATION) {
-      setAdminUser(adminUserCache)
-      setLoading(false)
-      return
-    }
-    
-    let timeoutId: NodeJS.Timeout
-    
+  const fetchAdminUser = async (authUserId: string, currentUser?: User) => {
     try {
-      // Set timeout for admin user fetch
-      timeoutId = setTimeout(() => {
-        setError('Failed to load admin data. Please refresh the page.')
-        setLoading(false)
-      }, 8000) // 8 second timeout
+      console.log('Fetching admin user for:', authUserId)
       
       const { data, error } = await supabase
         .from('admin_users')
@@ -117,53 +182,90 @@ export const useAuth = () => {
         .eq('auth_user_id', authUserId)
         .maybeSingle()
 
-      clearTimeout(timeoutId)
-
       if (error) {
         console.error('Error fetching admin user:', error)
-        setError('Failed to load admin user data')
+        setError(`Failed to load admin user: ${error.message}`)
         setAdminUser(null)
-        adminUserCache = null
-        cacheTimestamp = 0
-      } else {
+        clearAdminSession()
+        return
+      }
+
+      if (data) {
+        console.log('Admin user found:', data.email)
         setAdminUser(data)
-        // Cache the admin user data
-        adminUserCache = data
-        cacheTimestamp = now
         setError(null)
+        
+        // Save session to localStorage
+        const userToSave = currentUser || user
+        if (userToSave) {
+          saveAdminSession(userToSave, data)
+        }
+      } else {
+        console.log('No admin user found for auth user:', authUserId)
+        setAdminUser(null)
+        clearAdminSession()
       }
     } catch (error) {
-      console.error('Error fetching admin user:', error)
-      setError('Network error while loading admin data')
+      console.error('Network error fetching admin user:', error)
+      setError(`Network error: ${error instanceof Error ? error.message : 'Unknown error'}`)
       setAdminUser(null)
-      adminUserCache = null
-      cacheTimestamp = 0
-    } finally {
-      setLoading(false)
+      clearAdminSession()
     }
   }
 
   const isSuperAdmin = () => adminUser?.role === 'super_admin'
   const isAdmin = () => adminUser?.role === 'admin' || adminUser?.role === 'super_admin'
 
-  // Retry function for failed requests
-  const retry = () => {
-    // Clear cache on retry
-    adminUserCache = null
-    cacheTimestamp = 0
-    setLoading(true)
-    setError(null)
-    if (user) {
-      fetchAdminUser(user.id)
+  // Logout function
+  const logout = async () => {
+    try {
+      console.log('Logging out...')
+      await supabase.auth.signOut()
+      clearAdminSession()
+      setUser(null)
+      setAdminUser(null)
+      setError(null)
+    } catch (error) {
+      console.error('Error during logout:', error)
+      // Force clear even if logout fails
+      clearAdminSession()
+      setUser(null)
+      setAdminUser(null)
     }
   }
+
+  // Retry function for failed requests
+  const retry = async () => {
+    console.log('Retrying auth...')
+    clearAdminSession()
+    setLoading(true)
+    setError(null)
+    setInitialized(false)
+    
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.user) {
+        setUser(session.user)
+        await fetchAdminUser(session.user.id, session.user)
+      }
+    } catch (error) {
+      console.error('Retry failed:', error)
+      setError(`Retry failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    } finally {
+      setLoading(false)
+      setInitialized(true)
+    }
+  }
+
   return {
     user,
     adminUser,
     loading,
     error,
+    initialized,
     isSuperAdmin,
     isAdmin,
+    logout,
     retry
   }
 }

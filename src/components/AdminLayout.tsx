@@ -1,8 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
+import { Briefcase, ChevronRight, FileText, Home, LayoutDashboard, LogOut, Tag, Users, X } from 'lucide-react'
+import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
-import { Scale, LayoutDashboard, FileText, Briefcase, LogOut, Home, Users, Tag, Menu, X, ChevronRight } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 
 interface AdminLayoutProps {
@@ -12,12 +10,12 @@ interface AdminLayoutProps {
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { adminUser, isSuperAdmin } = useAuth()
+  const { adminUser, isSuperAdmin, logout } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
-    navigate('/admin')
+    await logout()
+    navigate('/admin/login')
   }
 
   const navigation = [

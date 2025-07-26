@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Users, Award, Target, Eye, Heart, Lightbulb } from 'lucide-react';
+import { Heart, Lightbulb, Target } from 'lucide-react';
+import React from 'react';
 
 export const AboutUs: React.FC = () => {
   const teamMembers = [
@@ -63,7 +63,7 @@ export const AboutUs: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold font-serif mb-6">About SOLV</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold font-serif mb-6">About SOLV.</h1>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               A distinguished legal practice founded on the principles of excellence, innovation, and unwavering commitment to client success.
             </p>

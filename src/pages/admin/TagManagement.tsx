@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { supabase } from '../../lib/supabase'
+import { Edit, Plus, Tag, Trash2 } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { AdminLayout } from '../../components/AdminLayout'
 import { useAuth } from '../../hooks/useAuth'
-import { Plus, Edit, Trash2, Tag, Palette } from 'lucide-react'
-import toast from 'react-hot-toast'
+import { supabase } from '../../lib/supabase'
 
 interface BlogTag {
   id: string
@@ -39,18 +39,41 @@ export const TagManagement: React.FC = () => {
     }
   }, [adminUser])
 
-  const fetchTags = async () => {
+  const fetchTags = async (retryCount = 0) => {
     try {
+      console.log('Fetching tags...', retryCount > 0 ? `(retry ${retryCount})` : '')
+      
       const { data, error } = await supabase
         .from('blog_tags')
         .select('*')
         .order('name')
 
-      if (error) throw error
+      if (error) {
+        console.error('Error fetching tags:', error)
+        
+        // If it's an RLS error and we have retries left, try again
+        if (error.message.includes('RLS') && retryCount < 2) {
+          console.log('RLS error detected, retrying...')
+          await new Promise(resolve => setTimeout(resolve, 500))
+          return fetchTags(retryCount + 1)
+        }
+        
+        throw error
+      }
+      
+      console.log('Tags fetched successfully:', data?.length || 0, 'tags')
       setTags(data || [])
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching tags:', error)
-      toast.error('Failed to load tags')
+      
+      // If it's the first attempt and we get an error, try once more
+      if (retryCount === 0) {
+        console.log('Retrying fetch tags due to error...')
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        return fetchTags(1)
+      }
+      
+      toast.error(`Failed to load tags: ${error.message || 'Unknown error'}`)
     } finally {
       setLoading(false)
     }

@@ -1,6 +1,6 @@
+import { Mail, MapPin, Phone } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Scale, Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
               A distinguished legal practice delivering innovative solutions with precision and integrity. 
               We navigate complex legal landscapes to protect and advance our clients' interests.
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               <a href="#" className="text-slate-400 hover:text-white transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               <a href="#" className="text-slate-400 hover:text-white transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/research" className="hover:text-white transition-colors">Research</Link></li>
               <li><Link to="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link></li>
+              {/* <li><Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link></li> */}
             </ul>
           </div>
 

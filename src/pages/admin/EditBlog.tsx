@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { supabase } from '../../lib/supabase'
+import { ArrowLeft, Save, Upload, X } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AdminLayout } from '../../components/AdminLayout'
 import { RichTextEditor } from '../../components/RichTextEditor'
-import { ArrowLeft, Save } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import toast from 'react-hot-toast'
+import { supabase } from '../../lib/supabase'
 
 export const EditBlog: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -17,7 +16,7 @@ export const EditBlog: React.FC = () => {
     status: 'published' as 'draft' | 'published',
     is_featured: false,
     featured_image: '',
-    video_url: '',
+    // video_url: '', // Commented out - will integrate later
     selected_author_id: '',
     selectedTags: [] as string[]
   })
@@ -68,45 +67,59 @@ export const EditBlog: React.FC = () => {
       setLoadingAuthors(false)
     }
   }
+
   const fetchBlog = async () => {
     try {
-      const { data, error } = await supabase
+      // First fetch the article
+      const { data: articleData, error: articleError } = await supabase
         .from('articles')
-        .select(`
-          *,
-          blog_tag_relations (
-            blog_tags (
-              id,
-              name,
-              color
-            )
-          )
-        `)
+        .select('*')
         .eq('id', id)
         .single()
 
-      if (error) throw error
-      
-      const articleTags = data.blog_tag_relations?.map((rel: any) => rel.blog_tags.id) || []
+      if (articleError) throw articleError
+
+      // Then fetch the article tags separately
+      const { data: tagsData, error: tagsError } = await supabase
+        .from('article_tags')
+        .select('tag_id')
+        .eq('article_id', id)
+
+      if (tagsError) {
+        console.warn('Error fetching article tags:', tagsError)
+      }
+
+      const articleTags = tagsData?.map((rel: any) => rel.tag_id) || []
       
       setFormData({
-        title: data.title,
-        slug: data.slug,
-        excerpt: data.excerpt || '',
-        content: data.content,
-        status: data.status || 'published',
-        is_featured: data.is_featured || false,
-        featured_image: data.featured_image || data.cover_url || '',
-        video_url: data.video_url || '',
-        selected_author_id: data.author_id || '',
+        title: articleData.title,
+        slug: articleData.slug,
+        excerpt: articleData.excerpt || '',
+        content: articleData.content,
+        status: articleData.status || 'published',
+        is_featured: articleData.is_featured || false,
+        featured_image: articleData.featured_image || '',
+        // video_url: articleData.video_url || '', // Commented out - will integrate later
+        selected_author_id: articleData.author_id || '',
         selectedTags: articleTags
       })
     } catch (error) {
       console.error('Error fetching blog:', error)
+      toast.error('Failed to load blog')
       setError('Failed to load blog')
     } finally {
       setFetchLoading(false)
     }
+  }
+
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-+|-+$/g, '')
   }
 
   const handleImageUpload = async (file: File) => {
@@ -149,16 +162,6 @@ export const EditBlog: React.FC = () => {
     }))
   }
 
-  const generateSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '')
-  }
-
   const handleTitleChange = (title: string) => {
     setFormData(prev => ({
       ...prev,
@@ -170,13 +173,24 @@ export const EditBlog: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    // Comprehensive validation
     if (!formData.title.trim()) {
       toast.error('Title is required')
       return
     }
 
-    if (!formData.content.trim()) {
+    if (formData.title.length < 5) {
+      toast.error('Title must be at least 5 characters long')
+      return
+    }
+
+    if (!formData.content.trim() || formData.content === '<p></p>') {
       toast.error('Content is required')
+      return
+    }
+
+    if (formData.excerpt.length > 300) {
+      toast.error('Excerpt must be less than 300 characters')
       return
     }
 
@@ -189,7 +203,7 @@ export const EditBlog: React.FC = () => {
       
       if (userError || !user) {
         toast.error('User not authenticated. Please log in again.')
-        setLoading(false)
+        navigate('/admin/login')
         return
       }
 
@@ -205,7 +219,6 @@ export const EditBlog: React.FC = () => {
         
         if (error || !data) {
           toast.error('Selected author not found')
-          setLoading(false)
           return
         }
         authorData = data
@@ -219,13 +232,27 @@ export const EditBlog: React.FC = () => {
 
         if (error || !data) {
           toast.error('Current user admin data not found. Please contact support.')
-          setLoading(false)
           return
         }
         authorData = data
       }
 
       const finalSlug = formData.slug.trim() || generateSlug(formData.title)
+
+      // Check if slug already exists (excluding current article)
+      const { data: existingArticle } = await supabase
+        .from('articles')
+        .select('id')
+        .eq('slug', finalSlug)
+        .neq('id', id)
+        .single()
+
+      if (existingArticle) {
+        toast.error('A blog with this slug already exists. Please use a different title or modify the slug.')
+        return
+      }
+
+      // Update the article
       const { error: articleError } = await supabase
         .from('articles')
         .update({
@@ -238,23 +265,43 @@ export const EditBlog: React.FC = () => {
           status: formData.status,
           is_featured: formData.is_featured,
           featured_image: formData.featured_image || null,
-          cover_url: formData.featured_image || null, // Keep for backward compatibility
-          video_url: formData.video_url || null
+          // video_url: formData.video_url || null // Commented out - will integrate later
         })
         .eq('id', id)
 
       if (articleError) {
         console.error('Article update error:', articleError)
-        if (articleError.code === '23505') {
-          toast.error('A blog with this slug already exists. Please use a different title or slug.')
-        } else {
-          toast.error(`Failed to update blog: ${articleError.message}`)
-        }
-        setLoading(false)
+        toast.error(`Failed to update blog: ${articleError.message}`)
         return
       }
 
-      toast.success('Blog updated successfully!')
+      // Update tags - first delete existing relationships
+      await supabase
+        .from('article_tags')
+        .delete()
+        .eq('article_id', id)
+
+      // Add new tags if any are selected
+      if (formData.selectedTags.length > 0) {
+        const tagInserts = formData.selectedTags.map(tagId => ({
+          article_id: id,
+          tag_id: tagId
+        }))
+
+        const { error: tagError } = await supabase
+          .from('article_tags')
+          .insert(tagInserts)
+
+        if (tagError) {
+          console.warn('Error updating tags:', tagError)
+          toast.success('Blog updated successfully, but some tags could not be updated.')
+        } else {
+          toast.success('Blog updated successfully with tags!')
+        }
+      } else {
+        toast.success('Blog updated successfully!')
+      }
+
       navigate('/admin/blogs')
     } catch (err: any) {
       console.error('Error updating blog:', err)
@@ -267,8 +314,33 @@ export const EditBlog: React.FC = () => {
   if (fetchLoading) {
     return (
       <AdminLayout>
-        <div className="flex items-center justify-center min-h-96">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-900"></div>
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-900 mx-auto mb-4"></div>
+            <p className="text-slate-600">Loading blog...</p>
+          </div>
+        </div>
+      </AdminLayout>
+    )
+  }
+
+  if (error) {
+    return (
+      <AdminLayout>
+        <div className="max-w-4xl mx-auto space-y-6">
+          <div className="flex items-center space-x-4">
+            <Link
+              to="/admin/blogs"
+              className="flex items-center space-x-2 text-slate-600 hover:text-slate-900 transition-colors"
+            >
+              <ArrowLeft className="h-5 w-5" />
+              <span>Back to Blogs</span>
+            </Link>
+            <h1 className="text-3xl font-bold font-serif text-slate-900">Edit Blog</h1>
+          </div>
+          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+            <p className="text-red-700">{error}</p>
+          </div>
         </div>
       </AdminLayout>
     )
@@ -289,12 +361,6 @@ export const EditBlog: React.FC = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-8">
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
-              <p className="text-red-700 text-sm">{error}</p>
-            </div>
-          )}
-
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -331,16 +397,15 @@ export const EditBlog: React.FC = () => {
 
             <div>
               <label htmlFor="slug" className="block text-sm font-medium text-slate-700 mb-2">
-                Slug *
+                Slug
               </label>
               <input
                 type="text"
                 id="slug"
                 value={formData.slug}
                 onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
-                required
                 className="w-full px-4 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="blog-url-slug"
+                placeholder="blog-url-slug (auto-generated from title)"
               />
               <p className="text-sm text-slate-500 mt-1">Leave empty to auto-generate from title</p>
             </div>
@@ -371,6 +436,7 @@ export const EditBlog: React.FC = () => {
               )}
               <p className="text-sm text-slate-500 mt-1">Leave empty to use your account as the author</p>
             </div>
+
             <div>
               <label htmlFor="excerpt" className="block text-sm font-medium text-slate-700 mb-2">
                 Excerpt
@@ -426,36 +492,6 @@ export const EditBlog: React.FC = () => {
               </div>
             </div>
 
-            <div>
-              <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
-                Video URL (Optional)
-              </label>
-              <input
-                type="url"
-                id="video_url"
-                value={formData.video_url}
-                onChange={(e) => setFormData(prev => ({ ...prev, video_url: e.target.value }))}
-                className="w-full px-4 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="https://youtube.com/watch?v=... or https://vimeo.com/..."
-              />
-              <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
-            </div>
-
-            <div>
-              <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
-                Video URL (Optional)
-              </label>
-              <input
-                type="url"
-                id="video_url"
-                value={formData.video_url}
-                onChange={(e) => setFormData(prev => ({ ...prev, video_url: e.target.value }))}
-                className="w-full px-4 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="https://youtube.com/watch?v=... or https://vimeo.com/..."
-              />
-              <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
-            </div>
-
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
@@ -467,6 +503,32 @@ export const EditBlog: React.FC = () => {
               <label htmlFor="is_featured" className="text-sm font-medium text-slate-700">
                 Feature this article
               </label>
+            </div>
+
+            {/* Tags Section */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Tags
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <button
+                    key={tag.id}
+                    type="button"
+                    onClick={() => toggleTag(tag.id)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      formData.selectedTags.includes(tag.id)
+                        ? 'bg-slate-800 text-white'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    {tag.name}
+                  </button>
+                ))}
+              </div>
+              {tags.length === 0 && (
+                <p className="text-sm text-slate-500">No tags available. Create tags in Tag Management.</p>
+              )}
             </div>
 
             <div>

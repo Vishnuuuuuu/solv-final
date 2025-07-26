@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { supabase } from '../../lib/supabase'
-import { AdminLayout } from '../../components/AdminLayout'
-import { useAuth } from '../../hooks/useAuth'
-import { RichTextEditor } from '../../components/RichTextEditor'
 import { ArrowLeft, Save, Upload, X } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { Link, useNavigate } from 'react-router-dom'
+import { AdminLayout } from '../../components/AdminLayout'
+import { RichTextEditor } from '../../components/RichTextEditor'
+import { supabase } from '../../lib/supabase'
 
 export const CreateBlog: React.FC = () => {
-  const { adminUser } = useAuth()
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -19,13 +15,12 @@ export const CreateBlog: React.FC = () => {
     status: 'published' as 'draft' | 'published',
     is_featured: false,
     featured_image: '',
-    video_url: '',
+    // video_url: '', // Commented out - will integrate later
     selected_author_id: '',
     selectedTags: [] as string[]
   })
   const [tags, setTags] = useState<any[]>([])
   const [authors, setAuthors] = useState<any[]>([])
-  const [imageFile, setImageFile] = useState<File | null>(null)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [loading, setLoading] = useState(false)
   const [loadingAuthors, setLoadingAuthors] = useState(true)
@@ -128,15 +123,35 @@ export const CreateBlog: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    // Comprehensive validation
     if (!formData.title.trim()) {
       toast.error('Title is required')
       return
     }
 
-    if (!formData.content.trim()) {
+    if (formData.title.length < 5) {
+      toast.error('Title must be at least 5 characters long')
+      return
+    }
+
+    if (!formData.content.trim() || formData.content === '<p></p>') {
       toast.error('Content is required')
       return
     }
+
+    if (formData.excerpt.length > 300) {
+      toast.error('Excerpt must be less than 300 characters')
+      return
+    }
+
+    // Video URL validation commented out - will integrate later
+    // if (formData.video_url) {
+    //   const videoUrlPattern = /^https?:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/|dailymotion\.com\/video\/)/
+    //   if (!videoUrlPattern.test(formData.video_url)) {
+    //     toast.error('Please enter a valid video URL (YouTube, Vimeo, or Dailymotion)')
+    //     return
+    //   }
+    // }
 
     setLoading(true)
     setError('')
@@ -147,7 +162,7 @@ export const CreateBlog: React.FC = () => {
       
       if (userError || !user) {
         toast.error('User not authenticated. Please log in again.')
-        setLoading(false)
+        navigate('/admin/login')
         return
       }
 
@@ -163,7 +178,6 @@ export const CreateBlog: React.FC = () => {
         
         if (error || !data) {
           toast.error('Selected author not found')
-          setLoading(false)
           return
         }
         authorData = data
@@ -177,13 +191,24 @@ export const CreateBlog: React.FC = () => {
 
         if (error || !data) {
           toast.error('Current user admin data not found. Please contact support.')
-          setLoading(false)
           return
         }
         authorData = data
       }
 
       const finalSlug = formData.slug.trim() || generateSlug(formData.title)
+
+      // Check if slug already exists
+      const { data: existingArticle } = await supabase
+        .from('articles')
+        .select('id')
+        .eq('slug', finalSlug)
+        .single()
+
+      if (existingArticle) {
+        toast.error('A blog with this slug already exists. Please use a different title or modify the slug.')
+        return
+      }
 
       const { data: articleData, error: articleError } = await supabase
         .from('articles')
@@ -197,7 +222,7 @@ export const CreateBlog: React.FC = () => {
           status: formData.status,
           is_featured: formData.is_featured,
           featured_image: formData.featured_image || null,
-          video_url: formData.video_url || null
+          // video_url: formData.video_url || null // Commented out - will integrate later
         }])
         .select()
         .single()
@@ -213,7 +238,27 @@ export const CreateBlog: React.FC = () => {
         return
       }
 
-      toast.success('Blog created successfully!')
+      // Add tags to the blog if any are selected
+      if (formData.selectedTags.length > 0 && articleData) {
+        const tagInserts = formData.selectedTags.map(tagId => ({
+          article_id: articleData.id,
+          tag_id: tagId
+        }))
+
+        const { error: tagError } = await supabase
+          .from('article_tags')
+          .insert(tagInserts)
+
+        if (tagError) {
+          console.warn('Error adding tags:', tagError)
+          // Don't fail the entire operation for tag errors
+          toast.success('Blog created successfully, but some tags could not be added.')
+        } else {
+          toast.success('Blog created successfully with tags!')
+        }
+      } else {
+        toast.success('Blog created successfully!')
+      }
       navigate('/admin/blogs')
     } catch (err: any) {
       console.error('Error creating blog:', err)
@@ -344,7 +389,6 @@ export const CreateBlog: React.FC = () => {
                   onChange={(e) => {
                     const file = e.target.files?.[0]
                     if (file) {
-                      setImageFile(file)
                       handleImageUpload(file)
                     }
                   }}
@@ -375,6 +419,8 @@ export const CreateBlog: React.FC = () => {
               </div>
             </div>
 
+            {/* Video URL Section - Commented out for later integration */}
+            {/* 
             <div>
               <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
                 Video URL (Optional)
@@ -389,21 +435,7 @@ export const CreateBlog: React.FC = () => {
               />
               <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
             </div>
-
-            <div>
-              <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
-                Video URL (Optional)
-              </label>
-              <input
-                type="url"
-                id="video_url"
-                value={formData.video_url}
-                onChange={(e) => setFormData(prev => ({ ...prev, video_url: e.target.value }))}
-                className="w-full px-4 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="https://youtube.com/watch?v=... or https://vimeo.com/..."
-              />
-              <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
-            </div>
+            */}
 
             <div className="flex items-center space-x-2">
               <input
@@ -416,6 +448,32 @@ export const CreateBlog: React.FC = () => {
               <label htmlFor="is_featured" className="text-sm font-medium text-slate-700">
                 Feature this article
               </label>
+            </div>
+
+            {/* Tags Section */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Tags
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <button
+                    key={tag.id}
+                    type="button"
+                    onClick={() => toggleTag(tag.id)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      formData.selectedTags.includes(tag.id)
+                        ? 'bg-slate-800 text-white'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                    }`}
+                  >
+                    {tag.name}
+                  </button>
+                ))}
+              </div>
+              {tags.length === 0 && (
+                <p className="text-sm text-slate-500">No tags available. Create tags in Tag Management.</p>
+              )}
             </div>
 
             <div>
