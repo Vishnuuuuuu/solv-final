@@ -12,7 +12,7 @@ interface AdminUser {
 
 // localStorage keys
 const ADMIN_SESSION_KEY = 'solv_admin_session'
-const SESSION_DURATION = 24 * 60 * 60 * 1000 // 24 hours
+const SESSION_DURATION = 2 * 60 * 60 * 1000 // 2 hours (changed from 24 hours)
 
 // Helper functions for localStorage
 const saveAdminSession = (user: User, adminUser: AdminUser) => {
@@ -38,11 +38,12 @@ const getAdminSession = () => {
     const sessionData = localStorage.getItem(ADMIN_SESSION_KEY)
     if (sessionData) {
       const parsed = JSON.parse(sessionData)
-      // Check if session is not older than 24 hours
+      // Check if session is not older than 2 hours
       if (Date.now() - parsed.timestamp < SESSION_DURATION) {
         return parsed
       } else {
         // Clear expired session
+        console.log('Session expired after 2 hours, clearing localStorage')
         clearAdminSession()
       }
     }
@@ -67,6 +68,35 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [initialized, setInitialized] = useState(false)
+
+  // Session expiration checker
+  useEffect(() => {
+    let sessionCheckInterval: NodeJS.Timeout
+
+    if (user && adminUser) {
+      // Check every 30 seconds if session is still valid
+      sessionCheckInterval = setInterval(() => {
+        const currentSession = getAdminSession()
+        if (!currentSession) {
+          console.log('Session expired, logging out user')
+          // Session expired, clear state and redirect to login
+          setUser(null)
+          setAdminUser(null)
+          setInitialized(false)
+          // Redirect to login page
+          if (window.location.pathname.startsWith('/admin') && !window.location.pathname.includes('/login')) {
+            window.location.href = '/admin/login'
+          }
+        }
+      }, 30000) // Check every 30 seconds
+    }
+
+    return () => {
+      if (sessionCheckInterval) {
+        clearInterval(sessionCheckInterval)
+      }
+    }
+  }, [user, adminUser])
 
   useEffect(() => {
     let mounted = true
@@ -257,6 +287,14 @@ export const useAuth = () => {
     }
   }
 
+  // Function to refresh session timestamp (extend session)
+  const refreshSession = () => {
+    if (user && adminUser) {
+      console.log('Refreshing session timestamp')
+      saveAdminSession(user, adminUser)
+    }
+  }
+
   return {
     user,
     adminUser,
@@ -266,6 +304,7 @@ export const useAuth = () => {
     isSuperAdmin,
     isAdmin,
     logout,
-    retry
+    retry,
+    refreshSession
   }
 }

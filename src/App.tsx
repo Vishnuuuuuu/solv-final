@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { DisclaimerProvider } from './components/DisclaimerManager';
@@ -7,7 +7,7 @@ import { DisclaimerPopup } from './components/DisclaimerPopup';
 import { LandingPage } from './pages/LandingPage';
 import { AboutUs } from './pages/AboutUs';
 import { Services } from './pages/Services';
-import { Research } from './pages/Research';
+import { Blog } from './pages/Blog';
 import { Careers } from './pages/Careers';
 import { Contact } from './pages/Contact';
 import { Disclaimer } from './pages/Disclaimer';
@@ -64,7 +64,9 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/research" element={<Research />} />
+              <Route path="/blog" element={<Blog />} />
+              {/* Redirect old research route to blog */}
+              <Route path="/research" element={<Navigate to="/blog" replace />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/disclaimer" element={<Disclaimer />} />

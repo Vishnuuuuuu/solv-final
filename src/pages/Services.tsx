@@ -1,8 +1,11 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Building, Shield, Users, Laptop, Calculator, FileText, CheckCircle, ArrowRight } from 'lucide-react';
+import { ArrowRight, Building, Calculator, CheckCircle, FileText, Laptop, Shield, Users } from 'lucide-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Services: React.FC = () => {
+  const navigate = useNavigate();
+
   const services = [
     {
       icon: Building,
@@ -223,7 +226,10 @@ export const Services: React.FC = () => {
               Contact our team today to discuss how we can help you navigate your legal challenges 
               and achieve your business objectives.
             </p>
-            <button className="bg-white text-slate-900 px-8 py-4 rounded-md font-semibold hover:bg-slate-100 transition-all duration-200 hover:scale-105 inline-flex items-center space-x-2">
+            <button 
+              onClick={() => navigate('/contact')}
+              className="bg-white text-slate-900 px-8 py-4 rounded-md font-semibold hover:bg-slate-100 transition-all duration-200 hover:scale-105 inline-flex items-center space-x-2"
+            >
               <span>Schedule a Consultation</span>
               <ArrowRight className="h-5 w-5" />
             </button>

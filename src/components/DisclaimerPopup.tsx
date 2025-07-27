@@ -1,5 +1,5 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useDisclaimer } from './DisclaimerManager';
 
 export const DisclaimerPopup: React.FC = () => {
@@ -14,27 +14,12 @@ export const DisclaimerPopup: React.FC = () => {
     <AnimatePresence>
       {showPopup && (
         <>
-          {/* Dark Overlay Background */}
+          {/* Dark Overlay Background - No image, just semi-transparent overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999]"
-            style={{ 
-              pointerEvents: 'auto',
-              backgroundImage: 'url("https://images.pexels.com/photos/159832/justice-law-case-hearing-159832.jpeg?auto=compress&cs=tinysrgb&w=1920")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          {/* Dark overlay on top of background image */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 z-[9999]"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9999]"
             style={{ pointerEvents: 'auto' }}
           />
           
@@ -50,7 +35,7 @@ export const DisclaimerPopup: React.FC = () => {
             <div className="bg-black/60 backdrop-blur-md border border-gray-600/30 rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               {/* Header */}
               <div className="text-center py-8 px-8">
-                <h1 className="text-4xl font-bold text-yellow-400 mb-8 tracking-wider">DISCLAIMER</h1>
+                <h1 className="text-4xl font-bold text-blue-400 mb-8 tracking-wider">DISCLAIMER</h1>
                 
                 {/* Content */}
                 <div className="text-white text-left space-y-6 leading-relaxed">
@@ -89,12 +74,12 @@ export const DisclaimerPopup: React.FC = () => {
                 </div>
                 
                 {/* Buttons */}
-                <div className="flex justify-center space-x-6 mt-12">
+                <div className="flex justify-center mt-12">
                   <button
                     onClick={handleAccept}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 rounded transition-colors duration-200 text-lg"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-12 py-4 rounded transition-colors duration-200 text-lg shadow-lg"
                   >
-                    AGREE
+                    I AGREE
                   </button>
                 </div>
               </div>

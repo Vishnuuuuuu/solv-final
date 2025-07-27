@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Scale } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const Navigation: React.FC = () => {
@@ -20,7 +20,7 @@ export const Navigation: React.FC = () => {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About Us' },
     { path: '/services', label: 'Services' },
-    { path: '/research', label: 'Blog' },
+    { path: '/blog', label: 'Blog' },
     { path: '/careers', label: 'Careers' },
     { path: '/contact', label: 'Contact' },
   ];

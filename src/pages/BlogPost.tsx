@@ -88,7 +88,7 @@ export const BlogPost: React.FC = () => {
       <div className="pt-16 min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">Article Not Found</h1>
-          <Link to="/research" className="text-slate-600 hover:text-slate-900">
+          <Link to="/blog" className="text-slate-600 hover:text-slate-900">
             ← Back to Blog
           </Link>
         </div>
@@ -102,7 +102,7 @@ export const BlogPost: React.FC = () => {
       <header className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link 
-            to="/research"
+            to="/blog"
             className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />

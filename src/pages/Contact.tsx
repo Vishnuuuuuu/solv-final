@@ -42,12 +42,12 @@ export const Contact: React.FC = () => {
       icon: Phone,
       title: 'Phone Numbers',
       // details: ['+91 80 1234 5678', '+91 80 1234 5679', 'Toll-free: +91 1800 123 SOLV']
-      details: ['+91 96868 32870 ']
+      details: ['+91 96 8683 2870 ']
     },
     {
       icon: Mail,
       title: 'Email Addresses',
-      details: ['info@solvadvocates.in', 'careers@solv.legal']
+      details: ['info@solvadvocates.in', 'navya@solvadvocates.in']
     },
     {
       icon: Clock,
@@ -216,7 +216,7 @@ export const Contact: React.FC = () => {
               <div className="space-y-3 text-slate-600">
                 <p><strong>By Metro:</strong> Take the Green Line to Jayadeva Hospital Metro Station (10 min walk)</p>
                 <p><strong>By Bus:</strong> BMTC buses 201, 214, 215 stop nearby</p>
-                <p><strong>Parking:</strong> Street parking and paid parking available nearby</p>
+                <p><strong>Parking:</strong> Street parking and free parking available nearby</p>
                 <p><strong>Airport:</strong> 45 minutes from Kempegowda International Airport</p>
               </div>
             </div>

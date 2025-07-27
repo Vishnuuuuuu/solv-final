@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link to="/research" className="hover:text-white transition-colors">Research</Link></li>
+              <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link to="/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               {/* <li><Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link></li> */}
@@ -58,11 +58,11 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-5 w-5 text-slate-400" />
-                <span className="text-sm">+91 80 1234 5678</span>
+                <span className="text-sm">+91 96 8683 2870 </span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5 text-slate-400" />
-                <span className="text-sm">info@solv.legal</span>
+                <span className="text-sm">info@solvadvocates.in</span>
               </li>
             </ul>
           </div>

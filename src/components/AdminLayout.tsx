@@ -2,6 +2,8 @@ import { Briefcase, ChevronRight, FileText, Home, LayoutDashboard, LogOut, Tag, 
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { useSessionRefresh } from '../hooks/useSessionRefresh'
+import { SessionStatus } from './SessionStatus'
 
 interface AdminLayoutProps {
   children: React.ReactNode
@@ -12,6 +14,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const navigate = useNavigate()
   const { adminUser, isSuperAdmin, logout } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  // Automatically refresh session on user activity
+  useSessionRefresh()
 
   const handleLogout = async () => {
     await logout()
@@ -77,6 +82,11 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
           </div>
           
           <div className="mt-8 pt-6 border-t border-slate-800 px-3 space-y-1">
+            {/* Session Status */}
+            <div className="px-3 py-2">
+              <SessionStatus compact={!sidebarOpen} />
+            </div>
+            
             <Link
               to="/"
               className={`flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors duration-200 ${!sidebarOpen ? 'justify-center' : ''}`}

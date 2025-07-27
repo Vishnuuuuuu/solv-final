@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface DisclaimerContextType {
   hasAccepted: boolean;
@@ -30,23 +30,11 @@ export const DisclaimerProvider: React.FC<DisclaimerProviderProps> = ({ children
 
   const checkDisclaimerStatus = () => {
     try {
-      const accepted = localStorage.getItem('solv-disclaimer-accepted');
-      const acceptedDate = localStorage.getItem('solv-disclaimer-date');
+      // Use sessionStorage instead of localStorage so it clears when browser closes
+      const accepted = sessionStorage.getItem('solv-disclaimer-accepted');
       
-      if (accepted === 'true' && acceptedDate) {
-        // Check if acceptance is still valid (e.g., within 30 days)
-        const acceptDate = new Date(acceptedDate);
-        const now = new Date();
-        const daysDiff = Math.floor((now.getTime() - acceptDate.getTime()) / (1000 * 60 * 60 * 24));
-        
-        if (daysDiff <= 30) {
-          setHasAccepted(true);
-        } else {
-          // Reset if older than 30 days
-          localStorage.removeItem('solv-disclaimer-accepted');
-          localStorage.removeItem('solv-disclaimer-date');
-          setHasAccepted(false);
-        }
+      if (accepted === 'true') {
+        setHasAccepted(true);
       } else {
         setHasAccepted(false);
       }
@@ -60,8 +48,8 @@ export const DisclaimerProvider: React.FC<DisclaimerProviderProps> = ({ children
 
   const acceptDisclaimer = () => {
     try {
-      localStorage.setItem('solv-disclaimer-accepted', 'true');
-      localStorage.setItem('solv-disclaimer-date', new Date().toISOString());
+      // Use sessionStorage so it clears when browser closes
+      sessionStorage.setItem('solv-disclaimer-accepted', 'true');
       setHasAccepted(true);
     } catch (error) {
       console.error('Error saving disclaimer acceptance:', error);
@@ -70,8 +58,7 @@ export const DisclaimerProvider: React.FC<DisclaimerProviderProps> = ({ children
 
   const resetDisclaimer = () => {
     try {
-      localStorage.removeItem('solv-disclaimer-accepted');
-      localStorage.removeItem('solv-disclaimer-date');
+      sessionStorage.removeItem('solv-disclaimer-accepted');
       setHasAccepted(false);
     } catch (error) {
       console.error('Error resetting disclaimer:', error);
