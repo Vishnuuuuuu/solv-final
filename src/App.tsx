@@ -1,28 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { Navigation } from './components/Navigation';
-import { Footer } from './components/Footer';
+import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { DisclaimerProvider } from './components/DisclaimerManager';
 import { DisclaimerPopup } from './components/DisclaimerPopup';
-import { LandingPage } from './pages/LandingPage';
+import { Footer } from './components/Footer';
+import { Navigation } from './components/Navigation';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { AboutUs } from './pages/AboutUs';
-import { Services } from './pages/Services';
 import { Blog } from './pages/Blog';
+import { BlogPost } from './pages/BlogPost';
 import { Careers } from './pages/Careers';
 import { Contact } from './pages/Contact';
 import { Disclaimer } from './pages/Disclaimer';
-import { BlogPost } from './pages/BlogPost';
-import { AdminLogin } from './pages/admin/AdminLogin';
-import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { LandingPage } from './pages/LandingPage';
+import { Services } from './pages/Services';
 import { AdminBlogs } from './pages/admin/AdminBlogs';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminJobs } from './pages/admin/AdminJobs';
-import { UserManagement } from './pages/admin/UserManagement';
-import { TagManagement } from './pages/admin/TagManagement';
+import { AdminLogin } from './pages/admin/AdminLogin';
 import { CreateBlog } from './pages/admin/CreateBlog';
-import { EditBlog } from './pages/admin/EditBlog';
 import { CreateJob } from './pages/admin/CreateJob';
+import { EditBlog } from './pages/admin/EditBlog';
 import { EditJob } from './pages/admin/EditJob';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { TagManagement } from './pages/admin/TagManagement';
+import { UserManagement } from './pages/admin/UserManagement';
 
 // Component to handle scroll to top on route change
 const ScrollToTop: React.FC = () => {

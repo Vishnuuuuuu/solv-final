@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { ArrowRight, BookOpen, Calendar, Search, User } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { Pagination } from '../components/Pagination';
+import { supabase } from '../lib/supabase';
 
 export const Blog: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');

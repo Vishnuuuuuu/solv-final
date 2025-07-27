@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
