@@ -23,6 +23,13 @@ import { EditBlog } from './pages/admin/EditBlog';
 import { EditJob } from './pages/admin/EditJob';
 import { TagManagement } from './pages/admin/TagManagement';
 import { UserManagement } from './pages/admin/UserManagement';
+import { PreLitigationAdvisory } from './pages/services/PreLitigationAdvisory';
+import { RealEstateServices } from './pages/services/RealEstateServices';
+import { TaxComplianceServices } from './pages/services/TaxComplianceServices';
+import { GSTRegistration } from './pages/services/tax/GSTRegistration';
+import { IncomeTaxFiling } from './pages/services/tax/IncomeTaxFiling';
+import { PropertySaleAgreement } from './pages/services/realestate/PropertySaleAgreement';
+import { PropertyPurchaseAgreement } from './pages/services/realestate/PropertyPurchaseAgreement';
 
 // Component to handle scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -64,6 +71,15 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/tax-compliance" element={<TaxComplianceServices />} />
+              <Route path="/services/real-estate" element={<RealEstateServices />} />
+              <Route path="/services/dispute-resolution/pre-litigation-advisory" element={<PreLitigationAdvisory />} />
+              {/* Tax Service Detail Pages */}
+              <Route path="/services/tax-compliance/gst-registration" element={<GSTRegistration />} />
+              <Route path="/services/tax-compliance/income-tax-filing" element={<IncomeTaxFiling />} />
+              {/* Real Estate Service Detail Pages */}
+              <Route path="/services/real-estate/property-sale-agreement" element={<PropertySaleAgreement />} />
+              <Route path="/services/real-estate/property-purchase-agreement" element={<PropertyPurchaseAgreement />} />
               <Route path="/blog" element={<Blog />} />
               {/* Redirect old research route to blog */}
               <Route path="/research" element={<Navigate to="/blog" replace />} />
