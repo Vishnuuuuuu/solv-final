@@ -19,7 +19,7 @@ export const DisclaimerPopup: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9999]"
+            className="fixed inset-0 bg-black/10 z-[9999]"
             style={{ pointerEvents: 'auto' }}
           />
           
@@ -35,7 +35,7 @@ export const DisclaimerPopup: React.FC = () => {
             <div className="bg-black/60 backdrop-blur-md border border-gray-600/30 rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               {/* Header */}
               <div className="text-center py-8 px-8">
-                <h1 className="text-4xl font-bold text-blue-400 mb-8 tracking-wider">DISCLAIMER</h1>
+                <h1 className="text-4xl font-bold text-white mb-8 tracking-wider">DISCLAIMER</h1>
                 
                 {/* Content */}
                 <div className="text-white text-left space-y-6 leading-relaxed">
@@ -77,7 +77,7 @@ export const DisclaimerPopup: React.FC = () => {
                 <div className="flex justify-center mt-12">
                   <button
                     onClick={handleAccept}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-12 py-4 rounded transition-colors duration-200 text-lg shadow-lg"
+                    className="bg-slate-800 hover:bg-slate-700 text-white font-bold px-12 py-4 rounded transition-colors duration-200 text-lg shadow-lg"
                   >
                     I AGREE
                   </button>
