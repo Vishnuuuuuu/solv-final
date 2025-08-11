@@ -1,17 +1,17 @@
 import React from 'react';
-import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import { DisclaimerProvider } from './components/DisclaimerManager';
 import { DisclaimerPopup } from './components/DisclaimerPopup';
 import { Footer } from './components/Footer';
 import { Navigation } from './components/Navigation';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AboutUs } from './pages/AboutUs';
-import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { Careers } from './pages/Careers';
 import { Contact } from './pages/Contact';
 import { Disclaimer } from './pages/Disclaimer';
 import { LandingPage } from './pages/LandingPage';
+import { Research } from './pages/Research';
 import { Services } from './pages/Services';
 import { AdminBlogs } from './pages/admin/AdminBlogs';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
@@ -23,13 +23,6 @@ import { EditBlog } from './pages/admin/EditBlog';
 import { EditJob } from './pages/admin/EditJob';
 import { TagManagement } from './pages/admin/TagManagement';
 import { UserManagement } from './pages/admin/UserManagement';
-import { PreLitigationAdvisory } from './pages/services/PreLitigationAdvisory';
-import { RealEstateServices } from './pages/services/RealEstateServices';
-import { TaxComplianceServices } from './pages/services/TaxComplianceServices';
-import { GSTRegistration } from './pages/services/tax/GSTRegistration';
-import { IncomeTaxFiling } from './pages/services/tax/IncomeTaxFiling';
-import { PropertySaleAgreement } from './pages/services/realestate/PropertySaleAgreement';
-import { PropertyPurchaseAgreement } from './pages/services/realestate/PropertyPurchaseAgreement';
 
 // Component to handle scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -71,18 +64,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/services/tax-compliance" element={<TaxComplianceServices />} />
-              <Route path="/services/real-estate" element={<RealEstateServices />} />
-              <Route path="/services/dispute-resolution/pre-litigation-advisory" element={<PreLitigationAdvisory />} />
-              {/* Tax Service Detail Pages */}
-              <Route path="/services/tax-compliance/gst-registration" element={<GSTRegistration />} />
-              <Route path="/services/tax-compliance/income-tax-filing" element={<IncomeTaxFiling />} />
-              {/* Real Estate Service Detail Pages */}
-              <Route path="/services/real-estate/property-sale-agreement" element={<PropertySaleAgreement />} />
-              <Route path="/services/real-estate/property-purchase-agreement" element={<PropertyPurchaseAgreement />} />
-              <Route path="/blog" element={<Blog />} />
-              {/* Redirect old research route to blog */}
-              <Route path="/research" element={<Navigate to="/blog" replace />} />
+              <Route path="/research" element={<Research />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/disclaimer" element={<Disclaimer />} />

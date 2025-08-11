@@ -7,23 +7,20 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const { user, adminUser, loading, error, retry, initialized } = useAuth()
+  const { user, adminUser, loading, error, retry } = useAuth()
 
-  // Show loading while initializing auth
-  if (loading || !initialized) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-slate-900 mx-auto mb-4"></div>
-          <p className="text-slate-600 mb-4">
-            {loading ? 'Loading admin panel...' : 'Initializing...'}
-          </p>
+          <p className="text-slate-600">Loading admin panel...</p>
           {error && (
             <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md max-w-md mx-auto">
               <p className="text-red-700 text-sm mb-2">{error}</p>
               <button
                 onClick={retry}
-                className="bg-red-600 text-white px-4 py-2 rounded-md text-sm hover:bg-red-700 transition-colors"
+                className="bg-red-600 text-white px-4 py-2 rounded-md text-sm hover:bg-red-700"
               >
                 Retry
               </button>
@@ -34,8 +31,8 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     )
   }
 
-  // Show error state if there's an error and we're initialized
-  if (error && initialized && !user) {
+  // Show error state if there's an error and no user data
+  if (error && !user) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
@@ -45,13 +42,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
             <div className="space-y-2">
               <button
                 onClick={retry}
-                className="w-full bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-slate-800 transition-colors"
+                className="w-full bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-slate-800"
               >
                 Try Again
               </button>
               <button
                 onClick={() => window.location.href = '/admin/login'}
-                className="w-full border border-slate-300 text-slate-700 px-4 py-2 rounded-md hover:bg-slate-50 transition-colors"
+                className="w-full border border-slate-300 text-slate-700 px-4 py-2 rounded-md hover:bg-slate-50"
               >
                 Back to Login
               </button>
@@ -61,7 +58,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       </div>
     )
   }
-
   // If user is not authenticated, redirect to login
   if (!user) {
     return <Navigate to="/admin/login" replace />
@@ -80,13 +76,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
             <div className="space-y-2">
               <button
                 onClick={retry}
-                className="w-full bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-slate-800 transition-colors"
+                className="w-full bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-slate-800"
               >
                 Retry
               </button>
               <button
                 onClick={() => window.location.href = '/admin/login'}
-                className="w-full border border-slate-300 text-slate-700 px-4 py-2 rounded-md hover:bg-slate-50 transition-colors"
+                className="w-full border border-slate-300 text-slate-700 px-4 py-2 rounded-md hover:bg-slate-50"
               >
                 Back to Login
               </button>

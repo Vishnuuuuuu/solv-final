@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertTriangle, Shield, FileText, Info } from 'lucide-react';
+import { AlertTriangle, FileText, Info, Shield } from 'lucide-react';
+import React from 'react';
 
 export const Disclaimer: React.FC = () => {
   const disclaimerSections = [

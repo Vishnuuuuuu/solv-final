@@ -1,7 +1,6 @@
 import { AlertCircle, Lock, Mail, Scale } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 
 export const AdminLogin: React.FC = () => {
@@ -10,69 +9,25 @@ export const AdminLogin: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
-  const { user, adminUser, loading: authLoading, initialized } = useAuth()
-
-  // Redirect if already logged in
-  useEffect(() => {
-    if (initialized && user && adminUser) {
-      console.log('User already logged in, redirecting to dashboard')
-      navigate('/admin/dashboard', { replace: true })
-    }
-  }, [user, adminUser, initialized, navigate])
-
-  // Show loading while checking auth state
-  if (authLoading || !initialized) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-white">Checking authentication...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // Don't render login form if user is already authenticated
-  if (user && adminUser) {
-    return null
-  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!email || !password) {
-      setError('Please fill in all fields')
-      return
-    }
-    
     setLoading(true)
     setError('')
 
     try {
-      console.log('Attempting login for:', email)
-      
-      const { data, error: loginError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
         password,
       })
 
-      if (loginError) {
-        console.error('Login error:', loginError)
-        setError(loginError.message)
-        return
-      }
-
-      if (data.user) {
-        console.log('Login successful, user:', data.user.email)
-        // The useAuth hook will handle the redirect once admin user is loaded
-        // Just in case the hook doesn't trigger the redirect, we'll navigate manually after a delay
-        setTimeout(() => {
-          navigate('/admin/dashboard', { replace: true })
-        }, 2000)
+      if (error) {
+        setError(error.message)
+      } else {
+        navigate('/admin/dashboard')
       }
     } catch (err) {
-      console.error('Unexpected login error:', err)
-      setError('An unexpected error occurred. Please try again.')
+      setError('An unexpected error occurred')
     } finally {
       setLoading(false)
     }

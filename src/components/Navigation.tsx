@@ -39,8 +39,8 @@ export const Navigation: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
               src="/solv.svg" 
-              alt="SOLV Legal" 
-              className="h-12 w-auto lg:h-16 rounded-lg shadow-sm bg-white/10 p-1"
+              alt="SOLV Advicates" 
+              className="h-20 w-auto lg:h-24"
             />
           </Link>
 
