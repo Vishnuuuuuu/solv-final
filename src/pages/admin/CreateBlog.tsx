@@ -8,16 +8,15 @@ import { supabase } from '../../lib/supabase'
 
 export const CreateBlog: React.FC = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    slug: '',
-    excerpt: '',
-    content: '',
-    status: 'published' as 'draft' | 'published',
-    is_featured: false,
-    featured_image: '',
-    video_url: '',
-    selected_author_id: '',
-    selectedTags: [] as string[]
+  title: '',
+  slug: '',
+  excerpt: '',
+  content: '',
+  status: 'published' as 'draft' | 'published',
+  is_featured: false,
+  featured_image: '',
+  selected_author_id: '',
+  selectedTags: [] as string[]
   })
   const [authors, setAuthors] = useState<any[]>([])
   const [uploadingImage, setUploadingImage] = useState(false)
@@ -251,8 +250,7 @@ export const CreateBlog: React.FC = () => {
           author_id: authorData.id,
           status: formData.status,
           is_featured: formData.is_featured,
-          featured_image: formData.featured_image || null,
-          video_url: formData.video_url || null
+          featured_image: formData.featured_image || null
         }])
         .select()
         .single()
@@ -429,22 +427,6 @@ export const CreateBlog: React.FC = () => {
               </div>
             </div>
 
-            {/* Video URL section commented out 
-            <div>
-              <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
-                Video URL (Optional)
-              </label>
-              <input
-                type="url"
-                id="video_url"
-                value={formData.video_url}
-                onChange={(e) => setFormData(prev => ({ ...prev, video_url: e.target.value }))}
-                className="w-full px-4 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="https://youtube.com/watch?v=... or https://vimeo.com/..."
-              />
-              <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
-            </div>
-            */}
 
             <div className="flex items-center space-x-2">
               <input
