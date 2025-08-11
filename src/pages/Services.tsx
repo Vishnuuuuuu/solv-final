@@ -296,7 +296,7 @@ export const Services: React.FC = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-4">
-              Why Choose SOLV Legal?
+              Why Choose Solv.?
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               We combine legal expertise with modern technology to deliver fast, secure, and professional services.

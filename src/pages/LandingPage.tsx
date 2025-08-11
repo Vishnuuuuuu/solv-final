@@ -24,19 +24,19 @@ export const LandingPage: React.FC = () => {
     {
       name: 'Sarah Mitchell',
       position: 'CEO, TechVision Inc.',
-      content: 'SOLV provided exceptional guidance during our IPO process. Their expertise in corporate law and attention to detail was remarkable.',
+      content: 'Solv. provided exceptional guidance during our IPO process. Their expertise in corporate law and attention to detail was remarkable.',
       rating: 5
     },
     {
       name: 'David Chen',
       position: 'General Counsel, InnovateX',
-      content: 'The IP protection strategy developed by SOLV has been instrumental in securing our competitive advantage in the market.',
+      content: 'The IP protection strategy developed by Solv. has been instrumental in securing our competitive advantage in the market.',
       rating: 5
     },
     {
       name: 'Maria Rodriguez',
       position: 'Founder, GreenTech Solutions',
-      content: 'Professional, knowledgeable, and always available. SOLV has been our trusted legal partner for over three years.',
+      content: 'Professional, knowledgeable, and always available. Solv. has been our trusted legal partner for over three years.',
       rating: 5
     }
   ];
@@ -58,7 +58,7 @@ export const LandingPage: React.FC = () => {
                 <span className="block text-slate-300">Redefined</span>
               </h1>
               <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                Navigate complex legal challenges with confidence. SOLV delivers innovative solutions 
+                Navigate complex legal challenges with confidence. Solv. delivers innovative solutions 
                 backed by decades of expertise, precision, and unwavering commitment to your success.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -198,7 +198,7 @@ export const LandingPage: React.FC = () => {
               Client Testimonials
             </h2>
             <p className="text-lg text-slate-600">
-              What our clients say about working with SOLV<span className="text-2xl">.</span>
+              What our clients say about working with Solv.<span className="text-2xl">.</span>
             </p>
           </motion.div>
 

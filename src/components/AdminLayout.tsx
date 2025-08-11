@@ -34,7 +34,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         <div className="flex items-center space-x-2 p-6 border-b border-slate-800">
           {/* <img 
             src="/solv.svg" 
-            alt="SOLV Legal" 
+            alt="Solv." 
             className="h-8 w-auto flex-shrink-0"
           /> */}
           {sidebarOpen && (

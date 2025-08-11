@@ -1,16 +1,23 @@
-@@ .. @@
- import type { Metadata } from 'next'
- import { Inter } from 'next/font/google'
- import './globals.css'
-+import { Toaster } from 'react-hot-toast'
+import type { Metadata } from 'next'
+import './globals.css'
+import { Toaster } from 'react-hot-toast'
 
- const inter = Inter({ subsets: ['latin'] })
-@@ .. @@
-   return (
-     <html lang="en">
-       <body className={inter.className}>
-         {children}
-+        <Toaster position="top-right" />
-       </body>
-     </html>
-   )
+export const metadata: Metadata = {
+  title: 'Solv.',
+  description: 'Your Legal Solutions Partner',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className="font-verdana">
+        {children}
+        <Toaster position="top-right" />
+      </body>
+    </html>
+  )
+}

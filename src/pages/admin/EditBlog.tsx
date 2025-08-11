@@ -165,7 +165,7 @@ export const EditBlog: React.FC = () => {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
           'HTTP-Referer': window.location.origin,
-          'X-Title': 'SOLV Legal Blog Optimizer'
+          'X-Title': 'Solv. Blog Optimizer'
         },
         body: JSON.stringify({
           model: 'deepseek/deepseek-chat-v3-0324:free',

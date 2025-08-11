@@ -82,7 +82,7 @@ export const AboutUs: React.FC = () => {
             >
               <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-6">Our Story</h2>
               <p className="text-lg text-slate-700 mb-6">
-                Founded in 2010, SOLV emerged from a vision to revolutionize legal practice through innovative thinking, 
+                Founded in 2010, Solv. emerged from a vision to revolutionize legal practice through innovative thinking, 
                 technological advancement, and an unwavering commitment to client success. Our founding partners recognized 
                 the need for a law firm that could navigate the complexities of modern business while maintaining the highest 
                 standards of legal excellence.
@@ -93,7 +93,7 @@ export const AboutUs: React.FC = () => {
                 but by the lasting relationships we build and the innovative solutions we create.
               </p>
               <p className="text-lg text-slate-700">
-                Today, SOLV serves clients across multiple industries, from emerging startups to Fortune 500 companies, 
+                Today, Solv. serves clients across multiple industries, from emerging startups to Fortune 500 companies, 
                 providing strategic legal counsel that drives business success and protects valuable assets.
               </p>
             </motion.div>
@@ -105,7 +105,7 @@ export const AboutUs: React.FC = () => {
             >
               <img
                 src="https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="SOLV Office"
+                alt="Solv. Office"
                 className="rounded-lg shadow-lg w-full h-96 object-cover"
               />
               <div className="absolute -bottom-6 -left-6 bg-slate-900 text-white p-6 rounded-lg shadow-xl">
@@ -163,7 +163,7 @@ export const AboutUs: React.FC = () => {
               <Globe className="h-16 w-16 text-slate-700 mb-6" />
               <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-6">Global Outlook</h2>
               <p className="text-lg text-slate-700 mb-6">
-                In today's interconnected world, legal challenges transcend borders. SOLV maintains a global perspective, 
+                In today's interconnected world, legal challenges transcend borders. Solv. maintains a global perspective, 
                 working closely with international partners and understanding cross-border regulations to serve clients 
                 operating in multiple jurisdictions.
               </p>
@@ -209,7 +209,7 @@ export const AboutUs: React.FC = () => {
           >
             <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-4">About Founder</h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Meet the visionary behind SOLV Legal, bringing decades of experience and specialized expertise to serve our clients' diverse needs.
+              Meet the visionary behind Solv., bringing decades of experience and specialized expertise to serve our clients' diverse needs.
             </p>
           </motion.div>
 
@@ -236,7 +236,7 @@ export const AboutUs: React.FC = () => {
                     Founder & Managing Partner
                   </p>
                   <p className="text-slate-600 mb-6 leading-relaxed">
-                    With over 20 years of distinguished legal practice, Dr. Rajesh Kumar founded SOLV Legal 
+                    With over 20 years of distinguished legal practice, Dr. Rajesh Kumar founded Solv. 
                     with a vision to revolutionize legal services through innovation and excellence. A graduate 
                     of Harvard Law School and former Supreme Court clerk, he has successfully represented 
                     Fortune 500 companies and emerging startups alike.

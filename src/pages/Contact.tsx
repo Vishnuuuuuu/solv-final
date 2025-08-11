@@ -207,7 +207,7 @@ export const Contact: React.FC = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="SOLV Legal Office Location"
+                title="Solv. Office Location"
               ></iframe>
             </div>
 

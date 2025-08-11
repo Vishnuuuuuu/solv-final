@@ -1,8 +1,8 @@
+import { Briefcase, FileText, TrendingUp, Users } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase } from '../../lib/supabase'
 import { AdminLayout } from '../../components/AdminLayout'
-import { FileText, Briefcase, Users, TrendingUp } from 'lucide-react'
+import { supabase } from '../../lib/supabase'
 
 // Cache for dashboard stats to avoid repeated API calls
 let statsCache: any = null
@@ -173,7 +173,7 @@ export const AdminDashboard: React.FC = () => {
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold font-serif text-slate-900">Dashboard</h1>
-          <p className="text-slate-600 mt-2">Welcome to the SOLV admin panel</p>
+          <p className="text-slate-600 mt-2">Welcome to the Solv. admin panel</p>
         </div>
 
         {loading ? (

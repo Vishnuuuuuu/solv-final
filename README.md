@@ -1,6 +1,6 @@
 # Legal Firm Blog Management System
 
-A comprehensive blogging and article management system built with Next.js 14 and Supabase for SOLV Legal Firm.
+A comprehensive blogging and article management system built with Next.js 14 and Supabase for Solv.
 
 ## Features
 
@@ -147,4 +147,4 @@ For issues or questions:
 
 ## License
 
-This project is built for SOLV Legal Firm. All rights reserved.
+This project is built for Solv. All rights reserved.

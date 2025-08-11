@@ -185,7 +185,7 @@ export const Careers: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-4">Why Choose SOLV?</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-4">Why Choose Solv.?</h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               We offer more than just a job – we provide a platform for professional excellence and personal fulfillment.
             </p>
@@ -220,7 +220,7 @@ export const Careers: React.FC = () => {
             >
               <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-6">Our Culture</h2>
               <p className="text-lg text-slate-700 mb-6">
-                At SOLV, we believe that exceptional legal work comes from exceptional people working together. 
+                At Solv., we believe that exceptional legal work comes from exceptional people working together. 
                 Our culture emphasizes collaboration, continuous learning, and maintaining the highest ethical standards 
                 while fostering an inclusive environment where everyone can thrive.
               </p>
@@ -286,7 +286,7 @@ export const Careers: React.FC = () => {
                   <span className="text-xl font-bold text-white">3</span>
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">Join the Team</h3>
-                <p className="text-slate-600">Complete onboarding and begin your career at SOLV</p>
+                <p className="text-slate-600">Complete onboarding and begin your career at Solv.</p>
               </div>
             </div>
           </motion.div>

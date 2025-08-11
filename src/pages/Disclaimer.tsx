@@ -7,7 +7,7 @@ export const Disclaimer: React.FC = () => {
     {
       icon: AlertTriangle,
       title: 'No Attorney-Client Relationship',
-      content: 'The information contained on this website does not create an attorney-client relationship between you and SOLV Legal. An attorney-client relationship is formed only when you and SOLV Legal have signed a formal engagement agreement.'
+      content: 'The information contained on this website does not create an attorney-client relationship between you and Solv. An attorney-client relationship is formed only when you and Solv. have signed a formal engagement agreement.'
     },
     {
       icon: FileText,
@@ -130,7 +130,7 @@ export const Disclaimer: React.FC = () => {
               <div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">Limitation of Liability</h3>
                 <p className="text-slate-700 leading-relaxed">
-                  SOLV Legal and its attorneys disclaim all liability for any loss or damage that may result 
+                  Solv. and its attorneys disclaim all liability for any loss or damage that may result 
                   from reliance on information contained in this website. We make no warranties, express or 
                   implied, regarding the accuracy, completeness, or reliability of the information provided.
                 </p>

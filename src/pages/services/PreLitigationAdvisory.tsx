@@ -48,8 +48,8 @@ export const PreLitigationAdvisory: React.FC = () => {
       answer: "Pre-litigation advisory helps you evaluate legal disputes before initiating formal proceedings. It's a proactive approach that can save significant time and resources by resolving conflicts through negotiation, legal notices, and settlement offers. This early analysis minimizes risks and clarifies your position, often preventing escalation into full-blown litigation."
     },
     {
-      question: "Can SolvLegal help me settle a dispute without going to court?",
-      answer: "Yes. SolvLegal specializes in early-stage resolution strategies. Our legal team crafts tailored settlement options and communicates professionally with the opposing party to reach amicable agreements—avoiding the need for costly court proceedings wherever possible."
+      question: "Can Solv. help me settle a dispute without going to court?",
+      answer: "Yes. Solv. specializes in early-stage resolution strategies. Our legal team crafts tailored settlement options and communicates professionally with the opposing party to reach amicable agreements—avoiding the need for costly court proceedings wherever possible."
     },
     {
       question: "What types of disputes qualify for this service?",
@@ -64,16 +64,16 @@ export const PreLitigationAdvisory: React.FC = () => {
       answer: "Absolutely. Based on your case, we'll draft legally compliant documents including notices, settlement proposals, or response letters. These are designed to assert your position firmly while remaining professional and enforceable."
     },
     {
-      question: "Does SolvLegal communicate directly with the other party?",
+      question: "Does Solv. communicate directly with the other party?",
       answer: "If you authorize us to do so, yes. We can engage with the counterparty or their legal representative to present your case, propose settlement terms, and track progress—ensuring that communication is clear, constructive, and legally sound."
     },
     {
       question: "Is this service legally valid and recognized?",
-      answer: "Yes. All communications, notices, and settlement documents prepared by SolvLegal are aligned with Indian law and legal best practices. They can be used as evidence or foundational material should the matter later proceed to formal litigation."
+      answer: "Yes. All communications, notices, and settlement documents prepared by Solv. are aligned with Indian law and legal best practices. They can be used as evidence or foundational material should the matter later proceed to formal litigation."
     },
     {
       question: "What if the negotiation fails?",
-      answer: "If a resolution isn't possible through pre-litigation efforts, SolvLegal will guide you on next steps, including formal legal action. You can also connect with experienced advocates through our Find a Lawyer section for further representation."
+      answer: "If a resolution isn't possible through pre-litigation efforts, Solv. will guide you on next steps, including formal legal action. You can also connect with experienced advocates through our Find a Lawyer section for further representation."
     },
     {
       question: "How long does it take to resolve a dispute through this service?",
@@ -141,7 +141,7 @@ export const PreLitigationAdvisory: React.FC = () => {
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Legal Service</h2>
               <p className="text-slate-700 leading-relaxed">
-                At SolvLegal, we help businesses, professionals, and individuals resolve legal disputes early through Pre-Litigation Advisory & Negotiation Support. Before stepping into costly and time-consuming litigation, our legal experts assess the strengths and weaknesses of your case, identify risks, and develop tailored settlement strategies designed to protect your interests.
+                At Solv., we help businesses, professionals, and individuals resolve legal disputes early through Pre-Litigation Advisory & Negotiation Support. Before stepping into costly and time-consuming litigation, our legal experts assess the strengths and weaknesses of your case, identify risks, and develop tailored settlement strategies designed to protect your interests.
               </p>
             </motion.div>
 
@@ -169,18 +169,18 @@ export const PreLitigationAdvisory: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Why Choose SolvLegal */}
+            {/* Why Choose Solv. */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Why Choose SolvLegal?</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Why Choose Solv.?</h2>
               <p className="text-slate-700 leading-relaxed mb-6">
                 Our approach focuses on early dispute resolution, practical negotiation, and the drafting of clear, enforceable settlement agreements to help you avoid unnecessary lawsuits while safeguarding your legal rights. We handle a wide range of pre-litigation matters, including contract disputes, payment recovery, employment issues, consumer complaints, commercial disagreements, and IP conflicts.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                By working with SolvLegal, you benefit from cost-effective, confidential, and legally robust solutions that aim to preserve relationships, minimize financial exposure, and achieve timely closure of disputes without litigation.
+                By working with Solv., you benefit from cost-effective, confidential, and legally robust solutions that aim to preserve relationships, minimize financial exposure, and achieve timely closure of disputes without litigation.
               </p>
             </motion.div>
 
@@ -207,7 +207,7 @@ export const PreLitigationAdvisory: React.FC = () => {
 
             <div className="text-center py-8">
               <p className="text-lg font-medium text-slate-900 mb-2">
-                Let SolvLegal help you settle smart, protect your position, and avoid legal battles before they begin.
+                Let Solv. help you settle smart, protect your position, and avoid legal battles before they begin.
               </p>
             </div>
           </div>
