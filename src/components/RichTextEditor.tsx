@@ -34,7 +34,7 @@ import {
   Strikethrough,
   Underline as UnderlineIcon
 } from 'lucide-react'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button } from './ui/Button'
 
 interface RichTextEditorProps {
@@ -106,6 +106,13 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       },
     },
   })
+
+  // Update editor content when content prop changes (for AI optimization)
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content, { emitUpdate: false })
+    }
+  }, [editor, content])
 
   const addLink = useCallback(() => {
     if (editor) {

@@ -1,14 +1,12 @@
-import { ArrowLeft, Save, Upload, X } from 'lucide-react'
+import { ArrowLeft, Save, Sparkles, Upload, X } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import { AdminLayout } from '../../components/AdminLayout'
 import { RichTextEditor } from '../../components/RichTextEditor'
-import { useAuth } from '../../hooks/useAuth'
 import { supabase } from '../../lib/supabase'
 
 export const CreateBlog: React.FC = () => {
-  const { adminUser } = useAuth()
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -21,33 +19,17 @@ export const CreateBlog: React.FC = () => {
     selected_author_id: '',
     selectedTags: [] as string[]
   })
-  const [tags, setTags] = useState<any[]>([])
   const [authors, setAuthors] = useState<any[]>([])
-  const [imageFile, setImageFile] = useState<File | null>(null)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [loading, setLoading] = useState(false)
   const [loadingAuthors, setLoadingAuthors] = useState(true)
+  const [optimizing, setOptimizing] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetchTags()
     fetchAuthors()
   }, [])
-
-  const fetchTags = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('blog_tags')
-        .select('*')
-        .order('name')
-
-      if (error) throw error
-      setTags(data || [])
-    } catch (error) {
-      console.error('Error fetching tags:', error)
-    }
-  }
 
   const fetchAuthors = async () => {
     try {
@@ -106,21 +88,96 @@ export const CreateBlog: React.FC = () => {
     }
   }
 
-  const toggleTag = (tagId: string) => {
-    setFormData(prev => ({
-      ...prev,
-      selectedTags: prev.selectedTags.includes(tagId)
-        ? prev.selectedTags.filter(id => id !== tagId)
-        : [...prev.selectedTags, tagId]
-    }))
-  }
-
   const handleTitleChange = (title: string) => {
     setFormData(prev => ({
       ...prev,
       title,
       slug: generateSlug(title)
     }))
+  }
+
+  const optimizeWithAI = async () => {
+    if (!formData.content.trim()) {
+      toast.error('Please add some content first')
+      return
+    }
+
+    // Check if API key is available
+    const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY
+    if (!apiKey) {
+      toast.error('OpenRouter API key is not configured. Please add VITE_OPENROUTER_API_KEY to your .env file.')
+      return
+    }
+
+    console.log('Starting AI optimization with content length:', formData.content.length)
+
+    setOptimizing(true)
+    try {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': window.location.origin,
+          'X-Title': 'SOLV Legal Blog Optimizer'
+        },
+        body: JSON.stringify({
+          model: 'deepseek/deepseek-chat-v3-0324:free',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an expert SEO content optimizer specializing in legal content. Transform the provided article into the best SEO-optimized version while preserving the core meaning, tone, and legal accuracy. Focus on: 1) Improving keyword density and semantic relevance 2) Enhancing readability and structure 3) Adding compelling headings and subheadings using proper HTML heading tags (h1, h2, h3) 4) Using bullet points and lists where appropriate with HTML ul/li tags 5) Optimizing for search intent 6) Maintaining professional legal tone. Return the optimized content using clean HTML formatting with proper heading tags, paragraph tags, and list tags. Do not wrap the response in code blocks or add any markdown formatting - return only the HTML content ready for a rich text editor.'
+            },
+            {
+              role: 'user',
+              content: formData.content
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 4000
+        })
+      })
+
+      console.log('API Response status:', response.status)
+      
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error('API Error response:', errorText)
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`)
+      }
+
+      const data = await response.json()
+      console.log('AI API Response:', data)
+      
+      let optimizedContent = data.choices?.[0]?.message?.content
+
+      if (optimizedContent && optimizedContent.trim()) {
+        // Clean up any unwanted code block formatting while preserving HTML tags
+        optimizedContent = optimizedContent
+          .replace(/```html\s*/gi, '') // Remove ```html at start (case insensitive)
+          .replace(/```\s*$/g, '') // Remove ``` at end
+          .replace(/^html\s*/gi, '') // Remove standalone 'html' at start
+          .trim()
+        
+        console.log('Optimized content received:', optimizedContent.substring(0, 100) + '...')
+        setFormData(prev => ({ ...prev, content: optimizedContent }))
+        toast.success('Content optimized for SEO!')
+      } else {
+        console.log('No optimized content received or content is empty')
+        toast.error('Failed to optimize content - no response from AI')
+      }
+    } catch (error) {
+      console.error('AI optimization error:', error)
+      
+      // More detailed error information
+      if (error instanceof Error) {
+        console.error('Error message:', error.message)
+      }
+      
+      toast.error('Failed to optimize content. Check console for details and verify your API key.')
+    } finally {
+      setOptimizing(false)
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -183,7 +240,7 @@ export const CreateBlog: React.FC = () => {
 
       const finalSlug = formData.slug.trim() || generateSlug(formData.title)
 
-      const { data: articleData, error: articleError } = await supabase
+      const { error: articleError } = await supabase
         .from('articles')
         .insert([{
           title: formData.title,
@@ -342,7 +399,6 @@ export const CreateBlog: React.FC = () => {
                   onChange={(e) => {
                     const file = e.target.files?.[0]
                     if (file) {
-                      setImageFile(file)
                       handleImageUpload(file)
                     }
                   }}
@@ -373,6 +429,7 @@ export const CreateBlog: React.FC = () => {
               </div>
             </div>
 
+            {/* Video URL section commented out 
             <div>
               <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
                 Video URL (Optional)
@@ -387,21 +444,7 @@ export const CreateBlog: React.FC = () => {
               />
               <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
             </div>
-
-            <div>
-              <label htmlFor="video_url" className="block text-sm font-medium text-slate-700 mb-2">
-                Video URL (Optional)
-              </label>
-              <input
-                type="url"
-                id="video_url"
-                value={formData.video_url}
-                onChange={(e) => setFormData(prev => ({ ...prev, video_url: e.target.value }))}
-                className="w-full px-4 py-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                placeholder="https://youtube.com/watch?v=... or https://vimeo.com/..."
-              />
-              <p className="text-sm text-slate-500 mt-1">Add a YouTube, Vimeo, or other video URL to embed in the article</p>
-            </div>
+            */}
 
             <div className="flex items-center space-x-2">
               <input
@@ -417,9 +460,20 @@ export const CreateBlog: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="content" className="block text-sm font-medium text-slate-700 mb-2">
-                Content *
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label htmlFor="content" className="block text-sm font-medium text-slate-700">
+                  Content *
+                </label>
+                <button
+                  type="button"
+                  onClick={optimizeWithAI}
+                  disabled={optimizing || !formData.content.trim()}
+                  className="inline-flex items-center px-3 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-md hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                >
+                  <Sparkles className="h-4 w-4 mr-1.5" />
+                  {optimizing ? 'Optimizing...' : 'Optimize with AI'}
+                </button>
+              </div>
               <RichTextEditor
                 content={formData.content}
                 onChange={(content) => setFormData(prev => ({ ...prev, content }))}

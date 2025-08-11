@@ -1,8 +1,8 @@
+import { Briefcase, Calendar, Clock, Edit, MapPin, Plus, Trash2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase } from '../../lib/supabase'
 import { AdminLayout } from '../../components/AdminLayout'
-import { Plus, Edit, Trash2, MapPin, Clock, Briefcase, Calendar } from 'lucide-react'
+import { supabase } from '../../lib/supabase'
 
 interface Job {
   id: string
@@ -23,6 +23,7 @@ const JOBS_CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 export const AdminJobs: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<string | null>(null)
 
   useEffect(() => {
@@ -40,6 +41,12 @@ export const AdminJobs: React.FC = () => {
     
     try {
       console.log('Fetching jobs...')
+      
+      // Check if Supabase is properly configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        throw new Error('Supabase configuration missing. Please check your environment variables.')
+      }
+      
       const { data, error } = await supabase
         .from('jobs')
         .select('id, title, department, location, type, experience, created_at, updated_at')
@@ -47,6 +54,12 @@ export const AdminJobs: React.FC = () => {
 
       if (error) {
         console.error('Supabase error fetching jobs:', error)
+        console.error('Error details:', {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint
+        })
         throw error
       }
       
@@ -57,10 +70,26 @@ export const AdminJobs: React.FC = () => {
       jobsCacheTimestamp = now
     } catch (error) {
       console.error('Error fetching jobs:', error)
-      console.error('Full error details:', JSON.stringify(error, null, 2))
+      
+      // Set user-friendly error message
+      let errorMessage = 'Failed to load jobs'
+      if (error instanceof Error) {
+        if (error.message.includes('Supabase configuration')) {
+          errorMessage = 'Database configuration error. Please check environment variables.'
+        } else if (error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error. Please check your internet connection.'
+        } else if (error.message.includes('relation "jobs" does not exist')) {
+          errorMessage = 'Database table not found. Please run database migrations.'
+        }
+      }
+      setError(errorMessage)
+      
       // Clear cache on error
       jobsCache = null
       jobsCacheTimestamp = 0
+      
+      // Set empty array instead of keeping loading state
+      setJobs([])
     } finally {
       setLoading(false)
     }
@@ -123,6 +152,21 @@ export const AdminJobs: React.FC = () => {
             <div className="p-8 text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-900 mx-auto"></div>
               <p className="text-slate-600 mt-4">Loading jobs...</p>
+            </div>
+          ) : error ? (
+            <div className="p-8 text-center">
+              <div className="text-red-500 text-lg mb-4">⚠️ Error Loading Jobs</div>
+              <p className="text-slate-600 mb-4">{error}</p>
+              <button
+                onClick={() => {
+                  setError(null)
+                  setLoading(true)
+                  fetchJobs()
+                }}
+                className="bg-slate-600 text-white px-4 py-2 rounded-md hover:bg-slate-700 transition-colors"
+              >
+                Try Again
+              </button>
             </div>
           ) : jobs.length === 0 ? (
             <div className="text-center py-12">

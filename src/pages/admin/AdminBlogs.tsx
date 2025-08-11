@@ -1,8 +1,8 @@
+import { Calendar, Edit, Eye, FileText, Plus, Trash2, User } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase } from '../../lib/supabase'
 import { AdminLayout } from '../../components/AdminLayout'
-import { Plus, Edit, Trash2, Eye, Calendar, User, FileText } from 'lucide-react'
+import { supabase } from '../../lib/supabase'
 
 interface Blog {
   id: string
@@ -22,6 +22,7 @@ export const AdminBlogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
   const [deleting, setDeleting] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     fetchBlogs()
@@ -38,6 +39,13 @@ export const AdminBlogs: React.FC = () => {
     
     try {
       console.log('Fetching blogs...')
+      setError(null) // Clear previous errors
+      
+      // Check if Supabase is properly configured
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        throw new Error('Supabase configuration missing. Please check your environment variables.')
+      }
+      
       const { data, error } = await supabase
         .from('articles')
         .select('id, title, slug, author, created_at, updated_at')
@@ -45,6 +53,12 @@ export const AdminBlogs: React.FC = () => {
 
       if (error) {
         console.error('Supabase error fetching blogs:', error)
+        console.error('Error details:', {
+          message: error.message,
+          code: error.code,
+          details: error.details,
+          hint: error.hint
+        })
         throw error
       }
       
@@ -55,10 +69,29 @@ export const AdminBlogs: React.FC = () => {
       blogsCacheTimestamp = now
     } catch (error) {
       console.error('Error fetching blogs:', error)
-      console.error('Full error details:', JSON.stringify(error, null, 2))
+      
+      let errorMessage = 'Failed to load blogs. Please try again.'
+      
+      // Provide user-friendly error messages
+      if (error instanceof Error) {
+        if (error.message.includes('Supabase configuration')) {
+          errorMessage = 'Database configuration error. Please check your environment settings.'
+        } else if (error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error. Please check your internet connection.'
+        } else if (error.message.includes('relation "articles" does not exist')) {
+          errorMessage = 'Database error. Articles table not found.'
+        }
+        console.error('CONFIGURATION ERROR: Please check your .env file has VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY')
+      }
+      
+      setError(errorMessage)
+      
       // Clear cache on error
       blogsCache = null
       blogsCacheTimestamp = 0
+      
+      // Set empty array instead of keeping loading state
+      setBlogs([])
     } finally {
       setLoading(false)
     }
@@ -121,6 +154,22 @@ export const AdminBlogs: React.FC = () => {
             <div className="p-8 text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-900 mx-auto"></div>
               <p className="text-slate-600 mt-4">Loading blogs...</p>
+            </div>
+          ) : error ? (
+            <div className="p-8 text-center">
+              <div className="bg-red-50 border border-red-200 rounded-md p-6">
+                <h3 className="text-lg font-medium text-red-800 mb-2">Error Loading Blogs</h3>
+                <p className="text-red-600 mb-4">{error}</p>
+                <button
+                  onClick={() => {
+                    setError(null)
+                    fetchBlogs()
+                  }}
+                  className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
+                >
+                  Try Again
+                </button>
+              </div>
             </div>
           ) : blogs.length === 0 ? (
             <div className="text-center py-12">
