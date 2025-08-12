@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Calendar, Filter, Search, User } from 'lucide-react';
+import { ArrowRight, BookOpen, Calendar, Search, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Pagination } from '../components/Pagination';
 import { supabase } from '../lib/supabase';
 
-export const Research: React.FC = () => {
+export const Blog: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [articles, setArticles] = useState<any[]>([]);
@@ -48,10 +48,6 @@ export const Research: React.FC = () => {
         .order('name');
 
       if (tagsError) throw tagsError;
-
-      console.log('Articles data:', articlesData);
-      console.log('Tags data:', tagsData);
-      console.log('Sample article tags:', articlesData?.[0]?.blog_tag_relations);
 
       setArticles(articlesData || []);
       setTags(tagsData || []);
@@ -107,8 +103,8 @@ export const Research: React.FC = () => {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
+      {/* Hero Section Commented*/}
+      {/* <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -116,59 +112,57 @@ export const Research: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold font-serif mb-6">Research & Articles</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold font-serif mb-6">Legal Blog & Insights</h1>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Stay informed with our latest insights, analysis, and thought leadership on emerging legal trends and industry developments.
             </p>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Search and Filters */}
-      <section className="py-6 mt-8 bg-white border-b border-slate-200">
+      <section className="py-6 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900"></div>
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-slate-900"></div>
             </div>
           ) : (
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Search */}
-            <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+            <div className="relative max-w-md mx-auto">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
                 type="text"
-                placeholder="Search articles by title or content..."
+                placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 text-lg border-2 border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
+                className="w-full pl-10 pr-4 py-2 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
               />
             </div>
 
             {/* Filters */}
-            <div className="flex flex-col items-center space-y-4">
-              <div className="flex items-center space-x-2">
-                <Filter className="h-5 w-5 text-slate-600" />
-                <span className="text-slate-700 font-medium">Filter by category:</span>
-              </div>
-              <div className="flex flex-wrap justify-center gap-3 max-w-4xl">
+            <div className="flex justify-center">
+              <div className="flex flex-wrap justify-center gap-2">
                 {filters.map((filter) => (
                   <button
                     key={filter}
                     onClick={() => setSelectedFilter(filter)}
-                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
+                    className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                       selectedFilter === filter
-                        ? 'bg-slate-800 text-white shadow-lg transform scale-105'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:shadow-md'
+                        ? 'bg-slate-800 text-white'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                     }`}
                   >
                     {filter}
                   </button>
                 ))}
               </div>
-              
-              {/* Results counter */}
-              <p className="text-slate-600 text-sm">
+            </div>
+
+            {/* Results counter */}
+            <div className="text-center">
+              <p className="text-slate-600 text-xs">
                 {filteredArticles.length === 0 
                   ? 'No articles found' 
                   : `${filteredArticles.length} article${filteredArticles.length === 1 ? '' : 's'} found`}
@@ -181,15 +175,15 @@ export const Research: React.FC = () => {
 
       {/* Featured Articles */}
       {featuredArticles.length > 0 && (
-        <section className="py-16 bg-slate-50">
+        <section className="py-8 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-12"
+              className="mb-8"
             >
-              <h2 className="text-3xl font-bold font-serif text-slate-900 mb-2">Featured Articles</h2>
+              <h2 className="text-2xl font-bold font-serif text-slate-900 mb-2">Featured Articles</h2>
               <p className="text-slate-600">Essential reading on the most important legal developments</p>
             </motion.div>
 
@@ -208,19 +202,17 @@ export const Research: React.FC = () => {
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        {article.blog_tag_relations?.slice(0, 2).map((rel: any) => (
-                          <span 
-                            key={rel.blog_tags.id}
-                            className="text-white text-xs px-3 py-1 rounded-full font-medium"
-                            style={{ backgroundColor: rel.blog_tags.color }}
-                          >
-                            {rel.blog_tags.name}
-                          </span>
-                        ))}
-                      </div>
-                      <span className="text-slate-500 text-sm font-medium">{getReadTime(article.content)}</span>
+                    <div className="flex items-center space-x-2 mb-3">
+                      {article.blog_tag_relations?.slice(0, 2).map((rel: any) => (
+                        <span 
+                          key={rel.blog_tags.id}
+                          className="text-white text-xs px-2 py-1 rounded"
+                          style={{ backgroundColor: rel.blog_tags.color }}
+                        >
+                          {rel.blog_tags.name}
+                        </span>
+                      ))}
+                      <span className="text-slate-500 text-sm">{getReadTime(article.content)}</span>
                     </div>
                     <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">
                       {article.title}
@@ -247,16 +239,16 @@ export const Research: React.FC = () => {
       )}
 
       {/* Regular Articles */}
-      <section id="regular-articles" className="py-16 bg-white">
+      <section id="regular-articles" className="py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-8"
           >
-            <h2 className="text-3xl font-bold font-serif text-slate-900 mb-2">Latest Articles</h2>
-            <p className="text-slate-600">Stay current with our ongoing research and analysis</p>
+            <h2 className="text-2xl font-bold font-serif text-slate-900 mb-2">Latest Articles</h2>
+            <p className="text-slate-600">Stay current with our latest insights and analysis</p>
           </motion.div>
 
           {loading ? (
@@ -323,19 +315,17 @@ export const Research: React.FC = () => {
                       className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="p-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center space-x-2">
-                          {article.blog_tag_relations?.slice(0, 1).map((rel: any) => (
-                            <span 
-                              key={rel.blog_tags.id}
-                              className="text-white text-xs px-3 py-1 rounded-full font-medium"
-                              style={{ backgroundColor: rel.blog_tags.color }}
-                            >
-                              {rel.blog_tags.name}
-                            </span>
-                          ))}
-                        </div>
-                        <span className="text-slate-500 text-sm font-medium">{getReadTime(article.content)}</span>
+                      <div className="flex items-center space-x-2 mb-3">
+                        {article.blog_tag_relations?.slice(0, 1).map((rel: any) => (
+                          <span 
+                            key={rel.blog_tags.id}
+                            className="text-white text-xs px-2 py-1 rounded"
+                            style={{ backgroundColor: rel.blog_tags.color }}
+                          >
+                            {rel.blog_tags.name}
+                          </span>
+                        ))}
+                        <span className="text-slate-500 text-sm">{getReadTime(article.content)}</span>
                       </div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">
                         {article.title}
