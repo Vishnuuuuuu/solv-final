@@ -39,54 +39,6 @@ export const Services: React.FC = () => {
 
   const serviceCategories = [
     {
-      icon: Building,
-      title: 'Corporate & Commercial',
-      description: 'Comprehensive corporate legal services for businesses',
-      services: [
-        'Company Incorporation',
-        'Contract Drafting & Review',
-        'Mergers & Acquisitions',
-        'Corporate Governance',
-        'Business Compliance',
-        'Partnership Agreements',
-        'Shareholder Agreements',
-        'Employment Contracts'
-      ],
-      image: 'https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      icon: Shield,
-      title: 'Intellectual Property',
-      description: 'Protect and maximize your intellectual assets',
-      services: [
-        'Trademark Registration',
-        'Patent Applications',
-        'Copyright Registration',
-        'IP Litigation',
-        'Licensing Agreements',
-        'Trade Secret Protection',
-        'Design Registration',
-        'Domain Disputes'
-      ],
-      image: 'https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
-      icon: Gavel,
-      title: 'Dispute Resolution',
-      description: 'Expert litigation and alternative dispute resolution',
-      services: [
-        'Commercial Litigation',
-        'Arbitration Services',
-        'Mediation Services',
-        'Contract Disputes',
-        'Employment Disputes',
-        'Consumer Complaints',
-        'Debt Recovery',
-        'Property Disputes'
-      ],
-      image: 'https://images.pexels.com/photos/5668869/pexels-photo-5668869.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
-    {
       icon: Calculator,
       title: 'Tax & Compliance',
       description: 'Comprehensive tax planning and compliance services',
@@ -133,6 +85,54 @@ export const Services: React.FC = () => {
         'Succession Planning'
       ],
       image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600'
+    },
+    {
+      icon: Building,
+      title: 'Corporate & Commercial',
+      description: 'Comprehensive corporate legal services for businesses',
+      services: [
+        'Company Incorporation',
+        'Contract Drafting & Review',
+        'Mergers & Acquisitions',
+        'Corporate Governance',
+        'Business Compliance',
+        'Partnership Agreements',
+        'Shareholder Agreements',
+        'Employment Contracts'
+      ],
+      image: 'https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600'
+    },
+    {
+      icon: Shield,
+      title: 'Intellectual Property',
+      description: 'Protect and maximize your intellectual assets',
+      services: [
+        'Trademark Registration',
+        'Patent Applications',
+        'Copyright Registration',
+        'IP Litigation',
+        'Licensing Agreements',
+        'Trade Secret Protection',
+        'Design Registration',
+        'Domain Disputes'
+      ],
+      image: 'https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=600'
+    },
+    {
+      icon: Gavel,
+      title: 'Dispute Resolution',
+      description: 'Expert litigation and alternative dispute resolution',
+      services: [
+        'Commercial Litigation',
+        'Arbitration Services',
+        'Mediation Services',
+        'Contract Disputes',
+        'Employment Disputes',
+        'Consumer Complaints',
+        'Debt Recovery',
+        'Property Disputes'
+      ],
+      image: 'https://images.pexels.com/photos/5668869/pexels-photo-5668869.jpeg?auto=compress&cs=tinysrgb&w=600'
     }
   ];
 
@@ -187,10 +187,6 @@ export const Services: React.FC = () => {
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
                 <p className="text-sm text-slate-600 mb-4">{service.description}</p>
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-500">Price:</span>
-                    <span className="font-medium text-slate-700">{service.price}</span>
-                  </div>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-slate-500">Duration:</span>
                     <span className="font-medium text-slate-700">{service.duration}</span>

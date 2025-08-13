@@ -10,11 +10,13 @@ export const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <img 
-                src="/solv.svg" 
-                alt="Solv." 
-                className="h-8 w-auto"
-              />
+                {/*
+                <img 
+                  src="/solv.svg" 
+                  alt="Solv." 
+                  className="h-8 w-auto"
+                />
+                */}
               {/* <span className="text-2xl font-bold text-white font-serif">SOLV<span className="text-3xl">.</span></span> */}
               
             </div>
@@ -58,7 +60,7 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-5 w-5 text-slate-400" />
-                <span className="text-sm">+91 96 8683 2870 </span>
+                <span className="text-sm">+91 98 8001 2694 </span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5 text-slate-400" />

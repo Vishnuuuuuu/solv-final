@@ -42,12 +42,12 @@ export const Contact: React.FC = () => {
       icon: Phone,
       title: 'Phone Numbers',
       // details: ['+91 80 1234 5678', '+91 80 1234 5679', 'Toll-free: +91 1800 123 SOLV']
-      details: ['+91 96 8683 2870 ']
+      details: ['+91 98 8001 2694 ']
     },
     {
       icon: Mail,
       title: 'Email Addresses',
-      details: ['info@solvadvocates.in', 'navya@solvadvocates.in']
+      details: ['info@solvadvocates.in', '']
     },
     {
       icon: Clock,
@@ -280,7 +280,7 @@ export const Contact: React.FC = () => {
                 className="bg-white text-slate-900 px-8 py-4 rounded-md font-semibold hover:bg-slate-100 transition-all duration-200 hover:scale-105 inline-flex items-center space-x-2"
               >
                 <Phone className="h-5 w-5" />
-                <span>Call Now: +91 96868 32870</span>
+                <span>Call Now: +91 98800 12694</span>
               </a>
               <a
                 href="mailto:info@solv.legal"
