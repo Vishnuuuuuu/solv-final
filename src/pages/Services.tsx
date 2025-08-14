@@ -380,7 +380,7 @@ export const Services: React.FC = () => {
               </button>
               <button className="border-2 border-white text-white px-8 py-4 rounded-md font-semibold hover:bg-white hover:text-slate-900 transition-all duration-200 inline-flex items-center space-x-2">
                 <Phone className="h-5 w-5" />
-                <span>Call Now: +91 98765 43210</span>
+                <span>Call Now: +91 98800 12694</span>
               </button>
             </div>
           </motion.div>
