@@ -54,7 +54,7 @@ export const AboutUs: React.FC = () => {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
+      {/* Hero Section
       <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -69,7 +69,7 @@ export const AboutUs: React.FC = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Our Story */}
       <section className="py-20 bg-white">
@@ -109,7 +109,7 @@ export const AboutUs: React.FC = () => {
                 className="rounded-lg shadow-lg w-full h-96 object-cover"
               />
               <div className="absolute -bottom-6 -left-6 bg-slate-900 text-white p-6 rounded-lg shadow-xl">
-                <div className="text-2xl font-bold">14+</div>
+                <div className="text-2xl font-bold">08+</div>
                 <div className="text-slate-300">Years of Excellence</div>
               </div>
             </motion.div>
@@ -248,12 +248,12 @@ export const AboutUs: React.FC = () => {
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-slate-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-slate-900">20+</div>
-                      <div className="text-slate-600 text-sm">Years Experience</div>
+                      {/* <div className="text-2xl font-bold text-slate-900">20+</div> */}
+                      {/* <div className="text-slate-600 text-sm">Years Experience</div> */}
                     </div>
                     <div className="bg-slate-50 p-4 rounded-lg text-center">
-                      <div className="text-2xl font-bold text-slate-900">500+</div>
-                      <div className="text-slate-600 text-sm">Cases Won</div>
+                      {/* <div className="text-2xl font-bold text-slate-900">500+</div> */}
+                      {/* <div className="text-slate-600 text-sm">Cases Won</div> */}
                     </div>
                   </div>
                 </div>

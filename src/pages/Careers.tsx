@@ -52,7 +52,7 @@ export const Careers: React.FC = () => {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
+      {/* Hero Section
       <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -68,7 +68,7 @@ export const Careers: React.FC = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Open Positions - MOVED TO TOP */}
       <section className="py-20 bg-white">

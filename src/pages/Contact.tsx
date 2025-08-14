@@ -59,7 +59,7 @@ export const Contact: React.FC = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
+      {/* <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -74,7 +74,7 @@ export const Contact: React.FC = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Form */}
       <section className="py-20 bg-white">

@@ -8,12 +8,13 @@ export const Services: React.FC = () => {
 
   const quickServices = [
     {
-      icon: FileText,
-      title: 'Contract Drafting',
-      description: 'Professional contract drafting and review services',
-      price: 'Starting ₹5,000',
-      duration: '3-5 business days'
-    },
+      icon: Gavel,
+      title: 'Legal Consultation',
+      description: 'Video/Audio consultation with expert lawyers',
+      price: 'Starting ₹2,000',
+      duration: '30-60 minutes'
+    }
+    ,
     {
       icon: Scale,
       title: 'Legal Notice',
@@ -29,31 +30,16 @@ export const Services: React.FC = () => {
       duration: '2-3 business days'
     },
     {
-      icon: Gavel,
-      title: 'Legal Consultation',
-      description: 'Video/Audio consultation with expert lawyers',
-      price: 'Starting ₹2,000',
-      duration: '30-60 minutes'
+      icon: FileText,
+      title: 'Contract Drafting',
+      description: 'Professional contract drafting and review services',
+      price: 'Starting ₹5,000',
+      duration: '3-5 business days'
     }
   ];
 
   const serviceCategories = [
-    {
-      icon: Calculator,
-      title: 'Tax & Compliance',
-      description: 'Comprehensive tax planning and compliance services',
-      services: [
-        'GST Registration',
-        'Income Tax Planning',
-        'Corporate Tax Advisory',
-        'Tax Compliance',
-        'FSSAI Registration',
-        'MSME Registration',
-        'Import Export Code',
-        'Regulatory Compliance'
-      ],
-      image: 'https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=600'
-    },
+    
     {
       icon: Home,
       title: 'Real Estate',
@@ -85,6 +71,22 @@ export const Services: React.FC = () => {
         'Succession Planning'
       ],
       image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600'
+    },
+    {
+      icon: Gavel,
+      title: 'Dispute Resolution',
+      description: 'Expert litigation and alternative dispute resolution',
+      services: [
+        'Commercial Litigation',
+        'Arbitration Services',
+        'Mediation Services',
+        'Contract Disputes',
+        'Employment Disputes',
+        'Consumer Complaints',
+        'Debt Recovery',
+        'Property Disputes'
+      ],
+      image: 'https://images.pexels.com/photos/5668869/pexels-photo-5668869.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       icon: Building,
@@ -119,26 +121,26 @@ export const Services: React.FC = () => {
       image: 'https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
-      icon: Gavel,
-      title: 'Dispute Resolution',
-      description: 'Expert litigation and alternative dispute resolution',
+      icon: Calculator,
+      title: 'Tax & Compliance',
+      description: 'Comprehensive tax planning and compliance services',
       services: [
-        'Commercial Litigation',
-        'Arbitration Services',
-        'Mediation Services',
-        'Contract Disputes',
-        'Employment Disputes',
-        'Consumer Complaints',
-        'Debt Recovery',
-        'Property Disputes'
+        'GST Registration',
+        'Income Tax Planning',
+        'Corporate Tax Advisory',
+        'Tax Compliance',
+        'FSSAI Registration',
+        'MSME Registration',
+        'Import Export Code',
+        'Regulatory Compliance'
       ],
-      image: 'https://images.pexels.com/photos/5668869/pexels-photo-5668869.jpeg?auto=compress&cs=tinysrgb&w=600'
+      image: 'https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=600'
     }
   ];
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
+      {/* Hero Section
       <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -153,7 +155,7 @@ export const Services: React.FC = () => {
             </p>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Quick Services */}
       <section className="py-16 bg-white">

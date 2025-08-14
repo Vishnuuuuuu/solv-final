@@ -351,11 +351,7 @@ export const IncomeTaxFiling: React.FC = () => {
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                       >
                         <option value="">Select Income Range</option>
-                        <option value="below-2.5lakh">Below ₹2.5 Lakh</option>
-                        <option value="2.5lakh-5lakh">₹2.5 Lakh - ₹5 Lakh</option>
-                        <option value="5lakh-10lakh">₹5 Lakh - ₹10 Lakh</option>
-                        <option value="10lakh-20lakh">₹10 Lakh - ₹20 Lakh</option>
-                        <option value="above-20lakh">Above ₹20 Lakh</option>
+                        {/* Price options removed for content-only */}
                       </select>
                     </div>
 
@@ -416,31 +412,13 @@ export const IncomeTaxFiling: React.FC = () => {
                   </form>
                 )}
 
-                {/* Pricing Breakdown */}
-                <div className="mt-8 pt-6 border-t border-slate-300">
-                  <h4 className="font-semibold text-slate-900 mb-4">Pricing Breakdown</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-slate-600">ITR Filing Fee</span>
-                      <span className="text-slate-900">₹1,699</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-600">GST (18%)</span>
-                      <span className="text-slate-900">₹306</span>
-                    </div>
-                    <div className="flex justify-between font-semibold text-base pt-2 border-t border-slate-200">
-                      <span className="text-slate-900">Total</span>
-                      <span className="text-slate-900">₹2,005</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 p-3 bg-green-50 rounded-md">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-green-600" />
-                      <span className="text-sm font-medium text-green-800">
-                        Completion: 2-3 business days
-                      </span>
-                    </div>
+                {/* Pricing Breakdown removed for content-only */}
+                <div className="mt-4 p-3 bg-green-50 rounded-md">
+                  <div className="flex items-center space-x-2">
+                    <Clock className="h-4 w-4 text-green-600" />
+                    <span className="text-sm font-medium text-green-800">
+                      Completion: 2-3 business days
+                    </span>
                   </div>
                 </div>
               </div>

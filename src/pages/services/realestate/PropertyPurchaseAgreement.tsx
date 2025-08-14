@@ -48,7 +48,7 @@ export const PropertyPurchaseAgreement: React.FC = () => {
     "Buyer-focused legal protection",
     "Due diligence verification",
     "Property title clearance",
-    "Price negotiation support",
+    "Negotiation support",
     "Hidden clause identification",
     "EMI calculation assistance"
   ];
@@ -76,7 +76,7 @@ export const PropertyPurchaseAgreement: React.FC = () => {
     {
       icon: Users,
       title: "Negotiation Support",
-      description: "Legal support during price and terms negotiation"
+      description: "Legal support during terms negotiation"
     },
     {
       icon: Shield,
@@ -342,11 +342,7 @@ export const PropertyPurchaseAgreement: React.FC = () => {
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                       >
                         <option value="">Select Budget Range</option>
-                        <option value="20lakh-50lakh">₹20 Lakh - ₹50 Lakh</option>
-                        <option value="50lakh-1crore">₹50 Lakh - ₹1 Crore</option>
-                        <option value="1crore-2crore">₹1 Crore - ₹2 Crore</option>
-                        <option value="2crore-5crore">₹2 Crore - ₹5 Crore</option>
-                        <option value="5crore-plus">₹5 Crore+</option>
+                        {/* Price options removed for content-only */}
                       </select>
                     </div>
 

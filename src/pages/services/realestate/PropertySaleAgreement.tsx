@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle, Home, FileText, Clock, Shield, Users, Scale } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Clock, FileText, Home, Scale, Shield, Users } from 'lucide-react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const PropertySaleAgreement: React.FC = () => {
@@ -321,10 +321,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                       >
                         <option value="">Select Value Range</option>
-                        <option value="10lakh-50lakh">₹10 Lakh - ₹50 Lakh</option>
-                        <option value="50lakh-1crore">₹50 Lakh - ₹1 Crore</option>
-                        <option value="1crore-2crore">₹1 Crore - ₹2 Crore</option>
-                        <option value="2crore-plus">₹2 Crore+</option>
+                        {/* Price options removed for content-only */}
                       </select>
                     </div>
 
@@ -380,31 +377,13 @@ export const PropertySaleAgreement: React.FC = () => {
                   </form>
                 )}
 
-                {/* Pricing Breakdown */}
-                <div className="mt-8 pt-6 border-t border-slate-300">
-                  <h4 className="font-semibold text-slate-900 mb-4">Pricing Breakdown</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-slate-600">Service Fee</span>
-                      <span className="text-slate-900">₹4,999</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-600">GST (18%)</span>
-                      <span className="text-slate-900">₹900</span>
-                    </div>
-                    <div className="flex justify-between font-semibold text-base pt-2 border-t border-slate-200">
-                      <span className="text-slate-900">Total</span>
-                      <span className="text-slate-900">₹5,899</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 p-3 bg-green-50 rounded-md">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-green-600" />
-                      <span className="text-sm font-medium text-green-800">
-                        Completion: 3-5 business days
-                      </span>
-                    </div>
+                {/* Pricing Breakdown removed for content-only */}
+                <div className="mt-4 p-3 bg-green-50 rounded-md">
+                  <div className="flex items-center space-x-2">
+                    <Clock className="h-4 w-4 text-green-600" />
+                    <span className="text-sm font-medium text-green-800">
+                      Completion: 3-5 business days
+                    </span>
                   </div>
                 </div>
               </div>
@@ -414,4 +393,4 @@ export const PropertySaleAgreement: React.FC = () => {
       </div>
     </div>
   );
-};
+}
