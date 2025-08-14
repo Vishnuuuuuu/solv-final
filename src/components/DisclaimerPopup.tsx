@@ -32,7 +32,7 @@ export const DisclaimerPopup: React.FC = () => {
             className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
             style={{ pointerEvents: 'auto' }}
           >
-            <div className="bg-black/60 backdrop-blur-md border border-gray-600/30 rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-black/60 backdrop-blur-md border border-gray-600/30 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               {/* Header */}
               <div className="text-center py-8 px-8">
                 <h1 className="text-4xl font-bold text-white mb-8 tracking-wider">DISCLAIMER</h1>

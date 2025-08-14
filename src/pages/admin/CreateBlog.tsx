@@ -192,6 +192,11 @@ export const CreateBlog: React.FC = () => {
       return
     }
 
+    if (!formData.featured_image) {
+      toast.error('Featured image is required')
+      return
+    }
+
     setLoading(true)
     setError('')
 
@@ -301,7 +306,7 @@ export const CreateBlog: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="title" className="block text-sm font-medium text-slate-700 mb-2">
-                  Title *
+                  Title <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -316,7 +321,7 @@ export const CreateBlog: React.FC = () => {
               
               <div>
                 <label htmlFor="status" className="block text-sm font-medium text-slate-700 mb-2">
-                  Status *
+                  Status <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="status"
@@ -388,12 +393,13 @@ export const CreateBlog: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Featured Image (Max 100KB)
+                Featured Image (Max 100KB) <span className="text-red-500">*</span>
               </label>
               <div className="space-y-4">
                 <input
                   type="file"
                   accept="image/*"
+                  required
                   onChange={(e) => {
                     const file = e.target.files?.[0]
                     if (file) {
@@ -444,7 +450,7 @@ export const CreateBlog: React.FC = () => {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <label htmlFor="content" className="block text-sm font-medium text-slate-700">
-                  Content *
+                  Content <span className="text-red-500">*</span>
                 </label>
                 <button
                   type="button"

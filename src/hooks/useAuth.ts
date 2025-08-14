@@ -156,6 +156,28 @@ export const useAuth = () => {
       fetchAdminUser(user.id)
     }
   }
+
+  // Function to refresh the session
+  const refreshSession = async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      setUser(session?.user ?? null)
+      if (session?.user) {
+        await fetchAdminUser(session.user.id)
+      } else {
+        adminUserCache = null
+        cacheTimestamp = 0
+        setAdminUser(null)
+      }
+    } catch (error) {
+      setError('Failed to refresh session')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return {
     user,
     adminUser,
@@ -163,6 +185,7 @@ export const useAuth = () => {
     error,
     isSuperAdmin,
     isAdmin,
-    retry
+    retry,
+    refreshSession,
   }
 }
