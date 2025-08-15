@@ -209,7 +209,7 @@ export const AboutUs: React.FC = () => {
           >
             <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900 mb-4">About Founder</h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Meet the visionary behind Solv., bringing decades of experience and specialized expertise to serve our clients' diverse needs.
+                Meet the visionary behind Solv. Advocates and Legal Consultants, delivering practical, solution-oriented legal services with a personal touch.
             </p>
           </motion.div>
 
@@ -218,44 +218,70 @@ export const AboutUs: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col items-center"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                <div className="relative h-80 lg:h-auto">
-                  <img
-                    src="https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=600"
-                    alt="Founder"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <h3 className="text-2xl lg:text-3xl font-bold font-serif text-slate-900 mb-4">
-                    Dr. Rajesh Kumar
-                  </h3>
-                  <p className="text-lg text-slate-700 font-medium mb-4">
-                    Founder & Managing Partner
-                  </p>
-                  <p className="text-slate-600 mb-6 leading-relaxed">
-                    With over 20 years of distinguished legal practice, Dr. Rajesh Kumar founded Solv. 
-                    with a vision to revolutionize legal services through innovation and excellence. A graduate 
-                    of Harvard Law School and former Supreme Court clerk, he has successfully represented 
-                    Fortune 500 companies and emerging startups alike.
-                  </p>
-                  <p className="text-slate-600 mb-6 leading-relaxed">
-                    His expertise spans corporate law, intellectual property, and technology law. Dr. Kumar 
-                    has been recognized as one of India's top legal minds and frequently speaks at international 
-                    legal conferences on emerging legal trends and business law.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-slate-50 p-4 rounded-lg text-center">
-                      {/* <div className="text-2xl font-bold text-slate-900">20+</div> */}
-                      {/* <div className="text-slate-600 text-sm">Years Experience</div> */}
-                    </div>
-                    <div className="bg-slate-50 p-4 rounded-lg text-center">
-                      {/* <div className="text-2xl font-bold text-slate-900">500+</div> */}
-                      {/* <div className="text-slate-600 text-sm">Cases Won</div> */}
-                    </div>
-                  </div>
+              <div className="w-full relative h-80 lg:h-96">
+                <img
+                  src="/public/founder-1.jpeg"
+                  alt="Navya Shetty Raju"
+                  className="w-full h-full object-cover"
+                  style={{ maxHeight: '400px' }}
+                />
+              </div>
+              <div className="p-8 lg:p-12 flex flex-col justify-center w-full">
+                <h3 className="text-2xl lg:text-3xl font-bold font-serif text-slate-900 mb-4 text-center">
+                  Navya Shetty Raju
+                </h3>
+                <p className="text-lg text-slate-700 font-medium mb-4 text-center">
+                  Founder, <strong>Solv. Advocates and Legal Consultants</strong>
+                </p>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Navya Shetty Raju is the Founder of <strong>Solv. Advocates and Legal Consultants</strong>,
+                  a Bengaluru-based law firm known for delivering practical, solution-oriented legal services
+                  with a personal touch. With eight years of combined experience in litigation, legal drafting,
+                  and academic instruction, she brings a rare blend of courtroom acumen and scholarly insight
+                  to every matter she handles.
+                </p>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  A practicing advocate, Navya specializes in <strong>property law, civil litigation, consumer disputes,
+                  insurance claims, banking matters</strong>, and <strong>family law</strong>, including succession, partition,
+                  and matrimonial disputes. Her legal practice is distinguished by meticulous documentation,
+                  precise pleadings, and strategic courtroom representation. She also advises on regulatory
+                  compliance and documentation for individuals, businesses, and institutions, combining a deep
+                  understanding of the law with a commitment to protecting her clients’ interests.
+                </p>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Navya’s professional journey spans both the legal profession and academia. She has served as an
+                  <strong>Assistant Professor</strong> at RV Institute of Legal Studies and as a
+                  <strong> Visiting Faculty</strong> at prestigious institutions such as Bishop Cotton Women’s Christian
+                  Law College and BMS College of Law. Her teaching repertoire includes
+                  <strong> Constitutional Law, Labour Law, Company Law, Civil Procedure Code, and Taxation Law</strong>.
+                  Known for her interactive and analytical approach, she bridges theory with practice, often
+                  integrating real-world legal experiences into her classroom sessions. This dual engagement allows
+                  her to mentor aspiring lawyers with both academic rigor and practical wisdom.
+                </p>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Academically accomplished, Navya holds an <strong>LL.M. in Commercial and Corporate Law</strong> from
+                  Christ (Deemed to be University) and a <strong>BBA LL.B.</strong> from Bishop Cotton Women’s Christian
+                  Law College. She is currently pursuing her <strong>Ph.D. in Law</strong> at Alliance University, further
+                  deepening her expertise.
+                </p>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Her intellectual contributions include presenting and publishing research papers at national and
+                  international conferences on diverse topics such as cyber security, e-waste management, socio-economic
+                  justice, and consumer protection. These engagements reflect her commitment to continuous learning
+                  and to contributing to the legal discourse in emerging and critical areas of law.
+                </p>
+                <p className="text-slate-600 mb-6 leading-relaxed">
+                  Driven by a vision to provide accessible, effective, and ethical legal solutions, Navya leads
+                  <strong> Solv. Advocates and Legal Consultants</strong> with integrity and a client-first approach.
+                  Whether representing clients in court, advising on complex legal transactions, or mentoring the
+                  next generation of legal professionals, she remains dedicated to upholding justice and delivering
+                  results that matter.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-slate-50 p-4 rounded-lg text-center"></div>
+                  <div className="bg-slate-50 p-4 rounded-lg text-center"></div>
                 </div>
               </div>
             </motion.div>

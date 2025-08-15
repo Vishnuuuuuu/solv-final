@@ -282,7 +282,11 @@ export const GSTRegistration: React.FC = () => {
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                       >
                         <option value="">Select Turnover Range</option>
-                        {/* Price options removed for content-only */}
+                        <option value="below-20-lakh">Below ₹20 Lakh</option>
+                        <option value="20-50-lakh">₹20 Lakh - ₹50 Lakh</option>
+                        <option value="50-lakh-1-cr">₹50 Lakh - ₹1 Crore</option>
+                        <option value="1-5-cr">₹1 Crore - ₹5 Crore</option>
+                        <option value="above-5-cr">Above ₹5 Crore</option>
                       </select>
                     </div>
 

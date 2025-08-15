@@ -11,7 +11,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'GST Registration',
       description: 'Complete GST registration process for your business',
       features: ['GST Number Generation', 'Digital Signature Setup', 'Compliance Guidelines'],
-      price: '₹2,999',
+  // ...existing code...
       duration: '3-5 days',
       slug: 'gst-registration'
     },
@@ -19,7 +19,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'Income Tax Filing',
       description: 'Professional income tax return filing services',
       features: ['ITR Preparation', 'Tax Optimization', 'Refund Processing'],
-      price: '₹1,999',
+  // ...existing code...
       duration: '2-3 days',
       slug: 'income-tax-filing'
     },
@@ -27,7 +27,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'TDS Return Filing',
       description: 'TDS return filing and compliance management',
       features: ['Quarterly Returns', 'TDS Certificates', 'Penalty Avoidance'],
-      price: '₹1,499',
+  // ...existing code...
       duration: '1-2 days',
       slug: 'tds-return-filing'
     },
@@ -35,7 +35,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'Corporate Tax Advisory',
       description: 'Strategic tax planning for corporations',
       features: ['Tax Structure Planning', 'Compliance Review', 'Advisory Services'],
-      price: '₹7,999',
+  // ...existing code...
       duration: '5-7 days',
       slug: 'corporate-tax-advisory'
     },
@@ -43,7 +43,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'FSSAI Registration',
       description: 'Food business license and registration',
       features: ['License Application', 'Documentation Support', 'Renewal Services'],
-      price: '₹2,499',
+  // ...existing code...
       duration: '7-10 days',
       slug: 'fssai-registration'
     },
@@ -51,7 +51,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'MSME Registration',
       description: 'Micro, Small & Medium Enterprise registration',
       features: ['Udyam Registration', 'Certificate Generation', 'Benefits Guidance'],
-      price: '₹1,999',
+  // ...existing code...
       duration: '3-5 days',
       slug: 'msme-registration'
     },
@@ -59,7 +59,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'Import Export Code (IEC)',
       description: 'IEC registration for import/export business',
       features: ['IEC Application', 'Document Verification', 'Digital Certificate'],
-      price: '₹3,499',
+  // ...existing code...
       duration: '5-7 days',
       slug: 'iec-registration'
     },
@@ -67,7 +67,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'Professional Tax Registration',
       description: 'Professional tax registration and compliance',
       features: ['State Registration', 'Monthly Returns', 'Compliance Calendar'],
-      price: '₹1,799',
+  // ...existing code...
       duration: '2-3 days',
       slug: 'professional-tax'
     },
@@ -75,7 +75,7 @@ export const TaxComplianceServices: React.FC = () => {
       title: 'ESI & PF Registration',
       description: 'Employee State Insurance and Provident Fund setup',
       features: ['ESI Registration', 'PF Registration', 'Monthly Returns'],
-      price: '₹2,999',
+  // ...existing code...
       duration: '5-7 days',
       slug: 'esi-pf-registration'
     }
@@ -150,17 +150,12 @@ export const TaxComplianceServices: React.FC = () => {
                 </div>
 
                 <div className="border-t border-slate-200 pt-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-sm">
-                      <span className="text-slate-500">Starting from</span>
-                      <div className="font-bold text-lg text-slate-900">{service.price}</div>
-                    </div>
+                  <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
                       <span className="text-slate-500">Duration</span>
                       <div className="font-medium text-slate-700">{service.duration}</div>
                     </div>
                   </div>
-                  
                   <button className="w-full bg-slate-800 text-white py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors group-hover:scale-105 inline-flex items-center justify-center space-x-2">
                     <span>Get Started</span>
                     <ArrowRight className="h-4 w-4" />

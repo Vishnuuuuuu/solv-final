@@ -351,7 +351,12 @@ export const IncomeTaxFiling: React.FC = () => {
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                       >
                         <option value="">Select Income Range</option>
-                        {/* Price options removed for content-only */}
+                        <option value="below-2-5-lakh">Below ₹2.5 Lakh</option>
+                        <option value="2-5-5-lakh">₹2.5 Lakh - ₹5 Lakh</option>
+                        <option value="5-10-lakh">₹5 Lakh - ₹10 Lakh</option>
+                        <option value="10-25-lakh">₹10 Lakh - ₹25 Lakh</option>
+                        <option value="25-50-lakh">₹25 Lakh - ₹50 Lakh</option>
+                        <option value="above-50-lakh">Above ₹50 Lakh</option>
                       </select>
                     </div>
 

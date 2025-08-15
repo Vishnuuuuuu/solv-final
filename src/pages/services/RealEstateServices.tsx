@@ -11,7 +11,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Property Sale Agreement',
       description: 'Comprehensive property sale agreement drafting and review',
       features: ['Sale Deed Preparation', 'Legal Verification', 'Registration Support'],
-      price: '₹4,999',
+  // ...existing code...
       duration: '3-5 days',
       slug: 'property-sale-agreement'
     },
@@ -19,7 +19,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Rent Agreement',
       description: 'Residential and commercial rent agreement preparation',
       features: ['11-Month Lease', 'Police Verification', 'Stamp Paper Arrangement'],
-      price: '₹1,999',
+  // ...existing code...
       duration: '1-2 days',
       slug: 'rent-agreement'
     },
@@ -27,7 +27,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Property Title Verification',
       description: 'Complete property title and document verification',
       features: ['Chain Title Verification', 'Encumbrance Check', 'Legal Opinion'],
-      price: '₹7,999',
+  // ...existing code...
       duration: '7-10 days',
       slug: 'title-verification'
     },
@@ -35,7 +35,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Property Registration',
       description: 'End-to-end property registration services',
       features: ['Document Preparation', 'Stamp Duty Calculation', 'Registration Process'],
-      price: '₹8,999',
+  // ...existing code...
       duration: '5-7 days',
       slug: 'property-registration'
     },
@@ -43,7 +43,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Lease Agreement',
       description: 'Commercial and residential lease agreement drafting',
       features: ['Long-term Lease', 'Renewal Clauses', 'Legal Compliance'],
-      price: '₹3,999',
+  // ...existing code...
       duration: '2-3 days',
       slug: 'lease-agreement'
     },
@@ -51,7 +51,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Property Management Agreement',
       description: 'Property management and maintenance agreements',
       features: ['Management Terms', 'Maintenance Clauses', 'Service Agreements'],
-      price: '₹2,999',
+  // ...existing code...
       duration: '2-3 days',
       slug: 'property-management'
     },
@@ -59,7 +59,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Power of Attorney',
       description: 'Property-related power of attorney documents',
       features: ['General POA', 'Special POA', 'Revocation Documents'],
-      price: '₹2,499',
+  // ...existing code...
       duration: '1-2 days',
       slug: 'power-of-attorney'
     },
@@ -67,7 +67,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Joint Development Agreement',
       description: 'Joint development agreements for real estate projects',
       features: ['Development Terms', 'Profit Sharing', 'Compliance Check'],
-      price: '₹15,999',
+  // ...existing code...
       duration: '7-10 days',
       slug: 'joint-development-agreement'
     },
@@ -75,7 +75,7 @@ export const RealEstateServices: React.FC = () => {
       title: 'Property Dispute Resolution',
       description: 'Legal support for property-related disputes',
       features: ['Dispute Analysis', 'Settlement Negotiation', 'Legal Notice'],
-      price: '₹9,999',
+  // ...existing code...
       duration: '5-7 days',
       slug: 'property-dispute'
     }
@@ -150,17 +150,12 @@ export const RealEstateServices: React.FC = () => {
                 </div>
 
                 <div className="border-t border-slate-200 pt-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-sm">
-                      <span className="text-slate-500">Starting from</span>
-                      <div className="font-bold text-lg text-slate-900">{service.price}</div>
-                    </div>
+                  <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
                       <span className="text-slate-500">Duration</span>
                       <div className="font-medium text-slate-700">{service.duration}</div>
                     </div>
                   </div>
-                  
                   <button className="w-full bg-slate-800 text-white py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors group-hover:scale-105 inline-flex items-center justify-center space-x-2">
                     <span>Get Started</span>
                     <ArrowRight className="h-4 w-4" />
