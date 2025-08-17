@@ -78,9 +78,9 @@ export const Footer: React.FC = () => {
             <Link to="/disclaimer" className="text-slate-400 hover:text-white text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/disclaimer" className="text-slate-400 hover:text-white text-sm transition-colors">
+            {/* <Link to="/disclaimer" className="text-slate-400 hover:text-white text-sm transition-colors">
               Terms of Service
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

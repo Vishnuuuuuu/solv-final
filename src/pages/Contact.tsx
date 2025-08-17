@@ -283,7 +283,7 @@ export const Contact: React.FC = () => {
                 <span>Call Now: +91 98800 12694</span>
               </a>
               <a
-                href="mailto:info@solv.legal"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=info@solv.legal"
                 className="border-2 border-white text-white px-8 py-4 rounded-md font-semibold hover:bg-white hover:text-slate-900 transition-all duration-200 inline-flex items-center space-x-2"
               >
                 <Mail className="h-5 w-5" />
