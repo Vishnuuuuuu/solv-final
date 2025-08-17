@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, ChevronRight, FileText, Gavel, Quote, Scale, Star } from 'lucide-react';
+import { ArrowRight, Briefcase, Building, ChevronRight, Gavel, HeartHandshake, Quote, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { legalQuotes } from '../data/quotes';
@@ -25,12 +25,13 @@ export function LandingPage() {
     setCurrentQuote(randomIndex);
   }, []);
 
-  const practiceAreas = [
-    { icon: Gavel, title: 'Legal Consultation', description: 'Video/Audio consultation with expert lawyers' },
-    { icon: Scale, title: 'Legal Notice', description: 'Legal notice drafting and sending services' },
-    { icon: BookOpen, title: 'Legal Opinion', description: 'Expert legal opinion and advisory services' },
-    { icon: FileText, title: 'Contract Drafting', description: 'Professional contract drafting and review services' },
-  ];
+   const practiceAreas = [
+  { icon: Building, title: 'Real Estate', description: 'Comprehensive legal support for property transactions and development' },
+  { icon: HeartHandshake, title: 'Personal & Family Law', description: 'Guidance on succession, partition, matrimonial, and related matters' },
+  { icon: Gavel, title: 'Dispute Resolution', description: 'Expert litigation and alternative dispute resolution services' },
+  { icon: Briefcase, title: 'Corporate Law', description: 'Strategic counsel for business transactions and governance' },
+];
+
 
   const testimonials = [
     {
@@ -82,20 +83,29 @@ export function LandingPage() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <section
+        className="relative text-white overflow-hidden"
+        style={{
+          backgroundImage: "url('/office-1.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '70vh', // Increased height for a more immersive hero
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-slate-800/40 to-slate-700/40" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 lg:py-44">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl lg:text-6xl font-bold font-serif mb-6 leading-tight">
+              <h1 className="text-4xl lg:text-6xl font-bold font-serif mb-6 leading-tight drop-shadow-xl">
                 Legal Excellence
                 <span className="block text-slate-300">Redefined</span>
               </h1>
-              <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+              <p className="text-xl text-slate-300 mb-8 leading-relaxed drop-shadow-lg">
                 Navigate complex legal challenges with confidence. Solv. delivers innovative solutions 
                 backed by decades of expertise, precision, and unwavering commitment to your success.
               </p>
@@ -113,23 +123,6 @@ export function LandingPage() {
                 >
                   <span>Our Services</span>
                 </Link>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center"
-            >
-              <div className="relative">
-                {/* <Scale className="h-48 w-48 lg:h-64 lg:w-64 text-slate-300 animate-pulse" /> */}
-                <img
-                  src="/office-1.jpg"
-                  alt="Solv. Advocates Office"
-                  className="rounded-2xl shadow-2xl object-cover h-56 w-96 lg:h-80 lg:w-[32rem] border-4 border-white/20"
-                />
-                {/* Removed dull overlay and background gradient */}
               </div>
             </motion.div>
           </div>
@@ -190,7 +183,7 @@ export function LandingPage() {
       </section>
 
       {/* Recent Articles Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">Recent Articles</h2>
@@ -223,7 +216,7 @@ export function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Legal Quotes Section */}
       <section className="py-20 bg-slate-900 text-white overflow-hidden">
