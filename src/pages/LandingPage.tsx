@@ -123,8 +123,13 @@ export function LandingPage() {
               className="flex justify-center"
             >
               <div className="relative">
-                <Scale className="h-48 w-48 lg:h-64 lg:w-64 text-slate-300 animate-pulse" />
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-600/30 to-slate-500/30 rounded-full blur-3xl"></div>
+                {/* <Scale className="h-48 w-48 lg:h-64 lg:w-64 text-slate-300 animate-pulse" /> */}
+                <img
+                  src="/office-1.jpg"
+                  alt="Solv. Advocates Office"
+                  className="rounded-2xl shadow-2xl object-cover h-56 w-96 lg:h-80 lg:w-[32rem] border-4 border-white/20"
+                />
+                {/* Removed dull overlay and background gradient */}
               </div>
             </motion.div>
           </div>
