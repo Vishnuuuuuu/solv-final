@@ -34,13 +34,14 @@ export const Navigation: React.FC = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 lg:h-24">
+        <div className="flex justify-between items-center h-[108px] lg:h-[144px]">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
             <img 
               src="/SOLV.png" 
-              alt="SOLV Advicates" 
-              className="h-20 w-auto lg:h-24"
+              alt="SOLV Advocates" 
+              className="h-[100px] w-[100px] lg:h-[100px] lg:w-[100px] object-contain"
+              style={{ marginTop: '10px', marginBottom: '10px' }}
             />
           </Link>
 

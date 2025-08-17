@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Building, ChevronRight, Quote, Scale, Shield, Star, Users } from 'lucide-react';
+import { ArrowRight, BookOpen, ChevronRight, FileText, Gavel, Quote, Scale, Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { legalQuotes } from '../data/quotes';
@@ -14,10 +14,10 @@ export const LandingPage: React.FC = () => {
   }, []);
 
   const practiceAreas = [
-    { icon: Building, title: 'Corporate Law', description: 'Strategic counsel for business transactions and governance' },
-    { icon: Shield, title: 'Intellectual Property', description: 'Comprehensive IP protection and enforcement strategies' },
-    { icon: Users, title: 'Dispute Resolution', description: 'Expert litigation and alternative dispute resolution' },
-    { icon: Award, title: 'Technology & Privacy', description: 'Cutting-edge legal solutions for digital transformation' },
+    { icon: Gavel, title: 'Legal Consultation', description: 'Video/Audio consultation with expert lawyers' },
+    { icon: Scale, title: 'Legal Notice', description: 'Legal notice drafting and sending services' },
+    { icon: BookOpen, title: 'Legal Opinion', description: 'Expert legal opinion and advisory services' },
+    { icon: FileText, title: 'Contract Drafting', description: 'Professional contract drafting and review services' },
   ];
 
   const testimonials = [

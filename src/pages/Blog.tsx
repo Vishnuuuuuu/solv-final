@@ -102,7 +102,7 @@ export const Blog: React.FC = () => {
   };
 
   return (
-    <div className="pt-16">
+  <div className="pt-36">
       {/* Hero Section Commented*/}
       {/* <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -353,7 +353,7 @@ export const Blog: React.FC = () => {
         </div>
       </section>
 
-      {/* Newsletter Signup */}
+      {/* Newsletter Signup
       <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -379,7 +379,7 @@ export const Blog: React.FC = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

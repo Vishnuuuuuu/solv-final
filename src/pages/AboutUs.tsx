@@ -250,16 +250,7 @@ export const AboutUs: React.FC = () => {
                   compliance and documentation for individuals, businesses, and institutions, combining a deep
                   understanding of the law with a commitment to protecting her clients’ interests.
                 </p>
-                <p className="text-slate-600 mb-6 leading-relaxed">
-                  Navya’s professional journey spans both the legal profession and academia. She has served as an
-                  <strong>Assistant Professor</strong> at RV Institute of Legal Studies and as a
-                  <strong> Visiting Faculty</strong> at prestigious institutions such as Bishop Cotton Women’s Christian
-                  Law College and BMS College of Law. Her teaching repertoire includes
-                  <strong> Constitutional Law, Labour Law, Company Law, Civil Procedure Code, and Taxation Law</strong>.
-                  Known for her interactive and analytical approach, she bridges theory with practice, often
-                  integrating real-world legal experiences into her classroom sessions. This dual engagement allows
-                  her to mentor aspiring lawyers with both academic rigor and practical wisdom.
-                </p>
+                
                 <p className="text-slate-600 mb-6 leading-relaxed">
                   Academically accomplished, Navya holds an <strong>LL.M. in Commercial and Corporate Law</strong> from
                   Christ (Deemed to be University) and a <strong>BBA LL.B.</strong> from Bishop Cotton Women’s Christian
