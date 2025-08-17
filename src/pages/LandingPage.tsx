@@ -1,10 +1,22 @@
+import { createClient } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, ChevronRight, FileText, Gavel, Quote, Scale, Star } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { legalQuotes } from '../data/quotes';
 
-export const LandingPage: React.FC = () => {
+// Define Blog type for recentArticles
+interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  featured_image?: string;
+  cover_url?: string;
+  created_at: string;
+  is_featured?: boolean;
+}
+
+export function LandingPage() {
   const [currentQuote, setCurrentQuote] = useState(0);
 
   // Rotate quotes on page refresh/load
@@ -40,6 +52,32 @@ export const LandingPage: React.FC = () => {
       rating: 5
     }
   ];
+
+  // Recent Articles State
+  const [recentArticles, setRecentArticles] = useState<Blog[]>([]);
+
+  useEffect(() => {
+    const supabase = createClient(
+      import.meta.env.VITE_SUPABASE_URL || '',
+      import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+    );
+    async function fetchArticles() {
+      const { data } = await supabase
+        .from('articles') // <-- FIXED: use 'articles' table
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(3);
+      if (data) {
+        setRecentArticles(data);
+      }
+    }
+    fetchArticles();
+  }, []);
+
+  function formatDate(dateStr: string) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
 
   return (
     <div className="pt-16">
@@ -142,6 +180,42 @@ export const LandingPage: React.FC = () => {
               <span>View All Services</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Articles Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">Recent Articles</h2>
+            <Link
+              to="/blog"
+              className="border-2 border-slate-300 text-slate-700 px-8 py-3 rounded-md font-semibold hover:bg-slate-50 transition-all duration-200"
+            >
+              View All
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recentArticles.map((article, idx) => (
+              <div key={article.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 group cursor-pointer">
+                <img
+                  src={article.featured_image || article.cover_url || 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600'}
+                  alt={article.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="p-6">
+                  <div className="text-slate-500 text-sm mb-2">{formatDate(article.created_at)}</div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-slate-700 transition-colors">
+                    {article.title}
+                  </h3>
+                  <Link to={`/blog/${article.slug}`} className="text-blue-700 font-medium hover:underline flex items-center space-x-1">
+                    <span>Learn More</span>
+                    <span className="ml-1">→</span>
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
