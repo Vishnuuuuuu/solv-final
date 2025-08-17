@@ -26,10 +26,10 @@ import { UserManagement } from './pages/admin/UserManagement';
 import { PreLitigationAdvisory } from './pages/services/PreLitigationAdvisory';
 import { RealEstateServices } from './pages/services/RealEstateServices';
 import { TaxComplianceServices } from './pages/services/TaxComplianceServices';
+import { PropertyPurchaseAgreement } from './pages/services/realestate/PropertyPurchaseAgreement';
+import { PropertySaleAgreement } from './pages/services/realestate/PropertySaleAgreement';
 import { GSTRegistration } from './pages/services/tax/GSTRegistration';
 import { IncomeTaxFiling } from './pages/services/tax/IncomeTaxFiling';
-import { PropertySaleAgreement } from './pages/services/realestate/PropertySaleAgreement';
-import { PropertyPurchaseAgreement } from './pages/services/realestate/PropertyPurchaseAgreement';
 
 // Component to handle scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -41,6 +41,22 @@ const ScrollToTop: React.FC = () => {
 
   return null;
 };
+
+// WhatsApp Button Component
+const WhatsAppButton: React.FC = () => (
+  <a
+    href="https://wa.me/916364260639"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fixed bottom-16 right-6 bg-green-500 text-white p-5 rounded-full shadow-2xl hover:bg-green-600 transition z-[9999] flex items-center justify-center"
+    style={{ fontSize: '2rem' }}
+    aria-label="Chat on WhatsApp"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5l-1.4 5.1 5.23-1.37c1.46.8 3.1 1.22 4.83 1.22h.01c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.93 14.25c-.25.7-1.23 1.3-2.02 1.48-.54.11-1.23.2-3.57-.77-3-1.24-4.9-4.27-5.05-4.47-.15-.2-1.2-1.6-1.2-3.05s.75-2.17 1.02-2.47c.25-.3.55-.38.75-.38s.37 0 .53.01c.17.01.4-.07.63.48.25.6.86 2.08.93 2.23.08.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.32.38-.46.51-.15.15-.3.32-.13.62.17.3.75 1.23 1.6 1.99 1.1.98 2.03 1.29 2.33 1.44.3.15.48.13.65-.07.2-.25.75-.87.95-1.17.2-.3.4-.25.68-.15.3.1 1.77.83 2.07.98.3.15.5.22.58.35.08.15.08.73-.17 1.43z"/>
+    </svg>
+  </a>
+);
 
 // Component to conditionally render Navigation and Footer
 const ConditionalLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -56,6 +72,7 @@ const ConditionalLayout: React.FC<{ children: React.ReactNode }> = ({ children }
       <Navigation />
       {children}
       <Footer />
+      <WhatsAppButton />
     </>
   );
 };

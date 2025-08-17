@@ -32,12 +32,22 @@ export const DisclaimerPopup: React.FC = () => {
             className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
             style={{ pointerEvents: 'auto' }}
           >
-            <div className="bg-black/60 backdrop-blur-md border border-gray-600/30 rounded-lg shadow-2xl w-full max-w-4xl overflow-y-visible my-8">
-              <div className="text-center py-8 px-10">
-                <h1 className="text-3xl font-bold text-white mb-6 tracking-wider">
+            <div className="bg-black/60 backdrop-blur-md border border-gray-600/30 rounded-lg shadow-2xl w-full max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl overflow-y-auto my-8 mx-2 sm:mx-4 p-4 sm:p-8" style={{ maxHeight: '90vh' }}>
+              <div className="text-center py-4 px-2 sm:py-8 sm:px-10">
+                <h1 className="text-xl sm:text-3xl font-bold text-white mb-6 tracking-wider">
                   DISCLAIMER
                 </h1>
-                <div className="text-white text-left space-y-5 leading-relaxed text-base">
+                {/* Mobile Short Disclaimer as bullet points */}
+                <div className="block sm:hidden text-white text-left space-y-3 leading-relaxed text-xs">
+                  <ul className="list-disc pl-5">
+                    <li>No solicitation or advertisement.</li>
+                    <li>You are seeking info on your own.</li>
+                    <li>No legal advice or lawyer-client relationship.</li>
+                    <li>Accuracy not guaranteed; seek independent advice.</li>
+                  </ul>
+                </div>
+                {/* Full Disclaimer for larger screens */}
+                <div className="hidden sm:block text-white text-left space-y-5 leading-relaxed text-base">
                   <p>
                     The rules of the Bar Council of India do not permit advocates to solicit work or advertise in any manner. This website has been created only for informational purposes and is not intended to constitute solicitation, invitation, advertisement or inducement of any sort whatsoever from us or any of our members to solicit any work in any manner. By clicking on 'Agree' below, you acknowledge and confirm the following:
                   </p>
@@ -57,10 +67,10 @@ export const DisclaimerPopup: React.FC = () => {
                     <strong>e)</strong> in cases where the user has any legal issues, the user must seek independent legal advice.
                   </p>
                 </div>
-                <div className="flex justify-center mt-8">
+                <div className="flex flex-col sm:flex-row justify-center mt-8 gap-4">
                   <button
                     onClick={handleAccept}
-                    className="bg-slate-800 hover:bg-slate-700 text-white font-bold px-10 py-3 rounded transition-colors duration-200 text-base shadow-lg"
+                    className="bg-slate-800 hover:bg-slate-700 text-white font-bold px-8 py-3 rounded transition-colors duration-200 text-base shadow-lg w-full sm:w-auto"
                   >
                     I AGREE
                   </button>
