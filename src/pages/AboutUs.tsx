@@ -56,7 +56,7 @@ export const AboutUs: React.FC = () => {
               <p className="text-lg text-slate-700">
                 With a commitment to{' '}
                 <strong>clarity, integrity, and results</strong>, Solv.
-                Advocates and Legal Consultants serves as a trusted partner for
+                Advocates and  Consultants serves as a trusted partner for
                 clients navigating complex legal challenges with confidence.
               </p>
             </motion.div>
