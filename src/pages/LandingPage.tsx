@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, Building, ChevronRight, Gavel, HeartHandshake, Quote, Star } from 'lucide-react';
+import { ArrowRight, ChevronRight, Quote, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { legalQuotes } from '../data/quotes';
@@ -25,12 +25,30 @@ export function LandingPage() {
     setCurrentQuote(randomIndex);
   }, []);
 
-   const practiceAreas = [
-  { icon: Building, title: 'Real Estate', description: 'Comprehensive legal support for property transactions and development' },
-  { icon: HeartHandshake, title: 'Personal & Family Law', description: 'Guidance on succession, partition, matrimonial, and related matters' },
-  { icon: Gavel, title: 'Dispute Resolution', description: 'Expert litigation and alternative dispute resolution services' },
-  { icon: Briefcase, title: 'Corporate Law', description: 'Strategic counsel for business transactions and governance' },
+const practiceAreas = [
+  { 
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    title: 'Real Estate', 
+    description: 'Comprehensive legal support for property transactions and development' 
+  },
+  { 
+    image: "https://images.unsplash.com/photo-1505664063603-28e48ca204eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    title: 'Personal & Family Law', 
+    description: 'Guidance on succession, partition, matrimonial, and related matters' 
+  },
+  { 
+    image: "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    title: 'Dispute Resolution', 
+    description: 'Expert litigation and alternative dispute resolution services' 
+  },
+  { 
+    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+    title: 'Corporate Law', 
+    description: 'Strategic counsel for business transactions and governance' 
+  },
 ];
+
+
 
 
   const testimonials = [
@@ -156,7 +174,11 @@ export function LandingPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-slate-50 p-8 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 group"
               >
-                <area.icon className="h-12 w-12 text-slate-700 mb-4 group-hover:text-slate-900 transition-colors" />
+<img 
+  src={area.image} 
+  alt={area.title} 
+  className="h-12 w-12 mb-4 object-contain" 
+/>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">{area.title}</h3>
                 <p className="text-slate-600 mb-4">{area.description}</p>
                 <Link

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Briefcase, Clock, Heart, Lightbulb, MapPin, Plus, Users } from 'lucide-react';
+import { ArrowRight, Award, Briefcase, Clock, Lightbulb, MapPin, Plus, Users } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
@@ -28,11 +28,6 @@ export const Careers: React.FC = () => {
   };
 
   const benefits = [
-    {
-      icon: Heart,
-      title: 'Health & Wellness',
-      description: 'Comprehensive health insurance, mental health support, and wellness programs'
-    },
     {
       icon: Lightbulb,
       title: 'Professional Development',
@@ -191,7 +186,7 @@ export const Careers: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}

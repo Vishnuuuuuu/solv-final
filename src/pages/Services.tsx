@@ -236,11 +236,11 @@ export const Services: React.FC = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                  <div className="absolute top-4 left-4">
+                  {/* <div className="absolute top-4 left-4">
                     <div className="bg-white bg-opacity-90 rounded-lg p-2">
                       <category.icon className="h-6 w-6 text-slate-700" />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-slate-900 mb-2">{category.title}</h3>
