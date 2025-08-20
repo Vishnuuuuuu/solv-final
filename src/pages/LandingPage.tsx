@@ -1,9 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-import { motion } from 'framer-motion';
-import { ArrowRight, ChevronRight, Quote, Star } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { legalQuotes } from '../data/quotes';
+import { createClient } from "@supabase/supabase-js";
+import { motion } from "framer-motion";
+import { ArrowRight, ChevronRight, Quote, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { legalQuotes } from "../data/quotes";
 
 // Define Blog type for recentArticles
 interface Blog {
@@ -25,51 +25,58 @@ export function LandingPage() {
     setCurrentQuote(randomIndex);
   }, []);
 
-const practiceAreas = [
-  { 
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-    title: 'Real Estate', 
-    description: 'Comprehensive legal support for property transactions and development' 
-  },
-  { 
-    image: "https://images.unsplash.com/photo-1505664063603-28e48ca204eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-    title: 'Personal & Family Law', 
-    description: 'Guidance on succession, partition, matrimonial, and related matters' 
-  },
-  { 
-    image: "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-    title: 'Dispute Resolution', 
-    description: 'Expert litigation and alternative dispute resolution services' 
-  },
-  { 
-    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-    title: 'Corporate Law', 
-    description: 'Strategic counsel for business transactions and governance' 
-  },
-];
-
-
-
+  const practiceAreas = [
+    {
+      image:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+      title: "Real Estate",
+      description:
+        "Comprehensive legal support for property transactions and development",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1505664063603-28e48ca204eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+      title: "Personal & Family Law",
+      description:
+        "Guidance on succession, partition, matrimonial, and related matters",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+      title: "Dispute Resolution",
+      description:
+        "Expert litigation and alternative dispute resolution services",
+    },
+    {
+      image:
+        "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
+      title: "Corporate Law",
+      description: "Strategic counsel for business transactions and governance",
+    },
+  ];
 
   const testimonials = [
     {
-      name: 'Sarah Mitchell',
-      position: 'CEO, TechVision Inc.',
-      content: 'Solv. provided exceptional guidance during our IPO process. Their expertise in corporate law and attention to detail was remarkable.',
-      rating: 5
+      name: "Sarah Mitchell",
+      position: "CEO, TechVision Inc.",
+      content:
+        "Solv. provided exceptional guidance during our IPO process. Their expertise in corporate law and attention to detail was remarkable.",
+      rating: 5,
     },
     {
-      name: 'David Chen',
-      position: 'General Counsel, InnovateX',
-      content: 'The IP protection strategy developed by Solv. has been instrumental in securing our competitive advantage in the market.',
-      rating: 5
+      name: "David Chen",
+      position: "General Counsel, InnovateX",
+      content:
+        "The IP protection strategy developed by Solv. has been instrumental in securing our competitive advantage in the market.",
+      rating: 5,
     },
     {
-      name: 'Maria Rodriguez',
-      position: 'Founder, GreenTech Solutions',
-      content: 'Professional, knowledgeable, and always available. Solv. has been our trusted legal partner for over three years.',
-      rating: 5
-    }
+      name: "Maria Rodriguez",
+      position: "Founder, GreenTech Solutions",
+      content:
+        "Professional, knowledgeable, and always available. Solv. has been our trusted legal partner for over three years.",
+      rating: 5,
+    },
   ];
 
   // Recent Articles State
@@ -77,14 +84,14 @@ const practiceAreas = [
 
   useEffect(() => {
     const supabase = createClient(
-      import.meta.env.VITE_SUPABASE_URL || '',
-      import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+      import.meta.env.VITE_SUPABASE_URL || "",
+      import.meta.env.VITE_SUPABASE_ANON_KEY || ""
     );
     async function fetchArticles() {
       const { data } = await supabase
-        .from('articles') // <-- FIXED: use 'articles' table
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from("articles") // <-- FIXED: use 'articles' table
+        .select("*")
+        .order("created_at", { ascending: false })
         .limit(3);
       if (data) {
         setRecentArticles(data);
@@ -95,7 +102,11 @@ const practiceAreas = [
 
   function formatDate(dateStr: string) {
     const d = new Date(dateStr);
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    return d.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
   }
 
   return (
@@ -105,10 +116,10 @@ const practiceAreas = [
         className="relative text-white overflow-hidden"
         style={{
           backgroundImage: "url('/office-1.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          minHeight: '70vh', // Increased height for a more immersive hero
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: "70vh", // Increased height for a more immersive hero
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-slate-800/40 to-slate-700/40" />
@@ -124,8 +135,9 @@ const practiceAreas = [
                 <span className="block text-slate-300">Redefined</span>
               </h1>
               <p className="text-xl text-slate-300 mb-8 leading-relaxed drop-shadow-lg">
-                Navigate complex legal challenges with confidence. Solv. delivers innovative solutions 
-                backed by decades of expertise, precision, and unwavering commitment to your success.
+                Navigate complex legal challenges with confidence. Solv.
+                delivers innovative solutions backed by decades of expertise,
+                precision, and unwavering commitment to your success.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link
@@ -160,8 +172,9 @@ const practiceAreas = [
               Areas of Practice
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Our comprehensive legal services span across multiple practice areas, 
-              ensuring expert guidance for every aspect of your business needs.
+              Our comprehensive legal services span across multiple practice
+              areas, ensuring expert guidance for every aspect of your business
+              needs.
             </p>
           </motion.div>
 
@@ -174,12 +187,14 @@ const practiceAreas = [
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-slate-50 p-8 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 group"
               >
-<img 
-  src={area.image} 
-  alt={area.title} 
-  className="h-12 w-12 mb-4 object-contain" 
-/>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">{area.title}</h3>
+                <img
+                  src={area.image}
+                  alt={area.title}
+                  className="h-12 w-12 mb-4 object-contain"
+                />
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                  {area.title}
+                </h3>
                 <p className="text-slate-600 mb-4">{area.description}</p>
                 <Link
                   to="/services"
@@ -252,7 +267,7 @@ const practiceAreas = [
             <h2 className="text-2xl lg:text-3xl font-bold font-serif text-slate-300 mb-12">
               Words of Wisdom
             </h2>
-            
+
             <motion.div
               key={currentQuote}
               initial={{ opacity: 0, y: 20 }}
@@ -261,11 +276,11 @@ const practiceAreas = [
               className="max-w-4xl mx-auto"
             >
               <Quote className="h-16 w-16 text-slate-400 mx-auto mb-8 opacity-50" />
-              
+
               <blockquote className="text-xl lg:text-2xl font-serif text-white leading-relaxed mb-8 italic">
                 "{legalQuotes[currentQuote].quote}"
               </blockquote>
-              
+
               <div className="text-slate-300">
                 <div className="text-lg font-semibold mb-1">
                   {legalQuotes[currentQuote].author}
@@ -292,7 +307,8 @@ const practiceAreas = [
               Client Testimonials
             </h2>
             <p className="text-lg text-slate-600">
-              What our clients say about working with Solv.<span className="text-2xl">.</span>
+              What our clients say about working with Solv.
+              <span className="text-2xl">.</span>
             </p>
           </motion.div>
 
@@ -306,15 +322,24 @@ const practiceAreas = [
                 className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
               >
                 <Quote className="h-8 w-8 text-slate-300 mb-4" />
-                <p className="text-slate-700 mb-6 italic">"{testimonial.content}"</p>
+                <p className="text-slate-700 mb-6 italic">
+                  "{testimonial.content}"
+                </p>
                 <div className="flex items-center space-x-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                    <Star
+                      key={i}
+                      className="h-4 w-4 text-yellow-400 fill-current"
+                    />
                   ))}
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-900">{testimonial.name}</div>
-                  <div className="text-slate-600 text-sm">{testimonial.position}</div>
+                  <div className="font-semibold text-slate-900">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-slate-600 text-sm">
+                    {testimonial.position}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -335,4 +360,4 @@ const practiceAreas = [
       </a> */}
     </div>
   );
-};
+}

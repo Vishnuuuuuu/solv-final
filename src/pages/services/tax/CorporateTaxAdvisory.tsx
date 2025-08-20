@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
-  Calculator,
+  Briefcase,
   CheckCircle,
   Clock,
   FileText,
   Shield,
-  Users,
+  TrendingUp,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const GSTRegistration: React.FC = () => {
+export const CorporateTaxAdvisory: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -52,47 +52,34 @@ export const GSTRegistration: React.FC = () => {
   };
 
   const benefits = [
-    "Legal compliance with GST regulations",
-    "Input tax credit benefits",
-    "Nationwide business operations",
-    "Enhanced business credibility",
-    "Digital tax filing capabilities",
-    "Seamless interstate transactions",
-  ];
-
-  const documents = [
-    "PAN Card of the business",
-    "Aadhaar Card of proprietor/partners",
-    "Business registration certificate",
-    "Bank account statement",
-    "Address proof of business premises",
-    "Passport size photographs",
+    "Strategic tax structure planning",
+    "MAT/AMT and corporate surcharge optimization",
+    "Compliance review and risk mitigation",
+    "Transaction advisory and due diligence",
+    "Cross-border tax and DTAA guidance",
+    "Litigation support and representation",
   ];
 
   const steps = [
     {
       icon: FileText,
-      title: "Document Collection",
-      description:
-        "We help you gather all required documents and verify their completeness",
+      title: "Discovery & Diagnostics",
+      description: "Understand business model and review current tax position",
     },
     {
-      icon: Users,
-      title: "Application Filing",
-      description:
-        "Our experts file your GST application with accurate information",
+      icon: TrendingUp,
+      title: "Planning & Optimization",
+      description: "Design optimal tax structure with compliant savings",
     },
     {
       icon: Shield,
-      title: "Follow-up & Approval",
-      description:
-        "We track your application status and ensure timely approval",
+      title: "Implementation",
+      description: "Assist with documentation, filings and controls",
     },
     {
       icon: CheckCircle,
-      title: "GST Number & Certificate",
-      description:
-        "Receive your GST registration certificate and start compliant operations",
+      title: "Monitoring",
+      description: "Periodic review, updates and representation as needed",
     },
   ];
 
@@ -110,13 +97,14 @@ export const GSTRegistration: React.FC = () => {
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Calculator className="h-8 w-8 text-slate-700" />
+            <Briefcase className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              GST Registration
+              Corporate Tax Advisory
             </h1>
           </div>
           <p className="text-lg text-slate-600">
-            Complete GST registration process for your business
+            Strategic corporate tax planning and compliance review for growing
+            businesses
           </p>
         </div>
       </section>
@@ -125,30 +113,26 @@ export const GSTRegistration: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Service Description */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About GST Registration
+                About Corporate Tax Advisory
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                Goods and Services Tax (GST) registration is mandatory for
-                businesses with an annual turnover exceeding 20 lakhs (10 lakhs
-                for special category states). Our comprehensive GST registration
-                service ensures your business complies with tax regulations
-                while maximizing available benefits.
+                Our corporate tax advisory helps businesses design tax-efficient
+                structures, ensure compliance with Companies Act and Income Tax
+                provisions, and plan transactions with clarity and control.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With our expert guidance, you'll navigate the registration
-                process smoothly, avoid common pitfalls, and set up your
-                business for efficient tax management from day one.
+                We blend practical experience with up-to-date regulations to
+                uncover savings while keeping audit readiness and documentation
+                in focus.
               </p>
             </motion.div>
 
-            {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -167,7 +151,6 @@ export const GSTRegistration: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Process */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -194,25 +177,6 @@ export const GSTRegistration: React.FC = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/* Required Documents */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                Required Documents
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {documents.map((document, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700">{document}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </div>
 
           {/* Sidebar - Contact Form */}
@@ -225,10 +189,11 @@ export const GSTRegistration: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get GST Registration
+                  Get Corporate Tax Advisory
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our tax experts will contact you soon.
+                  Fill out the form and our corporate tax experts will contact
+                  you soon.
                 </p>
 
                 {isSubmitted ? (
@@ -295,7 +260,7 @@ export const GSTRegistration: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your GST registration requirements..."
+                        placeholder="Tell us about your corporate tax advisory needs..."
                       />
                     </div>
 
@@ -323,7 +288,7 @@ export const GSTRegistration: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get GST Registration
+                      Get Corporate Tax Advisory
                     </button>
                   </form>
                 )}
@@ -335,12 +300,11 @@ export const GSTRegistration: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Pricing Breakdown removed for content-only */}
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Completion: 5-7 business days
                     </span>
                   </div>
                 </div>

@@ -1,48 +1,54 @@
-import { motion } from 'framer-motion';
-import { ArrowLeft, Calculator, CheckCircle, Clock, FileText, Receipt, Shield, TrendingUp } from 'lucide-react';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import {
+  ArrowLeft,
+  Calculator,
+  CheckCircle,
+  Clock,
+  FileText,
+  Receipt,
+  Shield,
+  TrendingUp,
+} from "lucide-react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const IncomeTaxFiling: React.FC = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    mobile: '',
-    email: '',
-    panNumber: '',
-    filingType: '',
-    annualIncome: '',
-    employmentType: '',
-    requirements: '',
-    agreeToTerms: false
+    fullName: "",
+    mobile: "",
+    email: "",
+    requirements: "",
+    agreeToTerms: false,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
-        fullName: '',
-        mobile: '',
-        email: '',
-        panNumber: '',
-        filingType: '',
-        annualIncome: '',
-        employmentType: '',
-        requirements: '',
-        agreeToTerms: false
+        fullName: "",
+        mobile: "",
+        email: "",
+        requirements: "",
+        agreeToTerms: false,
       });
     }, 3000);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+      [name]:
+        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
   };
 
@@ -52,7 +58,7 @@ export const IncomeTaxFiling: React.FC = () => {
     "Quick refund processing",
     "Error-free filing",
     "Tax optimization strategies",
-    "Compliance assurance"
+    "Compliance assurance",
   ];
 
   const inclusions = [
@@ -61,30 +67,34 @@ export const IncomeTaxFiling: React.FC = () => {
     "Tax deduction optimization",
     "E-filing and acknowledgment",
     "Refund status tracking",
-    "Post-filing support"
+    "Post-filing support",
   ];
 
   const steps = [
     {
       icon: FileText,
       title: "Document Collection",
-      description: "We collect and verify all your income documents and tax-saving investments"
+      description:
+        "We collect and verify all your income documents and tax-saving investments",
     },
     {
       icon: Calculator,
       title: "Income Computation",
-      description: "Calculate total income and applicable deductions for maximum tax benefits"
+      description:
+        "Calculate total income and applicable deductions for maximum tax benefits",
     },
     {
       icon: TrendingUp,
       title: "Tax Optimization",
-      description: "Apply best strategies to minimize tax liability within legal framework"
+      description:
+        "Apply best strategies to minimize tax liability within legal framework",
     },
     {
       icon: Receipt,
       title: "E-filing & Processing",
-      description: "Complete e-filing with proper verification and acknowledgment receipt"
-    }
+      description:
+        "Complete e-filing with proper verification and acknowledgment receipt",
+    },
   ];
 
   const documentsRequired = [
@@ -93,22 +103,22 @@ export const IncomeTaxFiling: React.FC = () => {
     "Investment proofs (80C, 80D, etc.)",
     "Capital gains statements",
     "Rental income documents",
-    "Previous year ITR (if applicable)"
+    "Previous year ITR (if applicable)",
   ];
 
   return (
-    <div className="pt-16 min-h-screen bg-white">
+    <div className="pt-28 min-h-screen bg-white">
       {/* Header */}
       <section className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link 
+          <Link
             to="/services/tax-compliance"
             className="inline-flex items-center text-white hover:text-slate-300 transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Tax Compliance Services
           </Link>
-          
+
           <div className="flex items-center space-x-3 mb-4">
             <Calculator className="h-8 w-8 text-white" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-white">
@@ -116,7 +126,8 @@ export const IncomeTaxFiling: React.FC = () => {
             </h1>
           </div>
           <p className="text-lg text-slate-300 max-w-2xl">
-            Professional income tax return filing with maximum deductions and quick refunds
+            Professional income tax return filing with maximum deductions and
+            quick refunds
           </p>
         </div>
       </section>
@@ -131,12 +142,21 @@ export const IncomeTaxFiling: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">About Income Tax Filing</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                About Income Tax Filing
+              </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                Income Tax Return (ITR) filing is mandatory for individuals and entities earning above the basic exemption limit. Our professional tax experts ensure your ITR is filed accurately, claiming all eligible deductions and exemptions to minimize your tax liability.
+                Income Tax Return (ITR) filing is mandatory for individuals and
+                entities earning above the basic exemption limit. Our
+                professional tax experts ensure your ITR is filed accurately,
+                claiming all eligible deductions and exemptions to minimize your
+                tax liability.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With deep understanding of tax laws and latest amendments, we help you navigate complex tax scenarios, optimize your tax planning, and ensure timely compliance with Income Tax Department requirements.
+                With deep understanding of tax laws and latest amendments, we
+                help you navigate complex tax scenarios, optimize your tax
+                planning, and ensure timely compliance with Income Tax
+                Department requirements.
               </p>
             </motion.div>
 
@@ -146,7 +166,9 @@ export const IncomeTaxFiling: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Key Benefits</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Key Benefits
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-center space-x-3">
@@ -163,7 +185,9 @@ export const IncomeTaxFiling: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">What's Included</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                What's Included
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {inclusions.map((inclusion, index) => (
                   <div key={index} className="flex items-center space-x-3">
@@ -180,7 +204,9 @@ export const IncomeTaxFiling: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Required Documents</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Required Documents
+              </h2>
               <div className="bg-slate-50 p-6 rounded-lg">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {documentsRequired.map((doc, index) => (
@@ -199,7 +225,9 @@ export const IncomeTaxFiling: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Our 4-Step Process</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Our 4-Step Process
+              </h2>
               <div className="space-y-6">
                 {steps.map((step, index) => (
                   <div key={index} className="flex space-x-4">
@@ -229,10 +257,14 @@ export const IncomeTaxFiling: React.FC = () => {
                 <div className="flex items-start space-x-3">
                   <Shield className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-blue-900 mb-2">Filing Deadline Reminder</h3>
+                    <h3 className="font-semibold text-blue-900 mb-2">
+                      Filing Deadline Reminder
+                    </h3>
                     <p className="text-blue-800 text-sm">
-                      Income Tax Returns must be filed by July 31st for individuals and September 30th for businesses. 
-                      Late filing attracts penalties and interest charges. Plan your filing early to avoid last-minute rush.
+                      Income Tax Returns must be filed by July 31st for
+                      individuals and September 30th for businesses. Late filing
+                      attracts penalties and interest charges. Plan your filing
+                      early to avoid last-minute rush.
                     </p>
                   </div>
                 </div>
@@ -249,16 +281,23 @@ export const IncomeTaxFiling: React.FC = () => {
               className="sticky top-24"
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
-                <h3 className="text-xl font-bold text-slate-900 mb-4">File Your Income Tax Return</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">
+                  File Your Income Tax Return
+                </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Get professional ITR filing service with maximum tax savings and quick refunds.
+                  Get professional ITR filing service with maximum tax savings
+                  and quick refunds.
                 </p>
 
                 {isSubmitted ? (
                   <div className="text-center py-8">
                     <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Request Submitted!</h3>
-                    <p className="text-slate-600">Our tax expert will contact you within 2 hours.</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      Request Submitted!
+                    </h3>
+                    <p className="text-slate-600">
+                      Our tax expert will contact you within 2 hours.
+                    </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -306,83 +345,7 @@ export const IncomeTaxFiling: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        PAN Number
-                      </label>
-                      <input
-                        type="text"
-                        name="panNumber"
-                        value={formData.panNumber}
-                        onChange={handleInputChange}
-                        required
-                        maxLength={10}
-                        placeholder="ABCDE1234F"
-                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Filing Type
-                      </label>
-                      <select
-                        name="filingType"
-                        value={formData.filingType}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                      >
-                        <option value="">Select Filing Type</option>
-                        <option value="itr-1">ITR-1 (Salary Income)</option>
-                        <option value="itr-2">ITR-2 (Capital Gains)</option>
-                        <option value="itr-3">ITR-3 (Business Income)</option>
-                        <option value="itr-4">ITR-4 (Presumptive Business)</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Annual Income Range
-                      </label>
-                      <select
-                        name="annualIncome"
-                        value={formData.annualIncome}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                      >
-                        <option value="">Select Income Range</option>
-                        <option value="below-2-5-lakh">Below ₹2.5 Lakh</option>
-                        <option value="2-5-5-lakh">₹2.5 Lakh - ₹5 Lakh</option>
-                        <option value="5-10-lakh">₹5 Lakh - ₹10 Lakh</option>
-                        <option value="10-25-lakh">₹10 Lakh - ₹25 Lakh</option>
-                        <option value="25-50-lakh">₹25 Lakh - ₹50 Lakh</option>
-                        <option value="above-50-lakh">Above ₹50 Lakh</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Employment Type
-                      </label>
-                      <select
-                        name="employmentType"
-                        value={formData.employmentType}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                      >
-                        <option value="">Select Employment Type</option>
-                        <option value="salaried">Salaried Employee</option>
-                        <option value="business">Business Owner</option>
-                        <option value="freelancer">Freelancer/Consultant</option>
-                        <option value="retired">Retired/Pensioner</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Requirements
                       </label>
                       <textarea
                         name="requirements"
@@ -390,7 +353,7 @@ export const IncomeTaxFiling: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Any specific tax queries or situations?"
+                        placeholder="Tell us about your income tax filing requirements..."
                       />
                     </div>
 
@@ -404,7 +367,13 @@ export const IncomeTaxFiling: React.FC = () => {
                         className="mt-1"
                       />
                       <label className="text-sm text-slate-600">
-                        I agree to the <Link to="/disclaimer" className="text-slate-800 hover:underline">Terms and Conditions</Link>
+                        I agree to the{" "}
+                        <Link
+                          to="/disclaimer"
+                          className="text-slate-800 hover:underline"
+                        >
+                          Terms and Conditions
+                        </Link>
                       </label>
                     </div>
 
@@ -416,6 +385,13 @@ export const IncomeTaxFiling: React.FC = () => {
                     </button>
                   </form>
                 )}
+
+                {/* Disclaimer */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
 
                 {/* Pricing Breakdown removed for content-only */}
                 <div className="mt-4 p-3 bg-green-50 rounded-md">

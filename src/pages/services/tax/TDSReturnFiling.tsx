@@ -6,12 +6,11 @@ import {
   Clock,
   FileText,
   Shield,
-  Users,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const GSTRegistration: React.FC = () => {
+export const TDSReturnFiling: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -52,47 +51,35 @@ export const GSTRegistration: React.FC = () => {
   };
 
   const benefits = [
-    "Legal compliance with GST regulations",
-    "Input tax credit benefits",
-    "Nationwide business operations",
-    "Enhanced business credibility",
-    "Digital tax filing capabilities",
-    "Seamless interstate transactions",
-  ];
-
-  const documents = [
-    "PAN Card of the business",
-    "Aadhaar Card of proprietor/partners",
-    "Business registration certificate",
-    "Bank account statement",
-    "Address proof of business premises",
-    "Passport size photographs",
+    "Accurate quarterly TDS return filing",
+    "Avoidance of interest and penalties",
+    "TRACES reconciliation and correction",
+    "Form 16/16A generation support",
+    "Timely acknowledgments and follow-up",
+    "PAN/TAN compliance checks",
   ];
 
   const steps = [
     {
       icon: FileText,
-      title: "Document Collection",
-      description:
-        "We help you gather all required documents and verify their completeness",
+      title: "Data Collection",
+      description: "Collect challans, deductee details and salary/vendor data",
     },
     {
-      icon: Users,
-      title: "Application Filing",
-      description:
-        "Our experts file your GST application with accurate information",
+      icon: Calculator,
+      title: "Reconciliation",
+      description: "Match deductions with challans and validate on TRACES",
     },
     {
       icon: Shield,
-      title: "Follow-up & Approval",
+      title: "Return Filing",
       description:
-        "We track your application status and ensure timely approval",
+        "Quarterly return preparation and e-filing (24Q/26Q/27Q/27EQ)",
     },
     {
       icon: CheckCircle,
-      title: "GST Number & Certificate",
-      description:
-        "Receive your GST registration certificate and start compliant operations",
+      title: "Certificates & Compliance",
+      description: "Generate Form 16/16A and guide on next due dates",
     },
   ];
 
@@ -112,11 +99,12 @@ export const GSTRegistration: React.FC = () => {
           <div className="flex items-center space-x-3 mb-4">
             <Calculator className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              GST Registration
+              TDS Return Filing
             </h1>
           </div>
           <p className="text-lg text-slate-600">
-            Complete GST registration process for your business
+            Quarterly TDS return preparation, reconciliation and certificate
+            generation
           </p>
         </div>
       </section>
@@ -125,30 +113,27 @@ export const GSTRegistration: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Service Description */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About GST Registration
+                About TDS Return Filing
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                Goods and Services Tax (GST) registration is mandatory for
-                businesses with an annual turnover exceeding 20 lakhs (10 lakhs
-                for special category states). Our comprehensive GST registration
-                service ensures your business complies with tax regulations
-                while maximizing available benefits.
+                Tax Deducted at Source (TDS) returns must be filed quarterly by
+                all deductors. Accurate filing ensures hassle-free credit for
+                deductees, avoids penalties and keeps your business compliant
+                with Income Tax rules.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With our expert guidance, you'll navigate the registration
-                process smoothly, avoid common pitfalls, and set up your
-                business for efficient tax management from day one.
+                We handle complete TDS lifecycle: from collecting data and
+                reconciling with challans, to e-filing returns on time and
+                assisting with Form 16/16A generation.
               </p>
             </motion.div>
 
-            {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -167,7 +152,6 @@ export const GSTRegistration: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Process */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -194,25 +178,6 @@ export const GSTRegistration: React.FC = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/* Required Documents */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                Required Documents
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {documents.map((document, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700">{document}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </div>
 
           {/* Sidebar - Contact Form */}
@@ -225,10 +190,10 @@ export const GSTRegistration: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get GST Registration
+                  Get TDS Return Filing
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our tax experts will contact you soon.
+                  Fill out the form and our team will contact you soon.
                 </p>
 
                 {isSubmitted ? (
@@ -295,7 +260,7 @@ export const GSTRegistration: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your GST registration requirements..."
+                        placeholder="Tell us about your TDS return filing requirements..."
                       />
                     </div>
 
@@ -323,7 +288,7 @@ export const GSTRegistration: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get GST Registration
+                      Get TDS Return Filing
                     </button>
                   </form>
                 )}
@@ -335,12 +300,11 @@ export const GSTRegistration: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Pricing Breakdown removed for content-only */}
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Completion: 1-2 business days
                     </span>
                   </div>
                 </div>

@@ -1,7 +1,22 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Building, Calculator, CheckCircle, Clock, FileText, Gavel, Heart, Home, Phone, Scale, Shield, Star } from 'lucide-react';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BookOpen,
+  Building,
+  Calculator,
+  CheckCircle,
+  Clock,
+  FileText,
+  Gavel,
+  Heart,
+  Home,
+  Phone,
+  Scale,
+  Shield,
+  Star,
+} from "lucide-react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Services: React.FC = () => {
   const navigate = useNavigate();
@@ -9,137 +24,141 @@ export const Services: React.FC = () => {
   const quickServices = [
     {
       icon: Gavel,
-      title: 'Legal Consultation',
-      description: 'Video/Audio consultation with expert lawyers',
-      price: 'Starting ₹2,000',
-      duration: '30-60 minutes'
-    }
-    ,
+      title: "Legal Consultation",
+      description: "Video/Audio consultation with expert lawyers",
+      price: "Starting ₹2,000",
+      duration: "30-60 minutes",
+    },
     {
       icon: Scale,
-      title: 'Legal Notice',
-      description: 'Legal notice drafting and sending services',
-      price: 'Starting ₹3,000',
-      duration: '1-2 business days'
+      title: "Legal Notice",
+      description: "Legal notice drafting and sending services",
+      price: "Starting ₹3,000",
+      duration: "1-2 business days",
     },
     {
       icon: BookOpen,
-      title: 'Legal Opinion',
-      description: 'Expert legal opinion and advisory services',
-      price: 'Starting ₹7,500',
-      duration: '2-3 business days'
+      title: "Legal Opinion",
+      description: "Expert legal opinion and advisory services",
+      price: "Starting ₹7,500",
+      duration: "2-3 business days",
     },
     {
       icon: FileText,
-      title: 'Contract Drafting',
-      description: 'Professional contract drafting and review services',
-      price: 'Starting ₹5,000',
-      duration: '3-5 business days'
-    }
+      title: "Contract Drafting",
+      description: "Professional contract drafting and review services",
+      price: "Starting ₹5,000",
+      duration: "3-5 business days",
+    },
   ];
 
   const serviceCategories = [
-    
     {
       icon: Home,
-      title: 'Real Estate',
-      description: 'Complete real estate legal services and documentation',
+      title: "Real Estate",
+      description: "Complete real estate legal services and documentation",
       services: [
-        'Property Sale Agreements',
-        'Lease Agreements',
-        'Title Verification',
-        'Property Management',
-        'Real Estate Litigation',
-        'Construction Contracts',
-        'Rental Agreements',
-        'Property Registration'
+        "Property Sale Agreements",
+        "Lease Agreements",
+        "Title Verification",
+        "Property Management",
+        "Real Estate Litigation",
+        "Construction Contracts",
+        "Rental Agreements",
+        "Property Registration",
       ],
-      image: 'https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=600'
+      image:
+        "https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       icon: Heart,
-      title: 'Personal & Family',
-      description: 'Personal legal matters and family law services',
+      title: "Personal & Family",
+      description: "Personal legal matters and family law services",
       services: [
-        'Will & Testament',
-        'Divorce Proceedings',
-        'Child Custody',
-        'Family Settlements',
-        'Adoption Services',
-        'Domestic Violence',
-        'Marriage Registration',
-        'Succession Planning'
+        "Will & Testament",
+        "Divorce Proceedings",
+        "Child Custody",
+        "Family Settlements",
+        "Adoption Services",
+        "Domestic Violence",
+        "Marriage Registration",
+        "Succession Planning",
       ],
-      image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600'
+      image:
+        "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       icon: Gavel,
-      title: 'Dispute Resolution',
-      description: 'Expert litigation and alternative dispute resolution',
+      title: "Dispute Resolution",
+      description: "Expert litigation and alternative dispute resolution",
       services: [
-        'Commercial Litigation',
-        'Arbitration Services',
-        'Mediation Services',
-        'Contract Disputes',
-        'Employment Disputes',
-        'Consumer Complaints',
-        'Debt Recovery',
-        'Property Disputes'
+        "Commercial Litigation",
+        "Arbitration Services",
+        "Mediation Services",
+        "Contract Disputes",
+        "Employment Disputes",
+        "Consumer Complaints",
+        "Debt Recovery",
+        "Property Disputes",
       ],
-      image: 'https://images.pexels.com/photos/5668869/pexels-photo-5668869.jpeg?auto=compress&cs=tinysrgb&w=600'
+      image:
+        "https://images.pexels.com/photos/5668869/pexels-photo-5668869.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       icon: Building,
-      title: 'Corporate & Commercial',
-      description: 'Comprehensive corporate legal services for businesses',
+      title: "Corporate & Commercial",
+      description: "Comprehensive corporate legal services for businesses",
       services: [
-        'Company Incorporation',
-        'Contract Drafting & Review',
-        'Mergers & Acquisitions',
-        'Corporate Governance',
-        'Business Compliance',
-        'Partnership Agreements',
-        'Shareholder Agreements',
-        'Employment Contracts'
+        "Company Incorporation",
+        "Contract Drafting & Review",
+        "Mergers & Acquisitions",
+        "Corporate Governance",
+        "Business Compliance",
+        "Partnership Agreements",
+        "Shareholder Agreements",
+        "Employment Contracts",
       ],
-      image: 'https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600'
+      image:
+        "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       icon: Shield,
-      title: 'Intellectual Property',
-      description: 'Protect and maximize your intellectual assets',
+      title: "Intellectual Property",
+      description: "Protect and maximize your intellectual assets",
       services: [
-        'Trademark Registration',
-        'Patent Applications',
-        'Copyright Registration',
-        'IP Litigation',
-        'Licensing Agreements',
-        'Trade Secret Protection',
-        'Design Registration',
-        'Domain Disputes'
+        "Trademark Registration",
+        "Patent Applications",
+        "Copyright Registration",
+        "IP Litigation",
+        "Licensing Agreements",
+        "Trade Secret Protection",
+        "Design Registration",
+        "Domain Disputes",
       ],
-      image: 'https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=600'
+      image:
+        "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
     {
       icon: Calculator,
-      title: 'Tax & Compliance',
-      description: 'Comprehensive tax planning and compliance services',
+      title: "Tax & Compliance",
+      description: "Comprehensive tax planning and compliance services",
       services: [
-        'GST Registration',
-        'Income Tax Planning',
-        'Corporate Tax Advisory',
-        'Tax Compliance',
-        'FSSAI Registration',
-        'MSME Registration',
-        'Import Export Code',
-        'Regulatory Compliance'
+        "GST Registration",
+        "Income Tax Planning",
+        "Corporate Tax Advisory",
+        "Tax Compliance",
+        "FSSAI Registration",
+        "MSME Registration",
+        "Import Export Code",
+        "Regulatory Compliance",
       ],
-      image: 'https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=600'
-    }
+      image:
+        "https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=600",
+    },
   ];
 
   return (
-  <div className="pt-36">
+    <div className="pt-36">
       {/* Hero Section
       <section className="bg-gradient-to-br from-slate-900 to-slate-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,7 +189,8 @@ export const Services: React.FC = () => {
               Quick Legal Services
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Precision-driven legal expertise, delivered seamlessly by our trusted in-house counsel.
+              Precision-driven legal expertise, delivered seamlessly by our
+              trusted in-house counsel.
             </p>
           </motion.div>
 
@@ -186,15 +206,36 @@ export const Services: React.FC = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-slate-100 rounded-lg mb-4 group-hover:bg-slate-200 transition-colors">
                   <service.icon className="h-8 w-8 text-slate-700" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-600 mb-4">{service.description}</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-slate-600 mb-4">
+                  {service.description}
+                </p>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-slate-500">Duration:</span>
-                    <span className="font-medium text-slate-700">{service.duration}</span>
+                    <span className="font-medium text-slate-700">
+                      {service.duration}
+                    </span>
                   </div>
                 </div>
-                <button className="w-full mt-4 border border-slate-300 text-slate-700 py-2 rounded-md text-sm font-medium hover:bg-slate-50 transition-colors">
+                <button
+                  onClick={() => {
+                    if (service.title === "Legal Consultation") {
+                      navigate("/services/quick-legal-services/consultation");
+                    } else if (service.title === "Legal Notice") {
+                      navigate("/services/quick-legal-services/legal-notice");
+                    } else if (service.title === "Legal Opinion") {
+                      navigate("/services/quick-legal-services/legal-opinion");
+                    } else if (service.title === "Contract Drafting") {
+                      navigate(
+                        "/services/quick-legal-services/contract-drafting"
+                      );
+                    }
+                  }}
+                  className="w-full mt-4 border border-slate-300 text-slate-700 py-2 rounded-md text-sm font-medium transition-colors hover:bg-slate-800 hover:text-white hover:border-slate-800"
+                >
                   Get Started
                 </button>
               </motion.div>
@@ -216,7 +257,8 @@ export const Services: React.FC = () => {
               Services We Offer
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Comprehensive legal solutions across multiple practice areas to meet all your legal needs.
+              Comprehensive legal solutions across multiple practice areas to
+              meet all your legal needs.
             </p>
           </motion.div>
 
@@ -243,14 +285,23 @@ export const Services: React.FC = () => {
                   </div> */}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">{category.title}</h3>
-                  <p className="text-slate-600 mb-4 text-sm">{category.description}</p>
-                  
+                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                    {category.title}
+                  </h3>
+                  <p className="text-slate-600 mb-4 text-sm">
+                    {category.description}
+                  </p>
+
                   <div className="space-y-2 mb-6">
                     {category.services.slice(0, 4).map((service) => (
-                      <div key={service} className="flex items-center space-x-2">
+                      <div
+                        key={service}
+                        className="flex items-center space-x-2"
+                      >
                         <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                        <span className="text-sm text-slate-700">{service}</span>
+                        <span className="text-sm text-slate-700">
+                          {service}
+                        </span>
                       </div>
                     ))}
                     {category.services.length > 4 && (
@@ -260,16 +311,18 @@ export const Services: React.FC = () => {
                     )}
                   </div>
 
-                  <button 
+                  <button
                     onClick={() => {
-                      if (category.title === 'Tax & Compliance') {
-                        navigate('/services/tax-compliance');
-                      } else if (category.title === 'Real Estate') {
-                        navigate('/services/real-estate');
-                      } else if (category.title === 'Dispute Resolution') {
-                        navigate('/services/dispute-resolution/pre-litigation-advisory');
+                      if (category.title === "Tax & Compliance") {
+                        navigate("/services/tax-compliance");
+                      } else if (category.title === "Real Estate") {
+                        navigate("/services/real-estate");
+                      } else if (category.title === "Dispute Resolution") {
+                        navigate(
+                          "/services/dispute-resolution/pre-litigation-advisory"
+                        );
                       } else {
-                        navigate('/contact');
+                        navigate("/contact");
                       }
                     }}
                     className="w-full bg-slate-800 text-white py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition-colors inline-flex items-center justify-center space-x-2"
@@ -297,7 +350,8 @@ export const Services: React.FC = () => {
               Why Choose Solv.?
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              We combine legal expertise with modern technology to deliver fast, secure, and professional services.
+              We combine legal expertise with modern technology to deliver fast,
+              secure, and professional services.
             </p>
           </motion.div>
 
@@ -311,8 +365,12 @@ export const Services: React.FC = () => {
               <div className="bg-slate-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Clock className="h-8 w-8 text-slate-700" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Fast Delivery</h3>
-              <p className="text-sm text-slate-600">Quick turnaround times without compromising on quality</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                Fast Delivery
+              </h3>
+              <p className="text-sm text-slate-600">
+                Quick turnaround times without compromising on quality
+              </p>
             </motion.div>
 
             <motion.div
@@ -324,8 +382,12 @@ export const Services: React.FC = () => {
               <div className="bg-slate-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-slate-700" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Secure & Reliable</h3>
-              <p className="text-sm text-slate-600">Your legal matters handled with utmost confidentiality</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                Secure & Reliable
+              </h3>
+              <p className="text-sm text-slate-600">
+                Your legal matters handled with utmost confidentiality
+              </p>
             </motion.div>
 
             <motion.div
@@ -337,8 +399,12 @@ export const Services: React.FC = () => {
               <div className="bg-slate-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-slate-700" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Expert Lawyers</h3>
-              <p className="text-sm text-slate-600">Experienced legal professionals across all practice areas</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                Expert Lawyers
+              </h3>
+              <p className="text-sm text-slate-600">
+                Experienced legal professionals across all practice areas
+              </p>
             </motion.div>
 
             <motion.div
@@ -350,8 +416,12 @@ export const Services: React.FC = () => {
               <div className="bg-slate-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Phone className="h-8 w-8 text-slate-700" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">24/7 Support</h3>
-              <p className="text-sm text-slate-600">Round-the-clock assistance for all your legal needs</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                24/7 Support
+              </h3>
+              <p className="text-sm text-slate-600">
+                Round-the-clock assistance for all your legal needs
+              </p>
             </motion.div>
           </div>
         </div>
@@ -369,12 +439,13 @@ export const Services: React.FC = () => {
               Ready to Get Legal Support?
             </h2>
             <p className="text-xl text-slate-300 mb-8">
-              Get expert legal advice, contract drafting, review, legal research, opinion and more. 
-              Start your legal journey with us today.
+              Get expert legal advice, contract drafting, review, legal
+              research, opinion and more. Start your legal journey with us
+              today.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button 
-                onClick={() => navigate('/contact')}
+              <button
+                onClick={() => navigate("/contact")}
                 className="bg-white text-slate-900 px-8 py-4 rounded-md font-semibold hover:bg-slate-100 transition-all duration-200 hover:scale-105 inline-flex items-center space-x-2"
               >
                 <span>Schedule a Consultation</span>
