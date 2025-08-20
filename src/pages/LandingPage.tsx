@@ -187,11 +187,6 @@ export function LandingPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-slate-50 p-8 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 group"
               >
-                <img
-                  src={area.image}
-                  alt={area.title}
-                  className="h-12 w-12 mb-4 object-contain"
-                />
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {area.title}
                 </h3>
