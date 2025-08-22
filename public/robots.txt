@@ -1,0 +1,14 @@
+# Robots.txt for Solv Advocates
+# Allow all search engine bots to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://solvadvocates.in/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1
+
+# Additional sitemap references for better SEO
+Sitemap: https://solvadvocates.in/sitemap.xml
