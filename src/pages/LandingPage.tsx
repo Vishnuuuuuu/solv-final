@@ -46,44 +46,44 @@ export function LandingPage() {
   const testimonials = [
     {
       name: "Sai Samarth S P",
-      position: "Local Guide",
+      position: "Client",
       content:
         "Friendly, approachable service and clear legal advice. Solv. Advocates & Consultants made the process smooth and stress-free.",
       rating: 5,
     },
     {
       name: "Dhanush A",
-      position: "Client Review",
+      position: "Client",
       content:
         "My property case was handled with clarity and precision. Very professional team at Solv. Advocates & Consultants in Bangalore—highly recommended for real estate matters.",
       rating: 5,
     },
     {
       name: "Yeshwanth C",
-      position: "Local Guide",
+      position: "Client",
       content:
         "Wonderful experience—professional, knowledgeable, and responsive. Solv. provided practical guidance and timely updates throughout my matter.",
       rating: 5,
     },
     {
       name: "Durgesh A",
-      position: "Client Review",
+      position: "Client",
       content:
         "Exceptional from start to finish. The team at Solv. Advocates & Consultants offered strategic advice and effective dispute resolution with clear communication.",
       rating: 5,
     },
     {
       name: "Vishnu Prasad S",
-      position: "Local Guide",
+      position: "Client",
       content:
         "Top legal consultants in Bangalore—reliable counsel for business and property needs. Professional, straightforward, and results-oriented.",
       rating: 5,
     },
     {
-      name: "Ananya K",
-      position: "Client Review",
+      name: "Shivaprasad Hiremath",
+      position: "Client",
       content:
-        "Timely, transparent, and detail-oriented. Great support on corporate compliance and contract drafting from Solv. Advocates & Consultants.",
+        "A good Bangalore law firm providing comprehensive legal services. I received end-to-end support with clear guidance across documentation and strategy.",
       rating: 5,
     },
   ];
