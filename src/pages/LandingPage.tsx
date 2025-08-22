@@ -1,20 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight, Quote, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { legalQuotes } from "../data/quotes";
-
-// Define Blog type for recentArticles
-interface Blog {
-  id: string;
-  title: string;
-  slug: string;
-  featured_image?: string;
-  cover_url?: string;
-  created_at: string;
-  is_featured?: boolean;
-}
 
 export function LandingPage() {
   const [currentQuote, setCurrentQuote] = useState(0);
@@ -57,57 +45,76 @@ export function LandingPage() {
 
   const testimonials = [
     {
-      name: "Sarah Mitchell",
-      position: "CEO, TechVision Inc.",
+      name: "Sai Samarth S P",
+      position: "Local Guide",
       content:
-        "Solv. provided exceptional guidance during our IPO process. Their expertise in corporate law and attention to detail was remarkable.",
+        "Friendly, approachable service and clear legal advice. Solv. Advocates & Consultants made the process smooth and stress-free.",
       rating: 5,
     },
     {
-      name: "David Chen",
-      position: "General Counsel, InnovateX",
+      name: "Dhanush A",
+      position: "Client Review",
       content:
-        "The IP protection strategy developed by Solv. has been instrumental in securing our competitive advantage in the market.",
+        "My property case was handled with clarity and precision. Very professional team at Solv. Advocates & Consultants in Bangalore—highly recommended for real estate matters.",
       rating: 5,
     },
     {
-      name: "Maria Rodriguez",
-      position: "Founder, GreenTech Solutions",
+      name: "Yeshwanth C",
+      position: "Local Guide",
       content:
-        "Professional, knowledgeable, and always available. Solv. has been our trusted legal partner for over three years.",
+        "Wonderful experience—professional, knowledgeable, and responsive. Solv. provided practical guidance and timely updates throughout my matter.",
+      rating: 5,
+    },
+    {
+      name: "Durgesh A",
+      position: "Client Review",
+      content:
+        "Exceptional from start to finish. The team at Solv. Advocates & Consultants offered strategic advice and effective dispute resolution with clear communication.",
+      rating: 5,
+    },
+    {
+      name: "Vishnu Prasad S",
+      position: "Local Guide",
+      content:
+        "Top legal consultants in Bangalore—reliable counsel for business and property needs. Professional, straightforward, and results-oriented.",
+      rating: 5,
+    },
+    {
+      name: "Ananya K",
+      position: "Client Review",
+      content:
+        "Timely, transparent, and detail-oriented. Great support on corporate compliance and contract drafting from Solv. Advocates & Consultants.",
       rating: 5,
     },
   ];
 
-  // Recent Articles State
-  const [recentArticles, setRecentArticles] = useState<Blog[]>([]);
-
-  useEffect(() => {
-    const supabase = createClient(
-      import.meta.env.VITE_SUPABASE_URL || "",
-      import.meta.env.VITE_SUPABASE_ANON_KEY || ""
-    );
-    async function fetchArticles() {
-      const { data } = await supabase
-        .from("articles") // <-- FIXED: use 'articles' table
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(3);
-      if (data) {
-        setRecentArticles(data);
-      }
-    }
-    fetchArticles();
-  }, []);
-
-  function formatDate(dateStr: string) {
-    const d = new Date(dateStr);
-    return d.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  }
+  // Recent Articles (temporarily disabled)
+  // const [recentArticles, setRecentArticles] = useState<Blog[]>([]);
+  // useEffect(() => {
+  //   const supabase = createClient(
+  //     import.meta.env.VITE_SUPABASE_URL || "",
+  //     import.meta.env.VITE_SUPABASE_ANON_KEY || ""
+  //   );
+  //   async function fetchArticles() {
+  //     const { data } = await supabase
+  //       .from("articles")
+  //       .select("*")
+  //       .order("created_at", { ascending: false })
+  //       .limit(3);
+  //     if (data) {
+  //       setRecentArticles(data);
+  //     }
+  //   }
+  //   fetchArticles();
+  // }, []);
+  // function formatDate(dateStr: string) {
+  //   const d = new Date(dateStr);
+  //   return d.toLocaleDateString(undefined, {
+  //     year: "numeric",
+  //     month: "short",
+  //     day: "numeric",
+  //   });
+  // }
 
   return (
     <div className="pt-16">
