@@ -52,10 +52,10 @@ export function LandingPage() {
       rating: 5,
     },
     {
-      name: "Dhanush A",
+      name: "Sandra Alistair",
       position: "Client",
       content:
-        "My property case was handled with clarity and precision. Very professional team at Solv. Advocates & Consultants in Bangalore—highly recommended for real estate matters.",
+        "Navya handled my property registration and is my go to person for any issue despite being across the city. A competent lawyer who has a mature way of dealing with situations, I highly recommend her firm.",
       rating: 5,
     },
     {
@@ -73,10 +73,10 @@ export function LandingPage() {
       rating: 5,
     },
     {
-      name: "Vishnu Prasad S",
-      position: "Client",
+      name: "Tejas Ventures",
+      position: " Client",
       content:
-        "Top legal consultants in Bangalore—reliable counsel for business and property needs. Professional, straightforward, and results-oriented.",
+        "I'm thoroughly impressed with SOLV. ADVOCATES & CONSULTANTS exceptional legal services! Their team of expert advocates provided top-notch guidance and representation, exceeding my expectations. Their professionalism, knowledge, and dedication to client satisfaction are truly commendable. Highly recommended for anyone seeking reliable and effective legal support.",
       rating: 5,
     },
     {
