@@ -88,31 +88,31 @@ export const IntellectualPropertyServices: React.FC = () => {
       duration: "Ongoing",
       slug: "ip-portfolio-management",
     },
-    {
-      title: "IP Due Diligence",
-      description: "Intellectual property due diligence for transactions",
-      features: ["IP Audits", "Asset Verification", "Risk Assessment"],
-      duration: "15-45 days",
-      slug: "ip-due-diligence",
-    },
-    {
-      title: "Brand Enforcement",
-      description: "Brand protection and enforcement services",
-      features: [
-        "Brand Monitoring",
-        "Enforcement Actions",
-        "Anti-Counterfeiting",
-      ],
-      duration: "Ongoing",
-      slug: "brand-enforcement",
-    },
-    {
-      title: "IP Strategy & Consulting",
-      description: "Strategic intellectual property consulting and planning",
-      features: ["IP Strategy", "Competitive Analysis", "Protection Planning"],
-      duration: "Variable",
-      slug: "ip-strategy-consulting",
-    },
+    // {
+    //   title: "IP Due Diligence",
+    //   description: "Intellectual property due diligence for transactions",
+    //   features: ["IP Audits", "Asset Verification", "Risk Assessment"],
+    //   duration: "15-45 days",
+    //   slug: "ip-due-diligence",
+    // },
+    // {
+    //   title: "Brand Enforcement",
+    //   description: "Brand protection and enforcement services",
+    //   features: [
+    //     "Brand Monitoring",
+    //     "Enforcement Actions",
+    //     "Anti-Counterfeiting",
+    //   ],
+    //   duration: "Ongoing",
+    //   slug: "brand-enforcement",
+    // },
+    // {
+    //   title: "IP Strategy & Consulting",
+    //   description: "Strategic intellectual property consulting and planning",
+    //   features: ["IP Strategy", "Competitive Analysis", "Protection Planning"],
+    //   duration: "Variable",
+    //   slug: "ip-strategy-consulting",
+    // },
   ];
 
   return (

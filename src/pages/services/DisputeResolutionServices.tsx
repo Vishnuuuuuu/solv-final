@@ -96,32 +96,32 @@ export const DisputeResolutionServices: React.FC = () => {
       duration: "45-120 days",
       slug: "partnership-disputes",
     },
-    {
-      title: "Intellectual Property Disputes",
-      description:
-        "IP infringement and intellectual property dispute resolution",
-      features: [
-        "Patent Disputes",
-        "Trademark Infringement",
-        "Copyright Issues",
-      ],
-      duration: "90-180 days",
-      slug: "ip-disputes",
-    },
-    {
-      title: "Insurance Claims",
-      description: "Insurance claim disputes and policy coverage issues",
-      features: ["Claim Denials", "Coverage Disputes", "Policy Interpretation"],
-      duration: "30-90 days",
-      slug: "insurance-claims",
-    },
-    {
-      title: "Banking & Finance Disputes",
-      description: "Financial disputes and banking-related legal issues",
-      features: ["Loan Disputes", "Banking Issues", "Financial Recovery"],
-      duration: "45-120 days",
-      slug: "banking-finance-disputes",
-    },
+    // {
+    //   title: "Intellectual Property Disputes",
+    //   description:
+    //     "IP infringement and intellectual property dispute resolution",
+    //   features: [
+    //     "Patent Disputes",
+    //     "Trademark Infringement",
+    //     "Copyright Issues",
+    //   ],
+    //   duration: "90-180 days",
+    //   slug: "ip-disputes",
+    // },
+    // {
+    //   title: "Insurance Claims",
+    //   description: "Insurance claim disputes and policy coverage issues",
+    //   features: ["Claim Denials", "Coverage Disputes", "Policy Interpretation"],
+    //   duration: "30-90 days",
+    //   slug: "insurance-claims",
+    // },
+    // {
+    //   title: "Banking & Finance Disputes",
+    //   description: "Financial disputes and banking-related legal issues",
+    //   features: ["Loan Disputes", "Banking Issues", "Financial Recovery"],
+    //   duration: "45-120 days",
+    //   slug: "banking-finance-disputes",
+    // },
   ];
 
   return (

@@ -4,7 +4,7 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  Home,
+  Gavel,
   Scale,
   Shield,
   Users,
@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const DebtRecovery: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,72 +53,68 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Professional debt collection",
+    "Legal recovery proceedings",
+    "Settlement negotiations",
+    "Asset investigation support",
+    "Court enforcement assistance",
+    "Cost-effective recovery solutions",
   ];
 
   const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+    "Debt collection notices",
+    "Recovery proceedings initiation",
+    "Settlement negotiations",
+    "Legal documentation support",
+    "Court representation",
+    "Asset recovery assistance",
   ];
 
   const steps = [
     {
       icon: FileText,
-      title: "Document Review",
+      title: "Debt Assessment",
       description:
-        "We review all property documents and verify legal compliance",
-    },
-    {
-      icon: Scale,
-      title: "Agreement Drafting",
-      description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
+        "Evaluate debt details, documentation, and recovery prospects",
     },
     {
       icon: Users,
-      title: "Party Coordination",
-      description:
-        "We coordinate between buyer and seller for agreement finalization",
+      title: "Recovery Strategy",
+      description: "Develop comprehensive debt recovery strategy and timeline",
+    },
+    {
+      icon: Scale,
+      title: "Legal Proceedings",
+      description: "Initiate legal proceedings and court enforcement if needed",
     },
     {
       icon: Shield,
-      title: "Registration Support",
-      description:
-        "Complete support for property registration and legal formalities",
+      title: "Collection & Recovery",
+      description: "Execute recovery plan and secure debt payment or assets",
     },
   ];
 
   return (
     <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            to="/services/real-estate"
+            to="/services/dispute-resolution"
             className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Real Estate Services
+            Back to Dispute Resolution Services
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <Gavel className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Debt Recovery
             </h1>
           </div>
           <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+            Legal debt recovery and collection services
           </p>
         </div>
       </section>
@@ -134,23 +130,22 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Debt Recovery
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                Debt recovery involves legal processes to collect outstanding
+                amounts owed by individuals or businesses. Our debt recovery
+                services help creditors recover their dues through strategic
+                legal action, settlement negotiations, and court enforcement
+                mechanisms while maintaining professional standards.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                Our experienced debt recovery team employs effective legal
+                strategies to maximize recovery rates while minimizing costs,
+                ensuring creditors can recover their investments efficiently
+                through legal channels.
               </p>
             </motion.div>
-
-            {/* Visual content removed to match GST page (content-first) */}
 
             {/* Key Benefits */}
             <motion.div
@@ -229,11 +224,11 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  Get Debt Recovery Services
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our real estate legal experts will
-                  contact you soon.
+                  Fill out the form and our debt recovery experts will contact
+                  you soon.
                 </p>
 
                 {isSubmitted ? (
@@ -292,7 +287,7 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Debt Recovery Details
                       </label>
                       <textarea
                         name="requirements"
@@ -300,7 +295,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Tell us about your debt recovery needs..."
                       />
                     </div>
 
@@ -328,17 +323,22 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      Get Debt Recovery Help
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Duration: 30-90 days
                     </span>
                   </div>
                 </div>

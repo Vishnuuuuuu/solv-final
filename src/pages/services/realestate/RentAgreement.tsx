@@ -5,14 +5,14 @@ import {
   Clock,
   FileText,
   Home,
-  Scale,
   Shield,
   Users,
+  Key,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const RentAgreement: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,53 +53,83 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Legally compliant rent agreement",
+    "Clear terms for landlord and tenant",
+    "Security deposit protection clauses",
+    "Maintenance responsibility clarity",
+    "Termination and notice period terms",
+    "Police verification support",
   ];
 
   const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+    "11-month lease agreement drafting",
+    "Stamp paper arrangement",
+    "Police verification assistance",
+    "Registration guidance (if required)",
+    "Renewal clause provisions",
+    "Legal consultation on terms",
   ];
 
   const steps = [
     {
-      icon: FileText,
-      title: "Document Review",
+      icon: Users,
+      title: "Requirement Discussion",
       description:
-        "We review all property documents and verify legal compliance",
+        "We discuss your specific rental requirements and property details",
     },
     {
-      icon: Scale,
+      icon: FileText,
       title: "Agreement Drafting",
       description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
-    },
-    {
-      icon: Users,
-      title: "Party Coordination",
-      description:
-        "We coordinate between buyer and seller for agreement finalization",
+        "Our experts draft a comprehensive rent agreement with all necessary clauses",
     },
     {
       icon: Shield,
-      title: "Registration Support",
+      title: "Legal Review",
       description:
-        "Complete support for property registration and legal formalities",
+        "Complete legal review to ensure compliance with local rental laws",
+    },
+    {
+      icon: Key,
+      title: "Execution Support",
+      description:
+        "Support with agreement execution, stamp paper, and registration if needed",
+    },
+  ];
+
+  const agreementTypes = [
+    {
+      type: "Residential Rent Agreement",
+      duration: "11 months (standard)",
+      features: [
+        "Security deposit clauses",
+        "Maintenance terms",
+        "Utilities arrangement",
+      ],
+    },
+    {
+      type: "Commercial Rent Agreement",
+      duration: "11 months to 3 years",
+      features: [
+        "Business use permissions",
+        "Renovation rights",
+        "Renewal terms",
+      ],
+    },
+    {
+      type: "Leave & License Agreement",
+      duration: "11 months",
+      features: [
+        "License fee structure",
+        "Occupancy rights",
+        "Termination clauses",
+      ],
     },
   ];
 
   return (
     <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
@@ -111,14 +141,14 @@ export const PropertySaleAgreement: React.FC = () => {
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <Key className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Rent Agreement
             </h1>
           </div>
-          <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+          <p className="text-lg text-slate-600">
+            Residential and commercial rent agreement preparation and legal
+            support
           </p>
         </div>
       </section>
@@ -134,25 +164,60 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Rent Agreement
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                A rent agreement is a legal document that establishes the terms
+                and conditions between a landlord and tenant for the rental of
+                property. Our comprehensive service ensures your rental
+                arrangement is legally sound, protects both parties' interests,
+                and complies with local rental laws.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                Whether you need a residential or commercial rent agreement, our
+                legal experts craft detailed documents that prevent disputes,
+                ensure regulatory compliance, and provide clear guidelines for
+                the rental relationship.
               </p>
             </motion.div>
 
-            {/* Visual content removed to match GST page (content-first) */}
+            {/* Agreement Types */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Types of Rent Agreements
+              </h2>
+              <div className="space-y-4">
+                {agreementTypes.map((agreement, index) => (
+                  <div
+                    key={index}
+                    className="border border-slate-200 rounded-lg p-4"
+                  >
+                    <h3 className="font-semibold text-slate-900 mb-2">
+                      {agreement.type}
+                    </h3>
+                    <p className="text-sm text-slate-600 mb-3">
+                      Duration: {agreement.duration}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                      {agreement.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center space-x-2">
+                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                          <span className="text-sm text-slate-700">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-            {/* Key Benefits */}
+            {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,30 +236,11 @@ export const PropertySaleAgreement: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* What's Included */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                What's Included
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {inclusions.map((inclusion, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700">{inclusion}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Process */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Our Process
@@ -217,6 +263,25 @@ export const PropertySaleAgreement: React.FC = () => {
                 ))}
               </div>
             </motion.div>
+
+            {/* What's Included */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                What's Included
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {inclusions.map((inclusion, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
+                    <span className="text-slate-700">{inclusion}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           {/* Sidebar - Contact Form */}
@@ -229,7 +294,7 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  Get Rent Agreement
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
                   Fill out the form and our real estate legal experts will
@@ -292,7 +357,7 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Requirements
                       </label>
                       <textarea
                         name="requirements"
@@ -300,7 +365,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Tell us about your rental agreement requirements..."
                       />
                     </div>
 
@@ -328,17 +393,23 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      Get Rent Agreement
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                {/* Disclaimer */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Completion: 1-2 business days
                     </span>
                   </div>
                 </div>

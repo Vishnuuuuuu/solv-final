@@ -4,15 +4,15 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  Home,
-  Scale,
+  UserCheck,
   Shield,
   Users,
+  AlertTriangle,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const PowerOfAttorney: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,53 +53,87 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Legal authorization for property transactions",
+    "Secure property management in absence",
+    "Clear scope of powers and limitations",
+    "Revocation mechanisms included",
+    "Fraud prevention measures",
+    "Compliance with property laws",
   ];
 
-  const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+  const services = [
+    "General power of attorney drafting",
+    "Special power of attorney preparation",
+    "Property-specific POA documentation",
+    "Registration and notarization support",
+    "Revocation document preparation",
+    "Legal consultation on POA scope",
+    "Stamp duty and registration guidance",
+    "Post-execution legal support",
   ];
 
   const steps = [
     {
-      icon: FileText,
-      title: "Document Review",
-      description:
-        "We review all property documents and verify legal compliance",
-    },
-    {
-      icon: Scale,
-      title: "Agreement Drafting",
-      description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
-    },
-    {
       icon: Users,
-      title: "Party Coordination",
+      title: "Requirement Discussion",
       description:
-        "We coordinate between buyer and seller for agreement finalization",
+        "We understand your specific requirements for power of attorney",
+    },
+    {
+      icon: FileText,
+      title: "Document Drafting",
+      description:
+        "Draft comprehensive POA with clearly defined powers and limitations",
     },
     {
       icon: Shield,
-      title: "Registration Support",
+      title: "Legal Verification",
+      description: "Ensure legal compliance and fraud prevention measures",
+    },
+    {
+      icon: UserCheck,
+      title: "Execution Support",
       description:
-        "Complete support for property registration and legal formalities",
+        "Support with registration, notarization, and legal formalities",
+    },
+  ];
+
+  const poaTypes = [
+    {
+      type: "General Power of Attorney",
+      scope: "Broad property management powers",
+      powers: [
+        "Property sale and purchase",
+        "Rental agreements",
+        "Property maintenance",
+        "Legal proceedings",
+      ],
+    },
+    {
+      type: "Special Power of Attorney",
+      scope: "Specific limited purposes",
+      powers: [
+        "Single transaction execution",
+        "Defined time period",
+        "Specific property only",
+        "Limited scope of work",
+      ],
+    },
+    {
+      type: "Irrevocable Power of Attorney",
+      scope: "Cannot be revoked (rare cases)",
+      powers: [
+        "Permanent authorization",
+        "Security-backed transactions",
+        "Loan-related POAs",
+        "Investment purposes",
+      ],
     },
   ];
 
   return (
     <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
@@ -111,14 +145,13 @@ export const PropertySaleAgreement: React.FC = () => {
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <UserCheck className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Power of Attorney
             </h1>
           </div>
-          <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+          <p className="text-lg text-slate-600">
+            Property-related power of attorney documents and legal authorization
           </p>
         </div>
       </section>
@@ -134,25 +167,62 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Power of Attorney
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                A Power of Attorney (POA) is a legal document that authorizes
+                another person to act on your behalf in property-related
+                matters. It's essential for property management when you cannot
+                be physically present for transactions, legal proceedings, or
+                administrative procedures.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                Our expert legal team drafts comprehensive POA documents that
+                clearly define the scope of powers, include necessary
+                safeguards, and ensure compliance with legal requirements while
+                protecting your interests.
               </p>
             </motion.div>
 
-            {/* Visual content removed to match GST page (content-first) */}
+            {/* POA Types */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Types of Power of Attorney
+              </h2>
+              <div className="space-y-4">
+                {poaTypes.map((poa, index) => (
+                  <div
+                    key={index}
+                    className="border border-slate-200 rounded-lg p-4"
+                  >
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                      <h3 className="font-semibold text-slate-900 mb-1">
+                        {poa.type}
+                      </h3>
+                      <span className="text-sm text-indigo-700 font-medium">
+                        {poa.scope}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                      {poa.powers.map((power, idx) => (
+                        <div key={idx} className="flex items-center space-x-2">
+                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                          <span className="text-sm text-slate-700">
+                            {power}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-            {/* Key Benefits */}
+            {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,30 +241,11 @@ export const PropertySaleAgreement: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* What's Included */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                What's Included
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {inclusions.map((inclusion, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700">{inclusion}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Process */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Our Process
@@ -217,6 +268,53 @@ export const PropertySaleAgreement: React.FC = () => {
                 ))}
               </div>
             </motion.div>
+
+            {/* Services Included */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Services Included
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {services.map((service, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
+                    <span className="text-slate-700">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Important Warnings */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="bg-red-50 rounded-lg p-6 border border-red-200"
+            >
+              <div className="flex items-start space-x-2">
+                <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="font-semibold text-red-900 mb-2">
+                    Important Considerations
+                  </h3>
+                  <ul className="text-red-800 text-sm space-y-1">
+                    <li>
+                      • Choose attorney-in-fact carefully - ensure complete
+                      trust
+                    </li>
+                    <li>• Define clear scope and limitations of powers</li>
+                    <li>• Include revocation mechanisms and conditions</li>
+                    <li>• Register POA for property transactions</li>
+                    <li>• Keep original documents secure</li>
+                    <li>• Review and update periodically as needed</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Sidebar - Contact Form */}
@@ -229,10 +327,10 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  Get Power of Attorney
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our real estate legal experts will
+                  Fill out the form and our power of attorney experts will
                   contact you soon.
                 </p>
 
@@ -292,7 +390,7 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Requirements
                       </label>
                       <textarea
                         name="requirements"
@@ -300,7 +398,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Tell us about your power of attorney requirements..."
                       />
                     </div>
 
@@ -328,17 +426,23 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      Get Power of Attorney
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                {/* Disclaimer */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Completion: 1-2 business days
                     </span>
                   </div>
                 </div>

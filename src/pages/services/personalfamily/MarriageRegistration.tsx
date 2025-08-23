@@ -4,7 +4,7 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  Home,
+  Heart,
   Scale,
   Shield,
   Users,
@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const MarriageRegistration: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,72 +53,69 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Legal marriage registration",
+    "Court marriage assistance",
+    "Marriage certificate issuance",
+    "Documentation support",
+    "Witness arrangement",
+    "Post-marriage legal guidance",
   ];
 
-  const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+  const documents = [
+    "Identity proof (Aadhaar/Passport)",
+    "Age proof documents",
+    "Address proof",
+    "Passport size photographs",
+    "Divorce decree (if applicable)",
+    "Death certificate (if widowed)",
   ];
 
   const steps = [
     {
-      icon: FileText,
-      title: "Document Review",
+      icon: Users,
+      title: "Initial Consultation",
       description:
-        "We review all property documents and verify legal compliance",
+        "Understanding your marriage registration requirements and documentation",
+    },
+    {
+      icon: FileText,
+      title: "Document Preparation",
+      description:
+        "Preparation of all necessary documents and application forms",
     },
     {
       icon: Scale,
-      title: "Agreement Drafting",
-      description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
-    },
-    {
-      icon: Users,
-      title: "Party Coordination",
-      description:
-        "We coordinate between buyer and seller for agreement finalization",
+      title: "Court Proceedings",
+      description: "Court marriage ceremony and legal formalities completion",
     },
     {
       icon: Shield,
-      title: "Registration Support",
-      description:
-        "Complete support for property registration and legal formalities",
+      title: "Certificate Issuance",
+      description: "Marriage certificate collection and legal verification",
     },
   ];
 
   return (
-    <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+    <div className="pt-28 min-h-screen bg-white">
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            to="/services/real-estate"
+            to="/services/personal-family"
             className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Real Estate Services
+            Back to Personal & Family Services
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <Heart className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Marriage Registration
             </h1>
           </div>
-          <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+          <p className="text-lg text-slate-600">
+            Marriage registration and related legal services
           </p>
         </div>
       </section>
@@ -134,29 +131,26 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Marriage Registration
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                Marriage registration provides legal recognition to your union
+                and is essential for various legal and administrative purposes.
+                Our comprehensive service handles both court marriages and
+                registration of existing marriages under applicable laws.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                We guide couples through the entire process, from document
+                preparation to certificate collection, ensuring compliance with
+                legal requirements and making your special day hassle-free.
               </p>
             </motion.div>
 
-            {/* Visual content removed to match GST page (content-first) */}
-
-            {/* Key Benefits */}
+            {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Key Benefits
@@ -171,30 +165,11 @@ export const PropertySaleAgreement: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* What's Included */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                What's Included
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {inclusions.map((inclusion, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700">{inclusion}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Process */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Our Process
@@ -217,6 +192,25 @@ export const PropertySaleAgreement: React.FC = () => {
                 ))}
               </div>
             </motion.div>
+
+            {/* Required Documents */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Required Documents
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {documents.map((document, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
+                    <span className="text-slate-700">{document}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           {/* Sidebar - Contact Form */}
@@ -229,11 +223,11 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  Get Marriage Registration
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our real estate legal experts will
-                  contact you soon.
+                  Fill out the form and our family law experts will contact you
+                  soon.
                 </p>
 
                 {isSubmitted ? (
@@ -292,7 +286,7 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Registration Requirements
                       </label>
                       <textarea
                         name="requirements"
@@ -300,7 +294,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Tell us about your marriage registration requirements..."
                       />
                     </div>
 
@@ -328,17 +322,22 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      Get Marriage Registration
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Duration: 5-7 days
                     </span>
                   </div>
                 </div>

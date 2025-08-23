@@ -96,7 +96,7 @@ export const PropertyPurchaseAgreement: React.FC = () => {
   ];
 
   return (
-    <div className="pt-28 min-h-screen bg-white">
+    <div className="pt-32 min-h-screen bg-white">
       {/* Header - simple (no image) */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

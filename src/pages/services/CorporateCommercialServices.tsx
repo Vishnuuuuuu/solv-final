@@ -82,31 +82,31 @@ export const CorporateCommercialServices: React.FC = () => {
       duration: "3-7 days",
       slug: "commercial-leases",
     },
-    {
-      title: "Business Restructuring",
-      description: "Corporate restructuring and reorganization services",
-      features: [
-        "Restructuring Plans",
-        "Legal Documentation",
-        "Compliance Support",
-      ],
-      duration: "30-90 days",
-      slug: "business-restructuring",
-    },
-    {
-      title: "Foreign Investment Advisory",
-      description: "FDI and foreign investment compliance services",
-      features: ["FDI Compliance", "FEMA Advisory", "Investment Documentation"],
-      duration: "15-30 days",
-      slug: "foreign-investment-advisory",
-    },
-    {
-      title: "Corporate Secretarial Services",
-      description: "Complete corporate secretarial and statutory compliance",
-      features: ["Annual Filings", "Board Resolutions", "Statutory Registers"],
-      duration: "Ongoing",
-      slug: "corporate-secretarial",
-    },
+    // {
+    //   title: "Business Restructuring",
+    //   description: "Corporate restructuring and reorganization services",
+    //   features: [
+    //     "Restructuring Plans",
+    //     "Legal Documentation",
+    //     "Compliance Support",
+    //   ],
+    //   duration: "30-90 days",
+    //   slug: "business-restructuring",
+    // },
+    // {
+    //   title: "Foreign Investment Advisory",
+    //   description: "FDI and foreign investment compliance services",
+    //   features: ["FDI Compliance", "FEMA Advisory", "Investment Documentation"],
+    //   duration: "15-30 days",
+    //   slug: "foreign-investment-advisory",
+    // },
+    // {
+    //   title: "Corporate Secretarial Services",
+    //   description: "Complete corporate secretarial and statutory compliance",
+    //   features: ["Annual Filings", "Board Resolutions", "Statutory Registers"],
+    //   duration: "Ongoing",
+    //   slug: "corporate-secretarial",
+    // },
   ];
 
   return (

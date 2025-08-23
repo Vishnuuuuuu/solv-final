@@ -94,35 +94,35 @@ export const PersonalFamilyServices: React.FC = () => {
       duration: "20-30 days",
       slug: "guardianship",
     },
-    {
-      title: "Maintenance & Alimony",
-      description: "Maintenance and alimony proceedings and agreements",
-      features: ["Maintenance Orders", "Alimony Calculations", "Legal Support"],
-      duration: "15-25 days",
-      slug: "maintenance-alimony",
-    },
-    {
-      title: "Property Inheritance",
-      description: "Property inheritance and succession legal services",
-      features: [
-        "Inheritance Claims",
-        "Legal Verification",
-        "Property Transfer",
-      ],
-      duration: "20-30 days",
-      slug: "property-inheritance",
-    },
-    {
-      title: "Family Court Matters",
-      description: "Representation in various family court proceedings",
-      features: [
-        "Court Representation",
-        "Legal Proceedings",
-        "Document Filing",
-      ],
-      duration: "Variable",
-      slug: "family-court-matters",
-    },
+    // {
+    //   title: "Maintenance & Alimony",
+    //   description: "Maintenance and alimony proceedings and agreements",
+    //   features: ["Maintenance Orders", "Alimony Calculations", "Legal Support"],
+    //   duration: "15-25 days",
+    //   slug: "maintenance-alimony",
+    // },
+    // {
+    //   title: "Property Inheritance",
+    //   description: "Property inheritance and succession legal services",
+    //   features: [
+    //     "Inheritance Claims",
+    //     "Legal Verification",
+    //     "Property Transfer",
+    //   ],
+    //   duration: "20-30 days",
+    //   slug: "property-inheritance",
+    // },
+    // {
+    //   title: "Family Court Matters",
+    //   description: "Representation in various family court proceedings",
+    //   features: [
+    //     "Court Representation",
+    //     "Legal Proceedings",
+    //     "Document Filing",
+    //   ],
+    //   duration: "Variable",
+    //   slug: "family-court-matters",
+    // },
   ];
 
   return (

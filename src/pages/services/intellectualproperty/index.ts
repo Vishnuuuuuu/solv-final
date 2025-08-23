@@ -1,0 +1,9 @@
+export { TrademarkRegistration } from "./TrademarkRegistration";
+export { PatentApplications } from "./PatentApplications";
+export { CopyrightRegistration } from "./CopyrightRegistration";
+export { IPLitigation } from "./IPLitigation";
+export { LicensingAgreements } from "./LicensingAgreements";
+export { TradeSecretProtection } from "./TradeSecretProtection";
+export { DesignRegistration } from "./DesignRegistration";
+export { DomainDisputes } from "./DomainDisputes";
+export { IPPortfolioManagement } from "./IPPortfolioManagement";

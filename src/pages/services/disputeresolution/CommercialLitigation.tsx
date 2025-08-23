@@ -4,7 +4,7 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  Home,
+  Gavel,
   Scale,
   Shield,
   Users,
@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const CommercialLitigation: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,72 +53,70 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Expert legal representation in court",
+    "Strategic litigation planning",
+    "Comprehensive case preparation",
+    "Skilled contract dispute resolution",
+    "Business interest protection",
+    "Efficient dispute settlement",
   ];
 
   const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+    "Case analysis and strategy",
+    "Legal documentation preparation",
+    "Court representation services",
+    "Settlement negotiations",
+    "Evidence collection support",
+    "Post-litigation guidance",
   ];
 
   const steps = [
     {
       icon: FileText,
-      title: "Document Review",
+      title: "Case Evaluation",
       description:
-        "We review all property documents and verify legal compliance",
+        "Thorough analysis of your commercial dispute and legal merits assessment",
     },
     {
       icon: Scale,
-      title: "Agreement Drafting",
+      title: "Strategy Development",
       description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
+        "Creating a comprehensive litigation strategy tailored to your case",
     },
     {
       icon: Users,
-      title: "Party Coordination",
-      description:
-        "We coordinate between buyer and seller for agreement finalization",
+      title: "Legal Proceedings",
+      description: "Expert representation throughout the litigation process",
     },
     {
       icon: Shield,
-      title: "Registration Support",
+      title: "Resolution & Enforcement",
       description:
-        "Complete support for property registration and legal formalities",
+        "Securing favorable outcomes and ensuring judgment enforcement",
     },
   ];
 
   return (
     <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            to="/services/real-estate"
+            to="/services/dispute-resolution"
             className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Real Estate Services
+            Back to Dispute Resolution Services
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <Gavel className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Commercial Litigation
             </h1>
           </div>
           <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+            Expert representation in commercial disputes and litigation
           </p>
         </div>
       </section>
@@ -134,23 +132,23 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Commercial Litigation
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                Commercial litigation involves legal disputes between businesses
+                or between businesses and individuals regarding commercial
+                transactions, contracts, and business relationships. Our
+                experienced litigation team provides comprehensive legal
+                representation to protect your business interests and achieve
+                favorable outcomes.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                With extensive experience in commercial law and courtroom
+                advocacy, we handle complex business disputes efficiently while
+                minimizing disruption to your operations and focusing on
+                cost-effective resolutions.
               </p>
             </motion.div>
-
-            {/* Visual content removed to match GST page (content-first) */}
 
             {/* Key Benefits */}
             <motion.div
@@ -229,11 +227,11 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  Get Commercial Litigation Support
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our real estate legal experts will
-                  contact you soon.
+                  Fill out the form and our litigation experts will contact you
+                  soon.
                 </p>
 
                 {isSubmitted ? (
@@ -292,7 +290,7 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Dispute Details
                       </label>
                       <textarea
                         name="requirements"
@@ -300,7 +298,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Tell us about your commercial dispute..."
                       />
                     </div>
 
@@ -328,17 +326,22 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      Get Litigation Support
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Duration: 30-180 days
                     </span>
                   </div>
                 </div>

@@ -15,11 +15,22 @@ import {
   Shield,
   Star,
 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Services: React.FC = () => {
   const navigate = useNavigate();
+  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+
+  const toggleCardExpansion = (categoryTitle: string) => {
+    const newExpandedCards = new Set(expandedCards);
+    if (newExpandedCards.has(categoryTitle)) {
+      newExpandedCards.delete(categoryTitle);
+    } else {
+      newExpandedCards.add(categoryTitle);
+    }
+    setExpandedCards(newExpandedCards);
+  };
 
   const quickServices = [
     {
@@ -293,7 +304,10 @@ export const Services: React.FC = () => {
                   </p>
 
                   <div className="space-y-2 mb-6">
-                    {category.services.slice(0, 4).map((service) => (
+                    {(expandedCards.has(category.title)
+                      ? category.services
+                      : category.services.slice(0, 4)
+                    ).map((service) => (
                       <div
                         key={service}
                         className="flex items-center space-x-2"
@@ -305,8 +319,16 @@ export const Services: React.FC = () => {
                       </div>
                     ))}
                     {category.services.length > 4 && (
-                      <div className="text-xs text-slate-500 pl-6">
-                        +{category.services.length - 4} more services
+                      <div
+                        className="text-xs text-blue-600 hover:text-blue-800 pl-6 cursor-pointer transition-colors duration-200 hover:underline"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleCardExpansion(category.title);
+                        }}
+                      >
+                        {expandedCards.has(category.title)
+                          ? "Show less"
+                          : `+${category.services.length - 4} more services`}
                       </div>
                     )}
                   </div>

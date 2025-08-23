@@ -4,15 +4,15 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  Home,
   Scale,
   Shield,
   Users,
+  AlertTriangle,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const PropertyDispute: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,53 +53,88 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Expert legal analysis of property disputes",
+    "Cost-effective resolution strategies",
+    "Negotiation and mediation support",
+    "Court representation when required",
+    "Document preparation and evidence",
+    "Settlement agreement drafting",
   ];
 
-  const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+  const services = [
+    "Property dispute case analysis",
+    "Legal notice drafting and service",
+    "Negotiation and mediation services",
+    "Court filing and representation",
+    "Evidence collection and documentation",
+    "Settlement agreement preparation",
+    "Injunction and interim relief applications",
+    "Appeal and revision petitions",
   ];
 
   const steps = [
     {
-      icon: FileText,
-      title: "Document Review",
+      icon: AlertTriangle,
+      title: "Dispute Assessment",
       description:
-        "We review all property documents and verify legal compliance",
+        "Comprehensive analysis of the property dispute and legal merits",
     },
     {
-      icon: Scale,
-      title: "Agreement Drafting",
+      icon: FileText,
+      title: "Strategy Development",
       description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
+        "Develop optimal resolution strategy based on case specifics",
     },
     {
       icon: Users,
-      title: "Party Coordination",
+      title: "Resolution Attempts",
       description:
-        "We coordinate between buyer and seller for agreement finalization",
+        "Attempt amicable resolution through negotiation and mediation",
     },
     {
-      icon: Shield,
-      title: "Registration Support",
+      icon: Scale,
+      title: "Legal Proceedings",
       description:
-        "Complete support for property registration and legal formalities",
+        "Initiate court proceedings and provide representation if needed",
+    },
+  ];
+
+  const disputeTypes = [
+    {
+      type: "Title Disputes",
+      description: "Ownership and title-related conflicts",
+      examples: [
+        "Multiple ownership claims",
+        "Forged documents",
+        "Inheritance disputes",
+        "Boundary conflicts",
+      ],
+    },
+    {
+      type: "Possession Disputes",
+      description: "Physical possession and occupancy issues",
+      examples: [
+        "Illegal occupation",
+        "Tenant-landlord conflicts",
+        "Encroachment issues",
+        "Eviction matters",
+      ],
+    },
+    {
+      type: "Transaction Disputes",
+      description: "Sale, purchase, and agreement conflicts",
+      examples: [
+        "Breach of agreement",
+        "Payment defaults",
+        "Delivery delays",
+        "Fraud claims",
+      ],
     },
   ];
 
   return (
     <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
@@ -111,14 +146,13 @@ export const PropertySaleAgreement: React.FC = () => {
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <Scale className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Property Dispute Resolution
             </h1>
           </div>
-          <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+          <p className="text-lg text-slate-600">
+            Legal support for property-related disputes and conflict resolution
           </p>
         </div>
       </section>
@@ -134,25 +168,62 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Property Dispute Resolution
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                Property disputes can arise from various issues including title
+                conflicts, boundary disputes, possession matters, and
+                transaction disagreements. Our expert legal team provides
+                comprehensive dispute resolution services to protect your
+                property rights and achieve favorable outcomes.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                We prioritize amicable resolution through negotiation and
+                mediation, while being fully prepared to represent your
+                interests in court when necessary. Our goal is to resolve
+                disputes efficiently and cost-effectively.
               </p>
             </motion.div>
 
-            {/* Visual content removed to match GST page (content-first) */}
+            {/* Dispute Types */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Types of Property Disputes We Handle
+              </h2>
+              <div className="space-y-4">
+                {disputeTypes.map((dispute, index) => (
+                  <div
+                    key={index}
+                    className="border border-slate-200 rounded-lg p-4"
+                  >
+                    <div className="mb-3">
+                      <h3 className="font-semibold text-slate-900 mb-1">
+                        {dispute.type}
+                      </h3>
+                      <p className="text-sm text-slate-600">
+                        {dispute.description}
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                      {dispute.examples.map((example, idx) => (
+                        <div key={idx} className="flex items-center space-x-2">
+                          <AlertTriangle className="h-4 w-4 text-red-500 flex-shrink-0" />
+                          <span className="text-sm text-slate-700">
+                            {example}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-            {/* Key Benefits */}
+            {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,30 +242,11 @@ export const PropertySaleAgreement: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* What's Included */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                What's Included
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {inclusions.map((inclusion, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700">{inclusion}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Process */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Our Process
@@ -217,6 +269,63 @@ export const PropertySaleAgreement: React.FC = () => {
                 ))}
               </div>
             </motion.div>
+
+            {/* Services Included */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                Services Included
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {services.map((service, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <Shield className="h-5 w-5 text-slate-600 flex-shrink-0" />
+                    <span className="text-slate-700">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Resolution Approach */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="bg-teal-50 rounded-lg p-6 border border-teal-200"
+            >
+              <h3 className="font-semibold text-teal-900 mb-2">
+                Our Resolution Approach
+              </h3>
+              <ul className="text-teal-800 text-sm space-y-1">
+                <li>
+                  • <strong>Prevention First:</strong> Legal advice to prevent
+                  disputes
+                </li>
+                <li>
+                  • <strong>Early Intervention:</strong> Quick action to
+                  minimize escalation
+                </li>
+                <li>
+                  • <strong>Amicable Settlement:</strong> Negotiation and
+                  mediation preferred
+                </li>
+                <li>
+                  • <strong>Strategic Litigation:</strong> Court action when
+                  necessary
+                </li>
+                <li>
+                  • <strong>Cost Management:</strong> Efficient and
+                  budget-conscious approach
+                </li>
+                <li>
+                  • <strong>Long-term Solution:</strong> Durable resolution
+                  strategies
+                </li>
+              </ul>
+            </motion.div>
           </div>
 
           {/* Sidebar - Contact Form */}
@@ -229,10 +338,10 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  Get Property Dispute Support
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our real estate legal experts will
+                  Fill out the form and our property dispute experts will
                   contact you soon.
                 </p>
 
@@ -292,15 +401,15 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Dispute Details
                       </label>
                       <textarea
                         name="requirements"
                         value={formData.requirements}
                         onChange={handleInputChange}
-                        rows={3}
+                        rows={4}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Please describe your property dispute situation..."
                       />
                     </div>
 
@@ -328,17 +437,23 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      Get Property Dispute Support
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                {/* Disclaimer */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    Urgent cases will be prioritized
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Response: Within 24 hours
                     </span>
                   </div>
                 </div>

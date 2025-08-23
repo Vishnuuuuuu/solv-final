@@ -43,10 +43,50 @@ import { LegalOpinion } from "./pages/services/quick/LegalOpinion";
 import { ContractDrafting } from "./pages/services/quick/ContractDrafting";
 import { PropertyPurchaseAgreement } from "./pages/services/realestate/PropertyPurchaseAgreement";
 import { PropertySaleAgreement } from "./pages/services/realestate/PropertySaleAgreement";
+import { RentAgreement } from "./pages/services/realestate/RentAgreement";
+import { TitleVerification } from "./pages/services/realestate/TitleVerification";
+import { PropertyRegistration } from "./pages/services/realestate/PropertyRegistration";
+import { LeaseAgreement } from "./pages/services/realestate/LeaseAgreement";
+import { PropertyManagement } from "./pages/services/realestate/PropertyManagement";
+import { PowerOfAttorney } from "./pages/services/realestate/PowerOfAttorney";
+import { JointDevelopmentAgreement } from "./pages/services/realestate/JointDevelopmentAgreement";
+import { PropertyDispute } from "./pages/services/realestate/PropertyDispute";
 import { GSTRegistration } from "./pages/services/tax/GSTRegistration";
 import { IncomeTaxFiling } from "./pages/services/tax/IncomeTaxFiling";
 import { TDSReturnFiling } from "./pages/services/tax/TDSReturnFiling";
 import { CorporateTaxAdvisory } from "./pages/services/tax/CorporateTaxAdvisory";
+import { FSSAIRegistration } from "./pages/services/tax/FSSAIRegistration";
+import { MSMERegistration } from "./pages/services/tax/MSMERegistration";
+import { IECRegistration } from "./pages/services/tax/IECRegistration";
+import { ProfessionalTax } from "./pages/services/tax/ProfessionalTax";
+import { ESIPFRegistration } from "./pages/services/tax/ESIPFRegistration";
+import { CommercialLitigation } from "./pages/services/disputeresolution/CommercialLitigation";
+import { ArbitrationServices } from "./pages/services/disputeresolution/ArbitrationServices";
+import { MediationServices } from "./pages/services/disputeresolution/MediationServices";
+import { ContractDisputes } from "./pages/services/disputeresolution/ContractDisputes";
+import { EmploymentDisputes } from "./pages/services/disputeresolution/EmploymentDisputes";
+import { ConsumerComplaints } from "./pages/services/disputeresolution/ConsumerComplaints";
+import { DebtRecovery } from "./pages/services/disputeresolution/DebtRecovery";
+import { PropertyDisputes } from "./pages/services/disputeresolution/PropertyDisputes";
+import { PartnershipDisputes } from "./pages/services/disputeresolution/PartnershipDisputes";
+import { CompanyIncorporation } from "./pages/services/corporate-commercial/CompanyIncorporation";
+import { ContractDraftingReview } from "./pages/services/corporate-commercial/ContractDraftingReview";
+import { MergersAcquisitions } from "./pages/services/corporate-commercial/MergersAcquisitions";
+import { CorporateGovernance } from "./pages/services/corporate-commercial/CorporateGovernance";
+import { BusinessCompliance } from "./pages/services/corporate-commercial/BusinessCompliance";
+import { PartnershipAgreements } from "./pages/services/corporate-commercial/PartnershipAgreements";
+import { ShareholderAgreements } from "./pages/services/corporate-commercial/ShareholderAgreements";
+import { EmploymentContracts } from "./pages/services/corporate-commercial/EmploymentContracts";
+import { CommercialLeases } from "./pages/services/corporate-commercial/CommercialLeases";
+import { TrademarkRegistration } from "./pages/services/intellectualproperty/TrademarkRegistration";
+import { PatentApplications } from "./pages/services/intellectualproperty/PatentApplications";
+import { CopyrightRegistration } from "./pages/services/intellectualproperty/CopyrightRegistration";
+import { IPLitigation } from "./pages/services/intellectualproperty/IPLitigation";
+import { LicensingAgreements } from "./pages/services/intellectualproperty/LicensingAgreements";
+import { TradeSecretProtection } from "./pages/services/intellectualproperty/TradeSecretProtection";
+import { DesignRegistration } from "./pages/services/intellectualproperty/DesignRegistration";
+import { DomainDisputes } from "./pages/services/intellectualproperty/DomainDisputes";
+import { IPPortfolioManagement } from "./pages/services/intellectualproperty/IPPortfolioManagement";
 
 // Component to handle scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -177,6 +217,26 @@ function App() {
                 path="/services/tax-compliance/corporate-tax-advisory"
                 element={<CorporateTaxAdvisory />}
               />
+              <Route
+                path="/services/tax-compliance/fssai-registration"
+                element={<FSSAIRegistration />}
+              />
+              <Route
+                path="/services/tax-compliance/msme-registration"
+                element={<MSMERegistration />}
+              />
+              <Route
+                path="/services/tax-compliance/iec-registration"
+                element={<IECRegistration />}
+              />
+              <Route
+                path="/services/tax-compliance/professional-tax"
+                element={<ProfessionalTax />}
+              />
+              <Route
+                path="/services/tax-compliance/esi-pf-registration"
+                element={<ESIPFRegistration />}
+              />
               {/* Real Estate Service Detail Pages */}
               <Route
                 path="/services/real-estate/property-sale-agreement"
@@ -185,6 +245,149 @@ function App() {
               <Route
                 path="/services/real-estate/property-purchase-agreement"
                 element={<PropertyPurchaseAgreement />}
+              />
+              <Route
+                path="/services/real-estate/rent-agreement"
+                element={<RentAgreement />}
+              />
+              <Route
+                path="/services/real-estate/title-verification"
+                element={<TitleVerification />}
+              />
+              <Route
+                path="/services/real-estate/property-registration"
+                element={<PropertyRegistration />}
+              />
+              <Route
+                path="/services/real-estate/lease-agreement"
+                element={<LeaseAgreement />}
+              />
+              <Route
+                path="/services/real-estate/property-management"
+                element={<PropertyManagement />}
+              />
+              <Route
+                path="/services/real-estate/power-of-attorney"
+                element={<PowerOfAttorney />}
+              />
+              <Route
+                path="/services/real-estate/joint-development-agreement"
+                element={<JointDevelopmentAgreement />}
+              />
+              <Route
+                path="/services/real-estate/property-dispute"
+                element={<PropertyDispute />}
+              />
+              {/* Dispute Resolution Service Detail Pages */}
+              <Route
+                path="/services/dispute-resolution/commercial-litigation"
+                element={<CommercialLitigation />}
+              />
+              <Route
+                path="/services/dispute-resolution/arbitration-services"
+                element={<ArbitrationServices />}
+              />
+              <Route
+                path="/services/dispute-resolution/mediation-services"
+                element={<MediationServices />}
+              />
+              <Route
+                path="/services/dispute-resolution/contract-disputes"
+                element={<ContractDisputes />}
+              />
+              <Route
+                path="/services/dispute-resolution/employment-disputes"
+                element={<EmploymentDisputes />}
+              />
+              <Route
+                path="/services/dispute-resolution/consumer-complaints"
+                element={<ConsumerComplaints />}
+              />
+              <Route
+                path="/services/dispute-resolution/debt-recovery"
+                element={<DebtRecovery />}
+              />
+              <Route
+                path="/services/dispute-resolution/property-disputes"
+                element={<PropertyDisputes />}
+              />
+              <Route
+                path="/services/dispute-resolution/partnership-disputes"
+                element={<PartnershipDisputes />}
+              />
+              {/* Corporate & Commercial Service Detail Pages */}
+              <Route
+                path="/services/corporate-commercial/company-incorporation"
+                element={<CompanyIncorporation />}
+              />
+              <Route
+                path="/services/corporate-commercial/contract-drafting-review"
+                element={<ContractDraftingReview />}
+              />
+              <Route
+                path="/services/corporate-commercial/mergers-acquisitions"
+                element={<MergersAcquisitions />}
+              />
+              <Route
+                path="/services/corporate-commercial/corporate-governance"
+                element={<CorporateGovernance />}
+              />
+              <Route
+                path="/services/corporate-commercial/business-compliance"
+                element={<BusinessCompliance />}
+              />
+              <Route
+                path="/services/corporate-commercial/partnership-agreements"
+                element={<PartnershipAgreements />}
+              />
+              <Route
+                path="/services/corporate-commercial/shareholder-agreements"
+                element={<ShareholderAgreements />}
+              />
+              <Route
+                path="/services/corporate-commercial/employment-contracts"
+                element={<EmploymentContracts />}
+              />
+              <Route
+                path="/services/corporate-commercial/commercial-leases"
+                element={<CommercialLeases />}
+              />
+              {/* Intellectual Property Service Detail Pages */}
+              <Route
+                path="/services/intellectual-property/trademark-registration"
+                element={<TrademarkRegistration />}
+              />
+              <Route
+                path="/services/intellectual-property/patent-applications"
+                element={<PatentApplications />}
+              />
+              <Route
+                path="/services/intellectual-property/copyright-registration"
+                element={<CopyrightRegistration />}
+              />
+              <Route
+                path="/services/intellectual-property/ip-litigation"
+                element={<IPLitigation />}
+              />
+              <Route
+                path="/services/intellectual-property/licensing-agreements"
+                element={<LicensingAgreements />}
+              />
+              <Route
+                path="/services/intellectual-property/trade-secret-protection"
+                element={<TradeSecretProtection />}
+              />
+              <Route
+                path="/services/intellectual-property/design-registration"
+                element={<DesignRegistration />}
+              />
+              <Route
+                path="/services/intellectual-property/domain-disputes"
+                element={<DomainDisputes />}
+              />
+              <Route
+                path="/services/intellectual-property/ip-portfolio-management"
+                element={<IPPortfolioManagement />}
               />
               <Route path="/blog" element={<Blog />} />
               {/* Redirect old research route to blog */}

@@ -4,7 +4,7 @@ import {
   CheckCircle,
   Clock,
   FileText,
-  Home,
+  Gavel,
   Scale,
   Shield,
   Users,
@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PropertySaleAgreement: React.FC = () => {
+export const ConsumerComplaints: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -53,72 +53,69 @@ export const PropertySaleAgreement: React.FC = () => {
   };
 
   const benefits = [
-    "Legally binding sale agreement",
-    "Clear terms and conditions",
-    "Dispute prevention clauses",
-    "Regulatory compliance assured",
-    "Property transfer protection",
-    "Stamp duty calculation",
+    "Consumer rights protection",
+    "Product liability claims",
+    "Service complaint resolution",
+    "Defective product compensation",
+    "Unfair trade practice redressal",
+    "Quick consumer forum access",
   ];
 
   const inclusions = [
-    "Sale deed preparation",
-    "Legal verification of documents",
-    "Title clearance confirmation",
-    "Registration support",
-    "Stamp duty consultation",
-    "Post-sale legal guidance",
+    "Consumer rights advocacy",
+    "Product liability assessment",
+    "Service complaint filing",
+    "Consumer forum representation",
+    "Compensation claim support",
+    "Settlement negotiations",
   ];
 
   const steps = [
     {
       icon: FileText,
-      title: "Document Review",
+      title: "Complaint Assessment",
       description:
-        "We review all property documents and verify legal compliance",
-    },
-    {
-      icon: Scale,
-      title: "Agreement Drafting",
-      description:
-        "Our experts draft a comprehensive sale agreement with all necessary clauses",
+        "Evaluate consumer complaint and assess legal remedies available",
     },
     {
       icon: Users,
-      title: "Party Coordination",
+      title: "Evidence Collection",
       description:
-        "We coordinate between buyer and seller for agreement finalization",
+        "Gather necessary evidence and documentation for the complaint",
+    },
+    {
+      icon: Scale,
+      title: "Forum Filing",
+      description: "File complaint in appropriate consumer forum or court",
     },
     {
       icon: Shield,
-      title: "Registration Support",
-      description:
-        "Complete support for property registration and legal formalities",
+      title: "Resolution & Recovery",
+      description: "Pursue compensation and ensure consumer rights protection",
     },
   ];
 
   return (
     <div className="pt-32 min-h-screen bg-white">
-      {/* Header - simple (no image) */}
+      {/* Header */}
       <section className="bg-slate-50 py-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
-            to="/services/real-estate"
+            to="/services/dispute-resolution"
             className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Real Estate Services
+            Back to Dispute Resolution Services
           </Link>
 
           <div className="flex items-center space-x-3 mb-4">
-            <Home className="h-8 w-8 text-slate-700" />
+            <Gavel className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Property Sale Agreement
+              Consumer Complaints
             </h1>
           </div>
           <p className="text-lg text-slate-600 max-w-2xl">
-            Comprehensive property sale agreement drafting and legal
-            verification services
+            Consumer protection and complaint resolution services
           </p>
         </div>
       </section>
@@ -134,23 +131,22 @@ export const PropertySaleAgreement: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                About Property Sale Agreement
+                About Consumer Complaints
               </h2>
               <p className="text-slate-700 leading-relaxed mb-6">
-                A property sale agreement is a crucial legal document that
-                establishes the terms and conditions of a property transaction
-                between buyer and seller. Our comprehensive service ensures your
-                property sale is legally sound, transparent, and protects both
-                parties' interests.
+                Consumer complaints arise when products or services fail to meet
+                quality standards, causing financial loss or harm to consumers.
+                Our consumer protection services help individuals seek redressal
+                for defective products, poor services, and unfair trade
+                practices through consumer forums and legal channels.
               </p>
               <p className="text-slate-700 leading-relaxed">
-                With years of experience in real estate law, our legal experts
-                craft detailed agreements that minimize disputes, ensure
-                regulatory compliance, and facilitate smooth property transfers.
+                We assist consumers in navigating the complaint process,
+                representing their interests before consumer forums, and
+                ensuring they receive fair compensation for their grievances
+                under consumer protection laws.
               </p>
             </motion.div>
-
-            {/* Visual content removed to match GST page (content-first) */}
 
             {/* Key Benefits */}
             <motion.div
@@ -229,10 +225,10 @@ export const PropertySaleAgreement: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Get Property Sale Agreement
+                  File Consumer Complaint
                 </h3>
                 <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our real estate legal experts will
+                  Fill out the form and our consumer protection experts will
                   contact you soon.
                 </p>
 
@@ -292,7 +288,7 @@ export const PropertySaleAgreement: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
-                        Additional Requirements
+                        Consumer Complaint Details
                       </label>
                       <textarea
                         name="requirements"
@@ -300,7 +296,7 @@ export const PropertySaleAgreement: React.FC = () => {
                         onChange={handleInputChange}
                         rows={3}
                         className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                        placeholder="Tell us about your property sale requirements..."
+                        placeholder="Tell us about your consumer complaint..."
                       />
                     </div>
 
@@ -328,17 +324,22 @@ export const PropertySaleAgreement: React.FC = () => {
                       type="submit"
                       className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
                     >
-                      Get Property Sale Agreement
+                      File Consumer Complaint
                     </button>
                   </form>
                 )}
 
-                {/* Pricing Breakdown removed for content-only */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                  <p className="text-xs text-blue-800 text-center">
+                    We'll get back to you within 24 hours
+                  </p>
+                </div>
+
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
-                      Completion: 3-5 business days
+                      Duration: 15-30 days
                     </span>
                   </div>
                 </div>
