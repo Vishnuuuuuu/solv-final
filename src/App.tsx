@@ -32,6 +32,10 @@ import { UserManagement } from "./pages/admin/UserManagement";
 import { PreLitigationAdvisory } from "./pages/services/PreLitigationAdvisory";
 import { RealEstateServices } from "./pages/services/RealEstateServices";
 import { TaxComplianceServices } from "./pages/services/TaxComplianceServices";
+import { PersonalFamilyServices } from "./pages/services/PersonalFamilyServices";
+import { DisputeResolutionServices } from "./pages/services/DisputeResolutionServices";
+import { CorporateCommercialServices } from "./pages/services/CorporateCommercialServices";
+import { IntellectualPropertyServices } from "./pages/services/IntellectualPropertyServices";
 import { QuickLegalServices } from "./pages/services/QuickLegalServices";
 import { LegalConsultation } from "./pages/services/quick/LegalConsultation";
 import { LegalNotice } from "./pages/services/quick/LegalNotice";
@@ -131,6 +135,22 @@ function App() {
               <Route
                 path="/services/tax-compliance"
                 element={<TaxComplianceServices />}
+              />
+              <Route
+                path="/services/personal-family"
+                element={<PersonalFamilyServices />}
+              />
+              <Route
+                path="/services/dispute-resolution"
+                element={<DisputeResolutionServices />}
+              />
+              <Route
+                path="/services/corporate-commercial"
+                element={<CorporateCommercialServices />}
+              />
+              <Route
+                path="/services/intellectual-property"
+                element={<IntellectualPropertyServices />}
               />
               <Route
                 path="/services/real-estate"

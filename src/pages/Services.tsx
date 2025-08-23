@@ -317,10 +317,14 @@ export const Services: React.FC = () => {
                         navigate("/services/tax-compliance");
                       } else if (category.title === "Real Estate") {
                         navigate("/services/real-estate");
+                      } else if (category.title === "Personal & Family") {
+                        navigate("/services/personal-family");
                       } else if (category.title === "Dispute Resolution") {
-                        navigate(
-                          "/services/dispute-resolution/pre-litigation-advisory"
-                        );
+                        navigate("/services/dispute-resolution");
+                      } else if (category.title === "Corporate & Commercial") {
+                        navigate("/services/corporate-commercial");
+                      } else if (category.title === "Intellectual Property") {
+                        navigate("/services/intellectual-property");
                       } else {
                         navigate("/contact");
                       }

@@ -73,7 +73,7 @@ export const AboutUs: React.FC = () => {
               <img
                 src="/about.jpg"
                 alt="Solv. Office"
-                className="rounded-lg shadow-lg w-full h-96 object-cover"
+                className="rounded-lg shadow-lg w-full object-cover"
               />
               <div className="absolute -bottom-6 -left-6 bg-slate-900 text-white p-6 rounded-lg shadow-xl">
                 <div className="text-2xl font-bold">08+</div>
