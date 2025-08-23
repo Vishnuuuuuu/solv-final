@@ -87,6 +87,16 @@ import { TradeSecretProtection } from "./pages/services/intellectualproperty/Tra
 import { DesignRegistration } from "./pages/services/intellectualproperty/DesignRegistration";
 import { DomainDisputes } from "./pages/services/intellectualproperty/DomainDisputes";
 import { IPPortfolioManagement } from "./pages/services/intellectualproperty/IPPortfolioManagement";
+import { AdoptionServices } from "./pages/services/personalfamily/AdoptionServices";
+import { ChildCustody } from "./pages/services/personalfamily/ChildCustody";
+import { DivorceProceedings } from "./pages/services/personalfamily/DivorceProceedings";
+import { DomesticViolence } from "./pages/services/personalfamily/DomesticViolence";
+import { FamilySettlements } from "./pages/services/personalfamily/FamilySettlements";
+import { Guardianship } from "./pages/services/personalfamily/Guardianship";
+import { MaintenanceAlimony } from "./pages/services/personalfamily/MaintenanceAlimony";
+import { MarriageRegistration } from "./pages/services/personalfamily/MarriageRegistration";
+import { SuccessionPlanning } from "./pages/services/personalfamily/SuccessionPlanning";
+import { WillTestament } from "./pages/services/personalfamily/WillTestament";
 
 // Component to handle scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -388,6 +398,47 @@ function App() {
               <Route
                 path="/services/intellectual-property/ip-portfolio-management"
                 element={<IPPortfolioManagement />}
+              />
+              {/* Personal & Family Service Detail Pages */}
+              <Route
+                path="/services/personal-family/will-testament"
+                element={<WillTestament />}
+              />
+              <Route
+                path="/services/personal-family/divorce-proceedings"
+                element={<DivorceProceedings />}
+              />
+              <Route
+                path="/services/personal-family/child-custody"
+                element={<ChildCustody />}
+              />
+              <Route
+                path="/services/personal-family/family-settlements"
+                element={<FamilySettlements />}
+              />
+              <Route
+                path="/services/personal-family/adoption-services"
+                element={<AdoptionServices />}
+              />
+              <Route
+                path="/services/personal-family/domestic-violence"
+                element={<DomesticViolence />}
+              />
+              <Route
+                path="/services/personal-family/marriage-registration"
+                element={<MarriageRegistration />}
+              />
+              <Route
+                path="/services/personal-family/succession-planning"
+                element={<SuccessionPlanning />}
+              />
+              <Route
+                path="/services/personal-family/guardianship"
+                element={<Guardianship />}
+              />
+              <Route
+                path="/services/personal-family/maintenance-alimony"
+                element={<MaintenanceAlimony />}
               />
               <Route path="/blog" element={<Blog />} />
               {/* Redirect old research route to blog */}
