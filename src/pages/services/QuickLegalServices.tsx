@@ -25,7 +25,7 @@ export const QuickLegalServices: React.FC = () => {
         "Actionable guidance",
         "Confidential & secure",
       ],
-      duration: "30-60 minutes",
+      // duration: "30-60 minutes",
     },
     {
       icon: Scale,
@@ -36,7 +36,7 @@ export const QuickLegalServices: React.FC = () => {
         "Lawyer review",
         "Dispatch & tracking support",
       ],
-      duration: "1-2 business days",
+      // duration: "1-2 business days",
     },
     {
       icon: BookOpen,
@@ -47,7 +47,7 @@ export const QuickLegalServices: React.FC = () => {
         "Citations to applicable law",
         "Clear recommendations",
       ],
-      duration: "2-3 business days",
+      // duration: "2-3 business days",
     },
     {
       icon: FileText,
@@ -58,7 +58,7 @@ export const QuickLegalServices: React.FC = () => {
         "Risk & compliance review",
         "Two iterations included",
       ],
-      duration: "3-5 business days",
+      // duration: "3-5 business days",
     },
   ];
 
@@ -71,7 +71,7 @@ export const QuickLegalServices: React.FC = () => {
             to="/services"
             className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-5 h-5 mr-2" />
             Back to Services
           </Link>
 
@@ -134,9 +134,9 @@ export const QuickLegalServices: React.FC = () => {
                 </div>
 
                 <div className="flex items-center justify-between text-xs mb-4">
-                  <span className="text-slate-500">Typical duration</span>
+                  {/* <span className="text-slate-500">Typical duration</span> */}
                   <span className="font-medium text-slate-700">
-                    {service.duration}
+                    {/* {service.duration} */}
                   </span>
                 </div>
 

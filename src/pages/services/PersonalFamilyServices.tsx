@@ -11,7 +11,7 @@ export const PersonalFamilyServices: React.FC = () => {
       title: "Will & Testament",
       description: "Comprehensive will drafting and estate planning services",
       features: ["Will Drafting", "Legal Review", "Registration Support"],
-      duration: "3-5 days",
+      // duration: "3-5 days",
       slug: "will-testament",
     },
     {
@@ -22,7 +22,7 @@ export const PersonalFamilyServices: React.FC = () => {
         "Contested Divorce",
         "Legal Documentation",
       ],
-      duration: "30-90 days",
+      // duration: "30-90 days",
       slug: "divorce-proceedings",
     },
     {
@@ -33,7 +33,7 @@ export const PersonalFamilyServices: React.FC = () => {
         "Visitation Rights",
         "Legal Representation",
       ],
-      duration: "15-30 days",
+      // duration: "15-30 days",
       slug: "child-custody",
     },
     {
@@ -44,14 +44,14 @@ export const PersonalFamilyServices: React.FC = () => {
         "Settlement Agreements",
         "Legal Documentation",
       ],
-      duration: "10-15 days",
+      // duration: "10-15 days",
       slug: "family-settlements",
     },
     {
       title: "Adoption Services",
       description: "Complete adoption legal procedures and documentation",
       features: ["Adoption Papers", "Court Representation", "Legal Compliance"],
-      duration: "45-60 days",
+      // duration: "45-60 days",
       slug: "adoption-services",
     },
     {
@@ -62,7 +62,7 @@ export const PersonalFamilyServices: React.FC = () => {
         "Legal Representation",
         "Court Proceedings",
       ],
-      duration: "7-14 days",
+      // duration: "7-14 days",
       slug: "domestic-violence",
     },
     {
@@ -73,14 +73,14 @@ export const PersonalFamilyServices: React.FC = () => {
         "Registration Process",
         "Certificate Issuance",
       ],
-      duration: "5-7 days",
+      // duration: "5-7 days",
       slug: "marriage-registration",
     },
     {
       title: "Succession Planning",
       description: "Estate and succession planning for families",
       features: ["Estate Planning", "Legal Succession", "Tax Planning"],
-      duration: "7-10 days",
+      // duration: "7-10 days",
       slug: "succession-planning",
     },
     {
@@ -91,7 +91,7 @@ export const PersonalFamilyServices: React.FC = () => {
         "Court Applications",
         "Legal Documentation",
       ],
-      duration: "20-30 days",
+      // duration: "20-30 days",
       slug: "guardianship",
     },
     // {
@@ -132,9 +132,9 @@ export const PersonalFamilyServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Services
           </Link>
 
@@ -205,9 +205,9 @@ export const PersonalFamilyServices: React.FC = () => {
                 <div className="border-t border-slate-200 pt-4">
                   <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
-                      <span className="text-slate-500">Duration</span>
+                      {/* <span className="text-slate-500">Duration</span> */}
                       <div className="font-medium text-slate-700">
-                        {service.duration}
+                        {/* {service.duration} */}
                       </div>
                     </div>
                   </div>

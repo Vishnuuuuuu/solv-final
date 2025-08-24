@@ -102,9 +102,9 @@ export const MarriageRegistration: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services/personal-family"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Personal & Family Services
           </Link>
 

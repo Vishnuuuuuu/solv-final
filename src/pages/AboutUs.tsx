@@ -119,13 +119,17 @@ export const AboutUs: React.FC = () => {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="h-full"
+              className="relative"
             >
               <img
                 src="/founder-1.jpeg"
                 alt="Navya Shetty Raju"
-                className="rounded-lg shadow-lg w-full h-full object-cover"
+                className="rounded-lg shadow-lg w-full h-96 object-cover"
               />
+              <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6 rounded-lg shadow-xl">
+                <div className="text-2xl font-bold">Ph.D.</div>
+                <div className="text-slate-300">In Progress</div>
+              </div>
             </motion.div>
 
             {/* Right Column - Initial Content */}

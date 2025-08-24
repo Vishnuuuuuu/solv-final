@@ -12,7 +12,7 @@ export const IntellectualPropertyServices: React.FC = () => {
       description:
         "Complete trademark registration and brand protection services",
       features: ["Trademark Search", "Application Filing", "Brand Protection"],
-      duration: "8-12 months",
+      // duration: "8-12 months",
       slug: "trademark-registration",
     },
     {
@@ -20,14 +20,14 @@ export const IntellectualPropertyServices: React.FC = () => {
       description:
         "Patent filing and intellectual property protection services",
       features: ["Patent Search", "Application Drafting", "Patent Filing"],
-      duration: "12-18 months",
+      // duration: "12-18 months",
       slug: "patent-applications",
     },
     {
       title: "Copyright Registration",
       description: "Copyright protection for creative and literary works",
       features: ["Copyright Filing", "Work Protection", "Legal Documentation"],
-      duration: "4-6 months",
+      // duration: "4-6 months",
       slug: "copyright-registration",
     },
     {
@@ -38,14 +38,14 @@ export const IntellectualPropertyServices: React.FC = () => {
         "IP Enforcement",
         "Court Representation",
       ],
-      duration: "6-24 months",
+      // duration: "6-24 months",
       slug: "ip-litigation",
     },
     {
       title: "Licensing Agreements",
       description: "IP licensing and technology transfer agreements",
       features: ["License Drafting", "Royalty Terms", "IP Monetization"],
-      duration: "15-30 days",
+      // duration: "15-30 days",
       slug: "licensing-agreements",
     },
     {
@@ -56,7 +56,7 @@ export const IntellectualPropertyServices: React.FC = () => {
         "Trade Secret Audits",
         "Protection Strategies",
       ],
-      duration: "7-15 days",
+      // duration: "7-15 days",
       slug: "trade-secret-protection",
     },
     {
@@ -67,7 +67,7 @@ export const IntellectualPropertyServices: React.FC = () => {
         "Design Protection",
         "Registration Process",
       ],
-      duration: "6-12 months",
+      // duration: "6-12 months",
       slug: "design-registration",
     },
     {
@@ -78,14 +78,14 @@ export const IntellectualPropertyServices: React.FC = () => {
         "Domain Recovery",
         "Online Brand Protection",
       ],
-      duration: "2-6 months",
+      // duration: "2-6 months",
       slug: "domain-disputes",
     },
     {
       title: "IP Portfolio Management",
       description: "Comprehensive intellectual property portfolio management",
       features: ["Portfolio Strategy", "IP Maintenance", "Asset Valuation"],
-      duration: "Ongoing",
+      // duration: "Ongoing",
       slug: "ip-portfolio-management",
     },
     // {
@@ -122,9 +122,9 @@ export const IntellectualPropertyServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Services
           </Link>
 
@@ -194,9 +194,9 @@ export const IntellectualPropertyServices: React.FC = () => {
                 <div className="border-t border-slate-200 pt-4">
                   <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
-                      <span className="text-slate-500">Duration</span>
+                      {/* <span className="text-slate-500">Duration</span> */}
                       <div className="font-medium text-slate-700">
-                        {service.duration}
+                        {/* {service.duration} */}
                       </div>
                     </div>
                   </div>

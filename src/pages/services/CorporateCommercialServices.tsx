@@ -15,21 +15,21 @@ export const CorporateCommercialServices: React.FC = () => {
         "LLP Registration",
         "One Person Company",
       ],
-      duration: "7-15 days",
+      // duration: "7-15 days",
       slug: "company-incorporation",
     },
     {
       title: "Contract Drafting & Review",
       description: "Professional contract drafting and legal review services",
       features: ["Business Contracts", "Service Agreements", "Legal Review"],
-      duration: "3-7 days",
+      // duration: "3-7 days",
       slug: "contract-drafting-review",
     },
     {
       title: "Mergers & Acquisitions",
       description: "Complete M&A advisory and legal support services",
       features: ["Due Diligence", "Transaction Support", "Legal Documentation"],
-      duration: "60-180 days",
+      // duration: "60-180 days",
       slug: "mergers-acquisitions",
     },
     {
@@ -40,28 +40,28 @@ export const CorporateCommercialServices: React.FC = () => {
         "Compliance Management",
         "Governance Policies",
       ],
-      duration: "Ongoing",
+      // duration: "Ongoing",
       slug: "corporate-governance",
     },
     {
       title: "Business Compliance",
       description: "Comprehensive business compliance and regulatory services",
       features: ["Regulatory Compliance", "Filing Services", "Legal Updates"],
-      duration: "Ongoing",
+      // duration: "Ongoing",
       slug: "business-compliance",
     },
     {
       title: "Partnership Agreements",
       description: "Partnership and joint venture agreement drafting",
       features: ["Partnership Deeds", "JV Agreements", "Profit Sharing Terms"],
-      duration: "5-10 days",
+      // duration: "5-10 days",
       slug: "partnership-agreements",
     },
     {
       title: "Shareholder Agreements",
       description: "Comprehensive shareholder agreement preparation",
       features: ["Share Transfer Rules", "Voting Rights", "Exit Mechanisms"],
-      duration: "7-12 days",
+      // duration: "7-12 days",
       slug: "shareholder-agreements",
     },
     {
@@ -72,14 +72,14 @@ export const CorporateCommercialServices: React.FC = () => {
         "Non-Disclosure Agreements",
         "HR Policies",
       ],
-      duration: "2-5 days",
+      // duration: "2-5 days",
       slug: "employment-contracts",
     },
     {
       title: "Commercial Leases",
       description: "Commercial property lease agreements and documentation",
       features: ["Lease Negotiations", "Terms & Conditions", "Renewal Clauses"],
-      duration: "3-7 days",
+      // duration: "3-7 days",
       slug: "commercial-leases",
     },
     // {
@@ -116,9 +116,9 @@ export const CorporateCommercialServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Services
           </Link>
 
@@ -188,9 +188,9 @@ export const CorporateCommercialServices: React.FC = () => {
                 <div className="border-t border-slate-200 pt-4">
                   <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
-                      <span className="text-slate-500">Duration</span>
+                      {/* <span className="text-slate-500">Duration</span> */}
                       <div className="font-medium text-slate-700">
-                        {service.duration}
+                        {/* {service.duration} */}
                       </div>
                     </div>
                   </div>

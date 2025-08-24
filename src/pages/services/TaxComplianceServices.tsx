@@ -16,7 +16,7 @@ export const TaxComplianceServices: React.FC = () => {
         "Compliance Guidelines",
       ],
       // ...existing code...
-      duration: "3-5 days",
+      // duration: "3-5 days",
       slug: "gst-registration",
     },
     {
@@ -24,7 +24,7 @@ export const TaxComplianceServices: React.FC = () => {
       description: "Professional income tax return filing services",
       features: ["ITR Preparation", "Tax Optimization", "Refund Processing"],
       // ...existing code...
-      duration: "2-3 days",
+      // duration: "2-3 days",
       slug: "income-tax-filing",
     },
     {
@@ -32,7 +32,7 @@ export const TaxComplianceServices: React.FC = () => {
       description: "TDS return filing and compliance management",
       features: ["Quarterly Returns", "TDS Certificates", "Penalty Avoidance"],
       // ...existing code...
-      duration: "1-2 days",
+      // duration: "1-2 days",
       slug: "tds-return-filing",
     },
     {
@@ -44,7 +44,7 @@ export const TaxComplianceServices: React.FC = () => {
         "Advisory Services",
       ],
       // ...existing code...
-      duration: "5-7 days",
+      // duration: "5-7 days",
       slug: "corporate-tax-advisory",
     },
     {
@@ -56,7 +56,7 @@ export const TaxComplianceServices: React.FC = () => {
         "Renewal Services",
       ],
       // ...existing code...
-      duration: "7-10 days",
+      // duration: "7-10 days",
       slug: "fssai-registration",
     },
     {
@@ -68,7 +68,7 @@ export const TaxComplianceServices: React.FC = () => {
         "Benefits Guidance",
       ],
       // ...existing code...
-      duration: "3-5 days",
+      // duration: "3-5 days",
       slug: "msme-registration",
     },
     {
@@ -80,7 +80,7 @@ export const TaxComplianceServices: React.FC = () => {
         "Digital Certificate",
       ],
       // ...existing code...
-      duration: "5-7 days",
+      // duration: "5-7 days",
       slug: "iec-registration",
     },
     {
@@ -92,7 +92,7 @@ export const TaxComplianceServices: React.FC = () => {
         "Compliance Calendar",
       ],
       // ...existing code...
-      duration: "2-3 days",
+      // duration: "2-3 days",
       slug: "professional-tax",
     },
     {
@@ -100,7 +100,7 @@ export const TaxComplianceServices: React.FC = () => {
       description: "Employee State Insurance and Provident Fund setup",
       features: ["ESI Registration", "PF Registration", "Monthly Returns"],
       // ...existing code...
-      duration: "5-7 days",
+      // duration: "5-7 days",
       slug: "esi-pf-registration",
     },
   ];
@@ -112,9 +112,9 @@ export const TaxComplianceServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Services
           </Link>
 
@@ -184,9 +184,9 @@ export const TaxComplianceServices: React.FC = () => {
                 <div className="border-t border-slate-200 pt-4">
                   <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
-                      <span className="text-slate-500">Duration</span>
+                      {/* <span className="text-slate-500">Duration</span> */}
                       <div className="font-medium text-slate-700">
-                        {service.duration}
+                        {/* {service.duration} */}
                       </div>
                     </div>
                   </div>

@@ -16,7 +16,7 @@ export const RealEstateServices: React.FC = () => {
         "Registration Support",
       ],
       // ...existing code...
-      duration: "3-5 days",
+      // duration: "3-5 days",
       slug: "property-sale-agreement",
     },
     {
@@ -28,7 +28,7 @@ export const RealEstateServices: React.FC = () => {
         "Stamp Paper Arrangement",
       ],
       // ...existing code...
-      duration: "1-2 days",
+      // duration: "1-2 days",
       slug: "rent-agreement",
     },
     {
@@ -40,7 +40,7 @@ export const RealEstateServices: React.FC = () => {
         "Legal Opinion",
       ],
       // ...existing code...
-      duration: "7-10 days",
+      // duration: "7-10 days",
       slug: "title-verification",
     },
     {
@@ -52,7 +52,7 @@ export const RealEstateServices: React.FC = () => {
         "Registration Process",
       ],
       // ...existing code...
-      duration: "5-7 days",
+      // duration: "5-7 days",
       slug: "property-registration",
     },
     {
@@ -60,7 +60,7 @@ export const RealEstateServices: React.FC = () => {
       description: "Commercial and residential lease agreement drafting",
       features: ["Long-term Lease", "Renewal Clauses", "Legal Compliance"],
       // ...existing code...
-      duration: "2-3 days",
+      // duration: "2-3 days",
       slug: "lease-agreement",
     },
     {
@@ -72,7 +72,7 @@ export const RealEstateServices: React.FC = () => {
         "Service Agreements",
       ],
       // ...existing code...
-      duration: "2-3 days",
+      // duration: "2-3 days",
       slug: "property-management",
     },
     {
@@ -80,7 +80,7 @@ export const RealEstateServices: React.FC = () => {
       description: "Property-related power of attorney documents",
       features: ["General POA", "Special POA", "Revocation Documents"],
       // ...existing code...
-      duration: "1-2 days",
+      // duration: "1-2 days",
       slug: "power-of-attorney",
     },
     {
@@ -88,7 +88,7 @@ export const RealEstateServices: React.FC = () => {
       description: "Joint development agreements for real estate projects",
       features: ["Development Terms", "Profit Sharing", "Compliance Check"],
       // ...existing code...
-      duration: "7-10 days",
+      // duration: "7-10 days",
       slug: "joint-development-agreement",
     },
     {
@@ -96,7 +96,7 @@ export const RealEstateServices: React.FC = () => {
       description: "Legal support for property-related disputes",
       features: ["Dispute Analysis", "Settlement Negotiation", "Legal Notice"],
       // ...existing code...
-      duration: "5-7 days",
+      // duration: "5-7 days",
       slug: "property-dispute",
     },
   ];
@@ -108,9 +108,9 @@ export const RealEstateServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Services
           </Link>
 
@@ -180,9 +180,9 @@ export const RealEstateServices: React.FC = () => {
                 <div className="border-t border-slate-200 pt-4">
                   <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
-                      <span className="text-slate-500">Duration</span>
+                      {/* <span className="text-slate-500">Duration</span> */}
                       <div className="font-medium text-slate-700">
-                        {service.duration}
+                        {/* {service.duration} */}
                       </div>
                     </div>
                   </div>

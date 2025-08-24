@@ -16,7 +16,7 @@ export const DisputeResolutionServices: React.FC = () => {
         "Contract Litigation",
         "Court Representation",
       ],
-      duration: "30-180 days",
+      // duration: "30-180 days",
       slug: "commercial-litigation",
     },
     {
@@ -28,7 +28,7 @@ export const DisputeResolutionServices: React.FC = () => {
         "Award Enforcement",
         "Legal Representation",
       ],
-      duration: "60-120 days",
+      // duration: "60-120 days",
       slug: "arbitration-services",
     },
     {
@@ -39,14 +39,14 @@ export const DisputeResolutionServices: React.FC = () => {
         "Mediation Proceedings",
         "Dispute Settlement",
       ],
-      duration: "15-45 days",
+      // duration: "15-45 days",
       slug: "mediation-services",
     },
     {
       title: "Contract Disputes",
       description: "Resolution of contract-related disputes and breaches",
       features: ["Breach of Contract", "Contract Analysis", "Legal Remedies"],
-      duration: "30-90 days",
+      // duration: "30-90 days",
       slug: "contract-disputes",
     },
     {
@@ -57,14 +57,14 @@ export const DisputeResolutionServices: React.FC = () => {
         "Labor Law Issues",
         "Employment Rights",
       ],
-      duration: "20-60 days",
+      // duration: "20-60 days",
       slug: "employment-disputes",
     },
     {
       title: "Consumer Complaints",
       description: "Consumer protection and complaint resolution services",
       features: ["Consumer Rights", "Product Liability", "Service Complaints"],
-      duration: "15-30 days",
+      // duration: "15-30 days",
       slug: "consumer-complaints",
     },
     {
@@ -75,14 +75,14 @@ export const DisputeResolutionServices: React.FC = () => {
         "Recovery Proceedings",
         "Settlement Negotiations",
       ],
-      duration: "30-90 days",
+      // duration: "30-90 days",
       slug: "debt-recovery",
     },
     {
       title: "Property Disputes",
       description: "Real estate and property dispute resolution",
       features: ["Property Rights", "Boundary Disputes", "Title Disputes"],
-      duration: "60-180 days",
+      // duration: "60-180 days",
       slug: "property-disputes",
     },
     {
@@ -93,7 +93,7 @@ export const DisputeResolutionServices: React.FC = () => {
         "Profit Sharing Disputes",
         "Business Mediation",
       ],
-      duration: "45-120 days",
+      // duration: "45-120 days",
       slug: "partnership-disputes",
     },
     // {
@@ -131,9 +131,9 @@ export const DisputeResolutionServices: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center text-slate-600 hover:text-slate-900 transition-colors mb-6"
+            className="inline-flex items-center text-lg px-4 py-2 rounded-md text-slate-600 hover:text-slate-900 transition-colors mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-6 h-6 mr-2" />
             Back to Services
           </Link>
 
@@ -203,9 +203,9 @@ export const DisputeResolutionServices: React.FC = () => {
                 <div className="border-t border-slate-200 pt-4">
                   <div className="flex items-center justify-end mb-3">
                     <div className="text-sm text-right">
-                      <span className="text-slate-500">Duration</span>
+                      {/* <span className="text-slate-500">Duration</span> */}
                       <div className="font-medium text-slate-700">
-                        {service.duration}
+                        {/* {service.duration} */}
                       </div>
                     </div>
                   </div>
