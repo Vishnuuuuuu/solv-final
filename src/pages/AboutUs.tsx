@@ -124,12 +124,13 @@ export const AboutUs: React.FC = () => {
               <img
                 src="/founder-1.jpeg"
                 alt="Navya Shetty Raju"
-                className="rounded-lg shadow-lg w-full h-96 object-cover"
+                className="rounded-lg shadow-lg w-full h-[420px] lg:h-[520px] object-cover object-top"
               />
-              <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6 rounded-lg shadow-xl">
+
+              {/* <div className="absolute -bottom-6 -right-6 bg-slate-900 text-white p-6 rounded-lg shadow-xl">
                 <div className="text-2xl font-bold">Ph.D.</div>
                 <div className="text-slate-300">In Progress</div>
-              </div>
+              </div> */}
             </motion.div>
 
             {/* Right Column - Initial Content */}
