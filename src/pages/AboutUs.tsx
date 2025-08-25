@@ -86,8 +86,8 @@ export const AboutUs: React.FC = () => {
               Our goal is not only to resolve disputes but also to provide
               preventive legal guidance that reduces risks in the future. With a
               commitment to clarity, integrity, and results, Solv. Advocates and
-              Consultants serves as a trusted partner for clients navigating
-              complex legal challenges with confidence.
+              Legal Consultants serves as a trusted partner for clients
+              navigating complex legal challenges with confidence.
             </p>
           </motion.div>
         </div>
