@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useWeb3Form } from "../../../hooks/useWeb3Form";
 
 export const CorporateTaxAdvisory: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -21,13 +22,21 @@ export const CorporateTaxAdvisory: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { isSubmitting, result, submitForm } = useWeb3Form();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
+
+    const formPayload = new FormData();
+    formPayload.append("fullName", formData.fullName);
+    formPayload.append("mobile", formData.mobile);
+    formPayload.append("email", formData.email);
+    formPayload.append("requirements", formData.requirements);
+
+    const response = await submitForm(formPayload);
+
+    if (response.success) {
+      setIsSubmitted(true);
       setFormData({
         fullName: "",
         mobile: "",
@@ -35,7 +44,10 @@ export const CorporateTaxAdvisory: React.FC = () => {
         requirements: "",
         agreeToTerms: false,
       });
-    }, 3000);
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    }
   };
 
   const handleInputChange = (
@@ -286,10 +298,29 @@ export const CorporateTaxAdvisory: React.FC = () => {
 
                     <button
                       type="submit"
-                      className="w-full bg-slate-800 text-white py-3 rounded-md font-semibold hover:bg-slate-700 transition-colors"
+                      disabled={isSubmitting}
+                      className={`w-full py-3 rounded-md font-semibold transition-colors ${
+                        isSubmitting
+                          ? "bg-slate-500 cursor-not-allowed"
+                          : "bg-slate-800 text-white hover:bg-slate-700"
+                      }`}
                     >
-                      Get Corporate Tax Advisory
+                      {isSubmitting
+                        ? "Submitting..."
+                        : "Get Corporate Tax Advisory"}
                     </button>
+
+                    {result && (
+                      <div
+                        className={`p-3 rounded-md text-center text-sm ${
+                          result.isSuccess
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {result.message}
+                      </div>
+                    )}
                   </form>
                 )}
 
