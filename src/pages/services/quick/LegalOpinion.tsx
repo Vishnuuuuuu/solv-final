@@ -311,12 +311,12 @@ export const LegalOpinion: React.FC = () => {
                 </div>
 
                 <div className="mt-4 p-3 bg-green-50 rounded-md">
-                  <div className="flex items-center space-x-2">
+                  {/* <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm font-medium text-green-800">
                       Completion: 2-3 business days
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>
