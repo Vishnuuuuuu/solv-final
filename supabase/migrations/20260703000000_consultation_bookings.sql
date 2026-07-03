@@ -48,7 +48,10 @@ CREATE POLICY "Anyone can create a booking"
 
 -- Public can only see which slots are taken (date + time + status), not who booked them.
 -- We expose that through a view instead of a broad SELECT policy on the base table.
-CREATE OR REPLACE VIEW consultation_booked_slots AS
+-- security_invoker ensures the view runs under the querying user's own RLS/permissions
+-- rather than the view owner's (avoids the Postgres SECURITY DEFINER footgun).
+CREATE OR REPLACE VIEW consultation_booked_slots
+  WITH (security_invoker = true) AS
   SELECT slot_date, slot_time
   FROM consultation_bookings
   WHERE status = 'confirmed';

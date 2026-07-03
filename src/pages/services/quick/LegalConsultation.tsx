@@ -14,18 +14,25 @@ import { supabase } from "../../../lib/supabase";
 
 const SLOT_TIMES = ["6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM"];
 
-// Next 6 upcoming Mondays, formatted as yyyy-mm-dd
+// Next `count` upcoming Mondays (including today if today is a Monday), formatted as yyyy-mm-dd
 function getUpcomingMondays(count: number): string[] {
-  const mondays: string[] = [];
-  const date = new Date();
-  date.setHours(0, 0, 0, 0);
-  const dayOffset = (8 - date.getDay()) % 7 || 7;
-  date.setDate(date.getDate() + (date.getDay() === 1 ? 0 : dayOffset));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
+  // getDay(): 0=Sun, 1=Mon, ..., 6=Sat. Days until the next Monday (0 if today is Monday).
+  const daysUntilMonday = (1 - today.getDay() + 7) % 7;
+
+  const firstMonday = new Date(today);
+  firstMonday.setDate(today.getDate() + daysUntilMonday);
+
+  const mondays: string[] = [];
   for (let i = 0; i < count; i++) {
-    const d = new Date(date);
-    d.setDate(date.getDate() + i * 7);
-    mondays.push(d.toISOString().split("T")[0]);
+    const d = new Date(firstMonday);
+    d.setDate(firstMonday.getDate() + i * 7);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    mondays.push(`${yyyy}-${mm}-${dd}`);
   }
   return mondays;
 }
