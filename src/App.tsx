@@ -9,6 +9,7 @@ import {
 import { DisclaimerProvider } from "./components/DisclaimerManager";
 import { DisclaimerPopup } from "./components/DisclaimerPopup";
 import { Footer } from "./components/Footer";
+import { FreeConsultationBanner } from "./components/FreeConsultationBanner";
 import { Navigation } from "./components/Navigation";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AboutUs } from "./pages/AboutUs";
@@ -143,7 +144,10 @@ const ConditionalLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <>
-      <Navigation />
+      <div className="fixed top-0 w-full z-50">
+        <FreeConsultationBanner />
+        <Navigation />
+      </div>
       {children}
       <Footer />
       <WhatsAppButton />
