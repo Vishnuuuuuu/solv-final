@@ -1,16 +1,51 @@
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
+  Calendar,
   CheckCircle,
   Clock,
-  FileText,
+  MapPin,
   PhoneCall,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useWeb3Form } from "../../../hooks/useWeb3Form";
+import { supabase } from "../../../lib/supabase";
+
+const SLOT_TIMES = ["6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM"];
+
+// Next 6 upcoming Mondays, formatted as yyyy-mm-dd
+function getUpcomingMondays(count: number): string[] {
+  const mondays: string[] = [];
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
+  const dayOffset = (8 - date.getDay()) % 7 || 7;
+  date.setDate(date.getDate() + (date.getDay() === 1 ? 0 : dayOffset));
+
+  for (let i = 0; i < count; i++) {
+    const d = new Date(date);
+    d.setDate(date.getDate() + i * 7);
+    mondays.push(d.toISOString().split("T")[0]);
+  }
+  return mondays;
+}
+
+function formatDate(isoDate: string): string {
+  return new Date(isoDate + "T00:00:00").toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+}
 
 export const LegalConsultation: React.FC = () => {
+  const upcomingMondays = useMemo(() => getUpcomingMondays(6), []);
+
+  const [selectedDate, setSelectedDate] = useState(upcomingMondays[0]);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [bookedTimes, setBookedTimes] = useState<string[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -19,39 +54,35 @@ export const LegalConsultation: React.FC = () => {
     agreeToTerms: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { isSubmitting, result, submitForm } = useWeb3Form();
+  const { submitForm: sendBookingEmail } = useWeb3Form();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    let cancelled = false;
+    setSelectedTime(null);
+    setLoadingSlots(true);
 
-    const formPayload = new FormData();
-    formPayload.append("fullName", formData.fullName);
-    formPayload.append("mobile", formData.mobile);
-    formPayload.append("email", formData.email);
-    formPayload.append("requirements", formData.requirements);
-
-    const response = await submitForm(formPayload);
-
-    if (response.success) {
-      setIsSubmitted(true);
-      setFormData({
-        fullName: "",
-        mobile: "",
-        email: "",
-        requirements: "",
-        agreeToTerms: false,
+    supabase
+      .from("consultation_booked_slots")
+      .select("slot_time")
+      .eq("slot_date", selectedDate)
+      .then(({ data, error }) => {
+        if (cancelled) return;
+        if (!error && data) {
+          setBookedTimes(data.map((row) => row.slot_time));
+        }
+        setLoadingSlots(false);
       });
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    }
-  };
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedDate]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
     setFormData((prev) => ({
@@ -61,28 +92,83 @@ export const LegalConsultation: React.FC = () => {
     }));
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedTime) {
+      setSubmitError("Please choose a time slot.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const { error } = await supabase.from("consultation_bookings").insert({
+      full_name: formData.fullName,
+      mobile: formData.mobile,
+      email: formData.email,
+      requirements: formData.requirements || null,
+      slot_date: selectedDate,
+      slot_time: selectedTime,
+    });
+
+    setIsSubmitting(false);
+
+    if (error) {
+      if (error.code === "23505") {
+        setSubmitError(
+          "That slot was just booked by someone else. Please pick another time."
+        );
+        setBookedTimes((prev) => [...prev, selectedTime]);
+        setSelectedTime(null);
+      } else {
+        setSubmitError("Something went wrong. Please try again.");
+      }
+      return;
+    }
+
+    const emailPayload = new FormData();
+    emailPayload.append("subject", "New Free Consultation Booking");
+    emailPayload.append("fullName", formData.fullName);
+    emailPayload.append("mobile", formData.mobile);
+    emailPayload.append("email", formData.email);
+    emailPayload.append("requirements", formData.requirements || "-");
+    emailPayload.append("date", formatDate(selectedDate));
+    emailPayload.append("time", selectedTime);
+    sendBookingEmail(emailPayload);
+
+    setIsSubmitted(true);
+    setFormData({
+      fullName: "",
+      mobile: "",
+      email: "",
+      requirements: "",
+      agreeToTerms: false,
+    });
+    setSelectedTime(null);
+  };
+
   const benefits = [
-    "Speak directly with an experienced lawyer",
-    "Clear next steps and action plan",
-    "Confidential and secure session",
-    "Convenient video/audio appointment",
+    "Free, in-person session with an experienced lawyer",
+    "One-on-one — no shared or group slots",
+    "30 minutes fully dedicated to your matter",
+    "Confidential consultation at our office",
   ];
 
   const steps = [
     {
-      icon: FileText,
-      title: "Share Background",
-      description: "Tell us about your matter and objectives",
+      icon: Calendar,
+      title: "Pick a Monday Slot",
+      description: "Choose an available 30-minute slot between 6–9 PM",
     },
     {
       icon: PhoneCall,
-      title: "Consultation Call",
-      description: "30–60 minute focused discussion with a lawyer",
+      title: "Confirm Your Booking",
+      description: "Share your details and we'll lock in your appointment",
     },
     {
       icon: CheckCircle,
-      title: "Action Plan",
-      description: "Get clear recommendations and next steps",
+      title: "Visit Our Office",
+      description: "Meet your lawyer in person at the scheduled time",
     },
   ];
 
@@ -101,12 +187,12 @@ export const LegalConsultation: React.FC = () => {
           <div className="flex items-center space-x-3 mb-4">
             <PhoneCall className="h-8 w-8 text-slate-700" />
             <h1 className="text-3xl lg:text-4xl font-bold font-serif text-slate-900">
-              Legal Consultation
+              Free In-Person Legal Consultation
             </h1>
           </div>
           <p className="text-lg text-slate-600">
-            Book a 30–60 minute session to discuss your matter with an expert
-            lawyer.
+            Every Monday, 6–9 PM. 30 minutes, one-on-one, by prior appointment
+            only.
           </p>
         </div>
       </section>
@@ -120,12 +206,12 @@ export const LegalConsultation: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                Why Book a Consultation?
+                Why Book This Consultation?
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {benefits.map((b) => (
                   <div key={b} className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
                     <span className="text-slate-700">{b}</span>
                   </div>
                 ))}
@@ -158,6 +244,20 @@ export const LegalConsultation: React.FC = () => {
                 ))}
               </div>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-start space-x-3 bg-slate-50 border border-slate-200 rounded-lg p-4"
+            >
+              <MapPin className="h-5 w-5 text-slate-700 flex-shrink-0 mt-0.5" />
+              <p className="text-slate-600 text-sm">
+                Consultations are held at our office: No. 45, First Floor,
+                19th cross road, 7th Main Rd, BTM 2nd Stage, Bengaluru,
+                Karnataka 560076.
+              </p>
+            </motion.div>
           </div>
 
           <div className="lg:col-span-1">
@@ -169,25 +269,86 @@ export const LegalConsultation: React.FC = () => {
             >
               <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">
-                  Book a Consultation
+                  Book Your Free Slot
                 </h3>
-                <p className="text-sm text-slate-600 mb-6">
-                  Fill out the form and our team will contact you to schedule a
-                  slot.
-                </p>
 
                 {isSubmitted ? (
                   <div className="text-center py-8">
                     <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                      Request Submitted!
+                      Slot Booked!
                     </h3>
                     <p className="text-slate-600">
-                      Our team will contact you within 24 hours.
+                      Your free in-person consultation is confirmed. We'll
+                      send a reminder before your appointment.
                     </p>
+                    <button
+                      onClick={() => setIsSubmitted(false)}
+                      className="mt-6 text-sm font-medium text-slate-700 hover:underline"
+                    >
+                      Book another slot
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">
+                        Choose a Monday
+                      </label>
+                      <select
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                      >
+                        {upcomingMondays.map((date) => (
+                          <option key={date} value={date}>
+                            {formatDate(date)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Choose a Time Slot
+                      </label>
+                      {loadingSlots ? (
+                        <p className="text-sm text-slate-500">
+                          Checking availability...
+                        </p>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-2">
+                          {SLOT_TIMES.map((time) => {
+                            const isBooked = bookedTimes.includes(time);
+                            const isSelected = selectedTime === time;
+                            return (
+                              <button
+                                type="button"
+                                key={time}
+                                disabled={isBooked}
+                                onClick={() => setSelectedTime(time)}
+                                className={`px-3 py-2 rounded-md text-sm font-medium border transition-colors ${
+                                  isBooked
+                                    ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed line-through"
+                                    : isSelected
+                                    ? "bg-slate-800 text-white border-slate-800"
+                                    : "bg-white text-slate-700 border-slate-300 hover:border-slate-500"
+                                }`}
+                              >
+                                {time}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                      {!loadingSlots && bookedTimes.length === SLOT_TIMES.length && (
+                        <p className="text-sm text-red-600 mt-2">
+                          All slots for this date are booked. Please choose
+                          another Monday.
+                        </p>
+                      )}
+                    </div>
+
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">
                         Full Name
@@ -266,41 +427,29 @@ export const LegalConsultation: React.FC = () => {
 
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !selectedTime}
                       className={`w-full py-3 rounded-md font-semibold transition-colors ${
-                        isSubmitting
-                          ? "bg-slate-500 cursor-not-allowed"
+                        isSubmitting || !selectedTime
+                          ? "bg-slate-400 cursor-not-allowed"
                           : "bg-slate-800 text-white hover:bg-slate-700"
                       }`}
                     >
-                      {isSubmitting ? "Submitting..." : "Book Consultation"}
+                      {isSubmitting ? "Booking..." : "Confirm Free Slot"}
                     </button>
 
-                    {result && (
-                      <div
-                        className={`p-3 rounded-md text-center text-sm ${
-                          result.isSuccess
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
-                        }`}
-                      >
-                        {result.message}
+                    {submitError && (
+                      <div className="p-3 rounded-md text-center text-sm bg-red-100 text-red-800">
+                        {submitError}
                       </div>
                     )}
                   </form>
                 )}
 
-                <div className="mt-4 p-3 bg-blue-50 rounded-md">
-                  <p className="text-xs text-blue-800 text-center">
-                    We'll get back to you within 24 hours
-                  </p>
-                </div>
-
-                <div className="mt-4 p-3 bg-green-50 rounded-md">
+                <div className="mt-4 p-3 bg-amber-50 rounded-md">
                   <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4 text-green-600" />
-                    <span className="text-sm font-medium text-green-800">
-                      Typical Duration: 30–60 minutes
+                    <Clock className="h-4 w-4 text-amber-700" />
+                    <span className="text-sm font-medium text-amber-800">
+                      Free · Mondays 6–9 PM · 30 min · In person
                     </span>
                   </div>
                 </div>

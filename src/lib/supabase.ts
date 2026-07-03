@@ -189,6 +189,41 @@ export type Database = {
           updated_at?: string;
         };
       };
+      consultation_bookings: {
+        Row: {
+          id: string;
+          full_name: string;
+          mobile: string;
+          email: string;
+          requirements: string | null;
+          slot_date: string;
+          slot_time: string;
+          status: "confirmed" | "cancelled";
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          full_name: string;
+          mobile: string;
+          email: string;
+          requirements?: string | null;
+          slot_date: string;
+          slot_time: string;
+          status?: "confirmed" | "cancelled";
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string;
+          mobile?: string;
+          email?: string;
+          requirements?: string | null;
+          slot_date?: string;
+          slot_time?: string;
+          status?: "confirmed" | "cancelled";
+          created_at?: string;
+        };
+      };
     };
   };
 };
