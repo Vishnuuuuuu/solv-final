@@ -23,6 +23,7 @@ export const Navigation: React.FC = () => {
     { path: '/blog', label: 'Blog' },
     { path: '/careers', label: 'Careers' },
     { path: '/contact', label: 'Contact' },
+    { path: '/services/quick-legal-services/consultation', label: 'Free Consultation' },
   ];
 
   return (

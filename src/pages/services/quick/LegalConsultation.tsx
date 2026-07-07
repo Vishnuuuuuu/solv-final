@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import {
+  AlertCircle,
   ArrowLeft,
   Calendar,
   CheckCircle,
@@ -155,7 +156,7 @@ export const LegalConsultation: React.FC = () => {
   };
 
   const benefits = [
-    "Free, in-person session with an experienced lawyer",
+    "Free, in-person session with an experienced advocate",
     "One-on-one — no shared or group slots",
     "30 minutes fully dedicated to your matter",
     "Confidential consultation at our office",
@@ -175,7 +176,7 @@ export const LegalConsultation: React.FC = () => {
     {
       icon: CheckCircle,
       title: "Visit Our Office",
-      description: "Meet your lawyer in person at the scheduled time",
+      description: "Meet your advocate in person at the scheduled time",
     },
   ];
 
@@ -264,6 +265,25 @@ export const LegalConsultation: React.FC = () => {
                 19th cross road, 7th Main Rd, BTM 2nd Stage, Bengaluru,
                 Karnataka 560076.
               </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-amber-50 border border-amber-200 rounded-lg p-5"
+            >
+              <div className="flex items-start space-x-3">
+                <AlertCircle className="h-5 w-5 text-amber-700 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-amber-900 mb-1">Note</p>
+                  <ul className="text-sm text-amber-800 space-y-1.5 list-disc list-inside">
+                    <li>The free consultation provides general legal information only. It does not include document reviews, title searches, or real estate due diligence.</li>
+                    <li>Appointments/slots are confirmed only after confirmation by email or phone call.</li>
+                    <li>No walk-ins.</li>
+                  </ul>
+                </div>
+              </div>
             </motion.div>
           </div>
 
