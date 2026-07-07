@@ -145,7 +145,6 @@ const ConditionalLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <>
       <div className="fixed top-0 w-full z-50">
-        <FreeConsultationBanner />
         <Navigation />
       </div>
       {children}
